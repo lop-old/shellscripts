@@ -53,6 +53,13 @@ GIT_PREFIX_SSH='git@github.com:'
 
 # ask use https/ssh with git
 function AskHttpsSsh() {
+	if [ "$1" == "--https" ]; then
+		export REPO_PREFIX=$GIT_PREFIX_HTTPS
+		return 0
+	elif [ "$1" == "--ssh" ]; then
+		export REPO_PREFIX=$GIT_PREFIX_SSH
+		return 0
+	fi
 	while true; do
 		newline
 		echo "https: read only access"
@@ -90,7 +97,8 @@ function CheckoutRepo() {
 
 
 function AskResources() {
-	if yesno "Would you like to download the required resources? [y/N] " --default no ; then
+	if [ "$1" == "--https" ] || [ "$1" == "--ssh" ] ||
+			yesno "Would you like to download the required resources? [y/N] " --default no ; then
 		if [ ! -d resources ]; then
 			echo
 			mkdir -v resources
