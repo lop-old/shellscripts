@@ -83,6 +83,8 @@ function CheckoutRepo() {
 	fi
 	if [ -d "$1" ] || [ -h "$1" ]; then
 		echo "${1} repo already exists in workspace."
+		(cd ${1};git pull)
+		newline
 		return 1
 	fi
 	newline
