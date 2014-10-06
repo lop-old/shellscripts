@@ -4,8 +4,9 @@ Version         : 1.0.4
 Release         : 2
 BuildArch       : noarch
 Provides        : pxnscripts
-Prefix          : /usr/local/bin/pxn
 Requires        : screen, wget, rsync
+Prefix          : /usr/local/bin/pxn
+%define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
 Group		: Base System/System Tools
 License		: (c) PoiXson
@@ -13,13 +14,6 @@ URL             : http://poixson.com/
 
 %description
 A collection of commonly used shell scripts for CentOS and Fedora.
-
-
-
-%define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
-%define _rpmdir       %{OUTPUT_DIR}
-
-%define sourceroot    %{SOURCE_ROOT}
 
 
 

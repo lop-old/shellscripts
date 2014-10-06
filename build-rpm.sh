@@ -37,8 +37,8 @@ cp "${SPEC_FILE}" "${BUILD_ROOT}/SPECS/" \
 rpmbuild -bb \
 	--define "_topdir ${BUILD_ROOT}" \
 	--define "_tmppath ${BUILD_ROOT}/tmp" \
-	--define "SOURCE_ROOT ${SOURCE_ROOT}" \
-	--define "OUTPUT_DIR ${OUTPUT_DIR}" \
+	--define "sourceroot ${SOURCE_ROOT}" \
+	--define "_rpmdir ${OUTPUT_DIR}" \
 	"${BUILD_ROOT}/SPECS/${SPEC_FILE}" \
 		|| exit 1
 
