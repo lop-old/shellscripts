@@ -83,15 +83,15 @@ function CheckoutRepo() {
 	fi
 	if [ -d "$1" ] || [ -h "$1" ]; then
 		echo "${1} repo already exists in workspace."
-		(cd ${1};git pull)
+		(cd "${1}"; git pull origin master)
 		newline
 		return 1
 	fi
 	newline
 	echo "Cloning ${1} repo.."
-	git clone ${2} ${1}
-	git config core.filemode false --git-dir=${1}
-	git config core.symlinks false --git-dir=${1}
+	git clone "${2}" "${1}"
+	git config core.filemode false --git-dir="${1}"
+	git config core.symlinks false --git-dir="${1}"
 	newline
 	return 0
 }
