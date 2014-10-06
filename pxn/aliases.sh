@@ -105,6 +105,8 @@ alias gg='/usr/libexec/git-core/git-gui;exit'
 alias gits='clear;git status'
 alias gitm='git mergetool'
 
+alias kk='konsole;exit'
+
 alias header='curl -I'
 
 
