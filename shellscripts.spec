@@ -50,6 +50,11 @@ echo
 %install
 echo
 echo "Install.."
+# delete existing rpm
+if [[ -f "%{_rpmdir}/%{name}-%{version}-%{release}.noarch.rpm" ]]; then
+	%{__rm} -f "%{_rpmdir}/%{name}-%{version}-%{release}.noarch.rpm" \
+		|| exit 1
+fi
 # create directories
 %{__install} -d -m 0755 \
 	"${RPM_BUILD_ROOT}%{prefix}" \
