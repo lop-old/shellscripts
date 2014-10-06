@@ -51,7 +51,7 @@ echo
 echo
 echo "Install.."
 # delete existing rpm's
-%{__rm} -fv "%{_rpmdir}/%{name}-%{version}-"*.noarch.rpm
+%{__rm} -fv "%{_rpmdir}/%{name}-"*.noarch.rpm
 # create directories
 %{__install} -d -m 0755 \
 	"${RPM_BUILD_ROOT}%{prefix}" \
