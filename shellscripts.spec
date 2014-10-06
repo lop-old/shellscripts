@@ -1,7 +1,7 @@
 Name            : pxnShellScripts
 Summary         : A collection of commonly used shell scripts
 Version         : 1.0.4
-Release         : 2
+Release         : %{RELEASE}
 BuildArch       : noarch
 Provides        : pxnscripts
 Requires        : screen, wget, rsync
