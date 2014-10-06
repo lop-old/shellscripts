@@ -1,7 +1,7 @@
 Name            : pxnShellScripts
 Summary         : A collection of commonly used shell scripts
-Version         : 1.0.3
-Release         : 1
+Version         : 1.0.4
+Release         : 2
 BuildArch       : noarch
 Provides        : pxnscripts
 Prefix          : /usr/local/bin/pxn
