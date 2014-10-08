@@ -35,6 +35,11 @@ else
 		|| exit 1
 	source ./common.sh
 fi
+# download mklinkrel.sh
+if [ ! -e mklinkrel.sh ] && [ ! -f /usr/local/bin/pxn/mklinkrel.sh ]; then
+	wget https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/mklinkrel.sh \
+		|| exit 1
+fi
 # load yesno.sh
 if [ -e yesno.sh ]; then
 	source ./yesno.sh
@@ -141,43 +146,6 @@ function unzipResource() {
 	cd $dir
 	unzip -o "${path}"
 	cd "${currentdir}"
-	return 0
-}
-
-
-
-# mkRelLink <target> <create_here> <link_name>
-function mkRelLink() {
-	# create in dir
-	if [ ! -d ${1} ]; then
-		echo "Source directory ${1} doesn\'t exist"
-		return 1
-	fi
-	if [ ! -d ${2} ]; then
-		echo "Target directory ${2} doesn\'t exist"
-		return 1
-	fi
-	if [ -e ${2}/${3} ]; then
-		echo "Symbolic link ${2} / ${3} already exists"
-		return 0
-	fi
-	echo "Creating link ${2} / ${3}"
-	# build repeating '../'
-	LEVELS_DEEP=`echo $2 | tr '/' '\n' | wc -l`
-	UP_DIRS=''
-	for (( i=0; i<$LEVELS_DEEP; i++ )); do
-		UP_DIRS=${UP_DIRS}'../'
-	done
-	cd ${2}
-	ln -s ${UP_DIRS}${1} ${3}
-	ls -l --color=auto ${3}
-	cd ${UP_DIRS}
-	newline
-#	saved_path=`pwd`
-#	cd $2
-#	ln -s -r ${1} ${2}/${3}
-#	ls -l --color=auto ${2}/${3}
-#	cd $saved_path
 	return 0
 }
 
