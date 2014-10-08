@@ -1,8 +1,8 @@
 
+To install the PoiXson yum repository:
 
+yum install http://yum.poixson.com/latest.rpm
 
-yum install -y wget
-wget -O pxn_installer.sh http://dl.poixson.com/scripts/pxn/install.sh
-sh pxn_installer.sh
+This repository will allow you to install GrowControl or other packages provided by PoiXson, and receive automatic updates.
 
 
