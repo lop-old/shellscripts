@@ -53,7 +53,7 @@ done
 	cd "${2}"          || exit 1
 	# create symlink
 	ln -s "${UPDIRS}${1}" "${3}" \
-		|| ( echo "Failed to create symlink! ${UPDIRS}${1} ${3}"; exit 1; }
+		|| { echo "Failed to create symlink! ${UPDIRS}${1} ${3}"; exit 1; }
 	echo
 )
 
