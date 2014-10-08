@@ -61,7 +61,7 @@ echo "Install.."
 for shfile in \
 	aliases.sh \
 	common.sh \
-	mkln.sh \
+	mklinkrel.sh \
 	profile.sh \
 	sshkeygen.sh \
 	workspace_utils.sh \
@@ -97,7 +97,7 @@ fi
 %defattr(644,-,-,755)
 %{prefix}/aliases.sh
 %{prefix}/common.sh
-%{prefix}/mkln.sh
+%{prefix}/mklinkrel.sh
 %{prefix}/profile.sh
 %{prefix}/sshkeygen.sh
 %{prefix}/workspace_utils.sh
