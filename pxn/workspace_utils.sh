@@ -112,7 +112,9 @@ newline
 
 # ask github user
 if [ -z "${GITHUB_USER}" ]; then
+	newline
 	read -p "Which github account should be used? [default: PoiXson] " answer
+	newline
 	if [ -z "${answer}" ]; then
 		GITHUB_USER="PoiXson"
 	else
@@ -152,7 +154,7 @@ function AskResources() {
 	if [ "$1" == "--https" ] || [ "$1" == "--ssh" ] ||
 			yesno "Would you like to download the required resources? [y/N] " --default no ; then
 		if [ ! -d resources ]; then
-			echo
+			newline
 			mkdir -v resources
 		fi
 		return $YES
