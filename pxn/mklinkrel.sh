@@ -37,6 +37,7 @@ if [ -z ${1} ] || [ ! -d ${1} ]; then
 fi
 # symlink already exists
 if [ -e '${2}/${3}' ]; then
+	echo "Symlink already exists: ${2} / ${3}"
 	exit 0
 fi
 # build repeating "../"
@@ -47,10 +48,12 @@ for (( i=0; i<$LEVELSDEEP; i++ )); do
 done
 # enter dir in which to create
 (
+	echo "Creating symlink: ${1} -> ${2} / ${3}"
 	mkdir -p -v "${2}" || exit 1
 	cd "${2}"          || exit 1
 	# create symlink
 	ln -s "${UPDIRS}${1}" "${3}" \
 		|| ( echo "Failed to create symlink! ${UPDIRS}${1} ${3}"; exit 1; }
+	echo
 )
 
