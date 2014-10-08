@@ -36,7 +36,7 @@ if [ -z ${1} ] || [ ! -d ${1} ]; then
 	exit 1
 fi
 # symlink already exists
-if [ -e '${2}/${3}' ]; then
+if [ -e "${2}/${3}" ]; then
 	echo "Symlink already exists: ${2} / ${3}"
 	exit 0
 fi
