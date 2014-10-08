@@ -124,6 +124,8 @@ fi
 echo "Using github user: ${GITHUB_USER}"
 newline
 
+REPO_PREFIX="${REPO_PREFIX}${GITHUB_USER}"
+
 
 
 # CheckoutRepo <dir_name> <repo_url>
