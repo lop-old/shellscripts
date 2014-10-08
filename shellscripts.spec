@@ -94,7 +94,7 @@ fi
 
 ### Files ###
 %files
-%defattr(644,-,-,755)
+%defattr(644,root,root,755)
 %{prefix}/aliases.sh
 %{prefix}/common.sh
 %{prefix}/mklinkrel.sh
