@@ -39,17 +39,18 @@ fi
 if [ -e '${2}/${3}' ]; then
 	exit 0
 fi
-# enter dir in which to create
-mkdir -p -v ${2}
-cd ${2}
-
 # build repeating "../"
-LEVELSDEEP=`echo $2 | tr '/' '\n' | wc -l`
+LEVELSDEEP=`echo "${2}" | tr '/' '\n' | wc -l`
 UPDIRS=''
 for (( i=0; i<$LEVELSDEEP; i++ )); do
 	UPDIRS="${UPDIRS}../"
 done
-
-ln -s ${UPDIRS}${1} ${3}
-
+# enter dir in which to create
+(
+	mkdir -p -v "${2}" || exit 1
+	cd "${2}"          || exit 1
+	# create symlink
+	ln -s "${UPDIRS}${1}" "${3}" \
+		|| ( echo "Failed to create symlink! ${UPDIRS}${1} ${3}"; exit 1; }
+)
 
