@@ -31,7 +31,8 @@ if [ -e common.sh ]; then
 elif [ -e /usr/local/bin/pxn/common.sh ]; then
 	source /usr/local/bin/pxn/common.sh
 else
-	wget http://dl.poixson.com/scripts/pxn/common.sh
+	wget https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh \
+		|| exit 1
 	source ./common.sh
 fi
 # load yesno.sh
@@ -40,7 +41,8 @@ if [ -e yesno.sh ]; then
 elif [ -e /usr/local/bin/pxn/yesno.sh ]; then
 	source /usr/local/bin/pxn/yesno.sh
 else
-	wget http://dl.poixson.com/scripts/pxn/yesno.sh
+	wget https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/yesno.sh \
+		|| exit 1
 	source ./yesno.sh
 fi
 
@@ -83,13 +85,15 @@ function CheckoutRepo() {
 	fi
 	if [ -d "$1" ] || [ -h "$1" ]; then
 		echo "${1} repo already exists in workspace."
-		(cd "${1}"; git pull origin master)
+		(cd "${1}" && git pull origin master) \
+			|| return 1
 		newline
-		return 1
+		return 0
 	fi
 	newline
 	echo "Cloning ${1} repo.."
-	git clone "${2}" "${1}"
+	git clone "${2}" "${1}" \
+		|| return 1
 	git config core.filemode false --git-dir="${1}"
 	git config core.symlinks false --git-dir="${1}"
 	newline
