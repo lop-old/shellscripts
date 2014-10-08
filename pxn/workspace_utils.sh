@@ -63,33 +63,64 @@ function Cleanup() {
 
 
 
+# parse arguments
+for i in "$@"; do
+	case $i in
+	--https)
+		answerHttpsSsh="h"
+	;;
+	--ssh)
+		answerHttpsSsh="s"
+	;;
+	--user=*)
+		GITHUB_USER="${i#*=}"
+	;;
+	--user)
+		GITHUB_USER="PoiXson"
+	;;
+	*)
+		echo "Unknown argument: ${i}"
+		exit 1
+	;;
+	esac
+done
+
+
+
 GIT_PREFIX_HTTPS='https://github.com/'
 GIT_PREFIX_SSH='git@github.com:'
 
-
-
-# ask use https/ssh with git
-function AskHttpsSsh() {
-	if [ "$1" == "--https" ]; then
-		export REPO_PREFIX=$GIT_PREFIX_HTTPS
-		return 0
-	elif [ "$1" == "--ssh" ]; then
-		export REPO_PREFIX=$GIT_PREFIX_SSH
-		return 0
-	fi
-	while true; do
-		newline
-		echo "https: read only access"
-		echo "ssh: read/write access (permission required)"
-		read -p "Would you like to use [h]ttps or [s]sh repo addresses? " answer
-		newline
-		case $answer in
-			[Hh]* ) export REPO_PREFIX=$GIT_PREFIX_HTTPS; break;;
-			[Ss]* ) export REPO_PREFIX=$GIT_PREFIX_SSH;   break;;
-			* ) echo "Please answer H or S.";;
+# ask use https/ssh for cloning
+while true; do
+	if [ ! -z "${answerHttpsSsh}" ]; then
+		case $answerHttpsSsh in
+			[Hh]* ) REPO_PREFIX="${GIT_PREFIX_HTTPS}"; break;;
+			[Ss]* ) REPO_PREFIX="${GIT_PREFIX_SSH}";   break;;
+			* ) echo "Please answer H or S";;
 		esac
-	done
-}
+	fi
+	newline
+	echo "https: read only access"
+	echo "ssh:   read/write access (permission required)"
+	read -p "Would you like to clone with [h]ttps or [s]sh ? " answerHttpsSsh
+	newline
+done
+echo "Using repo prefix: ${REPO_PREFIX}"
+newline
+
+
+
+# ask github user
+if [ -z "${GITHUB_USER}" ]; then
+	read -p "Which github account should be used? [default: PoiXson] " answer
+	if [ -z "${answer}" ]; then
+		GITHUB_USER="PoiXson"
+	else
+		GITHUB_USER="${answer}"
+	fi
+fi
+echo "Using github user: ${GITHUB_USER}"
+newline
 
 
 
