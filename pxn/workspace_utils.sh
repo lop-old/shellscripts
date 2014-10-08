@@ -53,6 +53,16 @@ fi
 
 
 
+function Cleanup() {
+	if [[ `pwd` != /usr* ]]; then
+		rm -fv `pwd`/workspace_utils.sh
+		rm -fv `pwd`/mklinkrel.sh
+		rm -fv `pwd`/yesno.sh
+	fi
+}
+
+
+
 GIT_PREFIX_HTTPS='https://github.com/'
 GIT_PREFIX_SSH='git@github.com:'
 
@@ -148,15 +158,4 @@ function unzipResource() {
 	cd "${currentdir}"
 	return 0
 }
-
-
-
-function Cleanup() {
-	if [[ "$PWD" == /usr/local* ]]; then
-		return
-	fi
-	rm -f -v ./workspace_utils.sh
-	rm -f -v ./yesno.sh
-}
-
 
