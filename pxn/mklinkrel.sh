@@ -7,10 +7,11 @@
 ## Install to location: /usr/local/bin/pxn
 ##
 ## Download the original from:
-##   http://dl.poixson.com/scripts/
+##   http://dl.poixson.com/scripts/ or
+##   https://github.com/PoiXson/shellscripts/
 ##
 ##
-## Usage: mkln <link_target> <create_here> <link_name>
+## Usage: mklinkrel <link_target> <create_here> <link_name>
 ##
 ##
 ## Permission to use, copy, modify, and/or distribute this software for any
@@ -25,13 +26,13 @@
 ## ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 ## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ##===============================================================================
-# mkln.sh
+# mklinkrel.sh
 
 
 
-# destination exists?
+# target exists?
 if [ -z ${1} ] || [ ! -d ${1} ]; then
-	echo Source directory ${1} doesn\'t exist!
+	echo "Target directory ${1} doesn\'t exist!"
 	exit 1
 fi
 # symlink already exists
