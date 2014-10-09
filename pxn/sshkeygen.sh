@@ -17,9 +17,12 @@ if [ -z ${1} ]; then
 	echo "Key is ready to use."
 else
 	# copy pub key to remote host
-	scp ~/.ssh/id_rsa.pub $1:~/.ssh/authorized_keys
-	ssh $1 'chmod 700 ~/.ssh'
-	ssh $1 'chmod 600 ~/.ssh/*'
+	PORT=""
+	if [[ ${2} == \-p* ]]; then
+		PORT="${2}"
+	fi
+	ssh-copy-id -i ~/.ssh/id_rsa.pub "${1}" ${PORT} || exit 1
+#	ssh "${1}" 'chmod 700 ~/.ssh && chmod 600 ~/.ssh/*' || exit 1
 	echo "Key installed to ${1}"
 fi
 
