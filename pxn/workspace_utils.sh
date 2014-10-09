@@ -53,13 +53,6 @@ fi
 
 
 
-function Cleanup() {
-	if [[ `pwd` != /usr* ]]; then
-		rm -fv `pwd`/workspace_utils.sh
-		rm -fv `pwd`/mklinkrel.sh
-		rm -fv `pwd`/yesno.sh
-	fi
-}
 
 
 
