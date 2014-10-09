@@ -25,6 +25,13 @@
 
 
 
+# ensure path is set
+if [[ ":${PATH}:" != *:/usr/local/bin/pxn:* ]]; then
+	export PATH="/usr/local/bin/pxn:$PATH"
+fi
+
+
+
 # export PXN_DATA="/files"
 # export PXN_BACKUPS="/backups"
 # export PXN_WORKSPACE="/zwork"
