@@ -31,10 +31,10 @@ A collection of commonly used shell scripts for CentOS and Fedora.
 echo
 echo "Prep.."
 # check for existing workspace
-if [ -d "%{sourceroot}" ]; then
-	echo "Found source workspace: %{sourceroot}"
+if [ -d "%{SOURCE_ROOT}" ]; then
+	echo "Found source workspace: %{SOURCE_ROOT}"
 else
-	echo "Source workspace not found: %{sourceroot}"
+	echo "Source workspace not found: %{SOURCE_ROOT}"
 	exit 1
 fi
 echo
@@ -69,7 +69,7 @@ for shfile in \
 	yesno.sh \
 ; do
 	%{__install} -m 0755 \
-		"%{sourceroot}/${shfile}" \
+		"%{SOURCE_ROOT}/${shfile}" \
 		"${RPM_BUILD_ROOT}%{prefix}/${shfile}" \
 			|| exit 1
 done
