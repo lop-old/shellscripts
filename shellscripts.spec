@@ -1,7 +1,7 @@
 Name            : pxnShellScripts
 Summary         : A collection of commonly used shell scripts
-Version         : 1.0.4
-Release         : %{RELEASE}
+Version         : 1.3.%{BUILD_NUMBER}
+Release         : 1
 BuildArch       : noarch
 Provides        : pxnscripts
 Requires        : screen, wget, rsync
@@ -103,5 +103,4 @@ fi
 %{prefix}/workspace_utils.sh
 %{prefix}/yesno.sh
 %{_sysconfdir}/profile.d/pxn-profile.sh
-
 
