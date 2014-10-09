@@ -8,8 +8,8 @@ Requires        : screen, wget, rsync
 Prefix          : /usr/local/bin/pxn
 %define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
-Group		: Base System/System Tools
-License		: (c) PoiXson
+Group           : Base System/System Tools
+License         : (c) PoiXson
 URL             : http://poixson.com/
 
 %description
