@@ -10,6 +10,7 @@ Prefix          : /usr/local/bin/pxn
 
 Group           : Base System/System Tools
 License         : (c) PoiXson
+Packager        : PoiXson <support@poixson.com>
 URL             : http://poixson.com/
 
 %description
