@@ -1,10 +1,10 @@
-Name            : pxnShellScripts
+Name            : pxn-shellscripts
 Summary         : A collection of commonly used shell scripts
 Version         : 1.3.%{BUILD_NUMBER}
 Release         : 1
 BuildArch       : noarch
 Provides        : pxnscripts
-Requires        : screen, wget, rsync
+Requires        : screen, bash, wget, rsync, zip, unzip, grep
 Prefix          : /usr/local/bin/pxn
 %define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
