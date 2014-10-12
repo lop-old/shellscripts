@@ -68,7 +68,7 @@ for shfile in \
 	workspace_utils.sh \
 	yesno.sh \
 ; do
-	%{__install} -m 0755 \
+	%{__install} -m 0555 \
 		"%{SOURCE_ROOT}/${shfile}" \
 		"${RPM_BUILD_ROOT}%{prefix}/${shfile}" \
 			|| exit 1
@@ -95,7 +95,7 @@ fi
 
 ### Files ###
 %files
-%defattr(555,root,root,755)
+%defattr(-,root,root,-)
 %{prefix}/aliases.sh
 %{prefix}/common.sh
 %{prefix}/mklinkrel.sh
