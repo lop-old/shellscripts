@@ -120,9 +120,8 @@ REPO_PREFIX="${REPO_PREFIX}${GITHUB_USER}"
 
 # CheckoutRepo <dir_name> <repo_url>
 function CheckoutRepo() {
-	if [ ! -d ".git" ]; then
-		mkdir -v .git
-	fi
+	newline
+	# update existing workspace
 	if [ -d "$1" ] || [ -h "$1" ]; then
 		echo "${1} repo already exists in workspace."
 		(cd "${1}" && git pull origin master) \
@@ -130,12 +129,11 @@ function CheckoutRepo() {
 		newline
 		return 0
 	fi
-	newline
 	echo "Cloning ${1} repo.."
 	git clone "${2}" "${1}" \
 		|| return 1
-	git config core.filemode false --git-dir="${1}"
-	git config core.symlinks false --git-dir="${1}"
+	(cd "${PWD}/${1}" && git config core.filemode false)
+	(cd "${PWD}/${1}" && git config core.symlinks false)
 	newline
 	return 0
 }
