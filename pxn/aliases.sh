@@ -101,11 +101,11 @@ alias screenc='screen -mS'
 
 alias countlines='find . -name "*.java" | xargs wc -l'
 
-alias gg='/usr/libexec/git-core/git-gui;exit'
+alias gg='/usr/libexec/git-core/git-gui && exit $?'
 alias gits='clear;git status'
 alias gitm='git mergetool'
 
-alias kk='konsole;exit'
+alias kk='konsole && exit $?'
 
 alias header='curl -I'
 
@@ -113,5 +113,4 @@ alias header='curl -I'
 
 alias now='date +"%T"'
 alias nowdate='date +"%Y-%m%d"'
-
 
