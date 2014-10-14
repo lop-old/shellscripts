@@ -1,7 +1,7 @@
 
 
 
-SOURCE_ROOT="${PWD}/pxn"
+SOURCE_ROOT=`pwd`/pxn
 SPEC_FILE="shellscripts.spec"
 
 
