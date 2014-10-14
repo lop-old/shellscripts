@@ -48,6 +48,8 @@ alias grep='grep --color=auto'
 alias diff='colordiff'
 
 alias yumy='yum -y'
+alias yumup='yum clean all && clear && yum update'
+alias yumupy='yumup -y'
 
 
 
