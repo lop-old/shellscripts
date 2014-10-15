@@ -65,6 +65,7 @@ for shfile in \
 	mklinkrel.sh \
 	profile.sh \
 	sshkeygen.sh \
+	build_utils.sh \
 	workspace_utils.sh \
 	yesno.sh \
 ; do
@@ -101,6 +102,7 @@ fi
 %{prefix}/mklinkrel.sh
 %{prefix}/profile.sh
 %{prefix}/sshkeygen.sh
+%{prefix}/build_utils.sh
 %{prefix}/workspace_utils.sh
 %{prefix}/yesno.sh
 %{_sysconfdir}/profile.d/pxn-profile.sh
