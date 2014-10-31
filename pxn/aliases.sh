@@ -103,7 +103,8 @@ alias screenc='screen -mS'
 
 alias countlines='find . -name "*.java" | xargs wc -l'
 
-alias gg='/usr/libexec/git-core/git-gui && exit $?'
+alias gg='/usr/libexec/git-core/git-gui'
+alias gge='gg && exit $?'
 alias gits='clear;git status'
 alias gitm='git mergetool'
 
