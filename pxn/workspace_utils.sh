@@ -103,7 +103,7 @@ newline
 # ask github user
 if [ -z "${GITHUB_USER}" ]; then
 	newline
-	read -p "Which github account should be used? [default: PoiXson] " answer
+	read -p "Which github account (fork) should be used? [default: PoiXson] " answer
 	newline
 	if [ -z "${answer}" ]; then
 		GITHUB_USER="PoiXson"
