@@ -73,6 +73,7 @@ alias ww='watch w'
 alias memtop='watch "free -m;echo;ps aux --sort -rss | head -11"'
 alias ports='netstat -tulanp'
 alias vtop='virt-top -d 1'
+alias httpw='watch -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-server-status'
 
 
 
