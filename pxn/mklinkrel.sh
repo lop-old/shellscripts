@@ -31,7 +31,7 @@
 
 
 # target exists?
-if [ -z ${1} ] || [ ! -d ${1} ]; then
+if [ -z ${1} ] || [ ! -e ${1} ]; then
 	echo "Target directory ${1} doesn\'t exist!"
 	exit 1
 fi
