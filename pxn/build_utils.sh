@@ -67,11 +67,11 @@ fi
 
 sedVersion() {
 	sed -i.original "s/x-SNAPSHOT/${BUILD_NUMBER}-SNAPSHOT/" "${1}" \
-		|| { echo "Failed to sed a pom file! ${1}"; return 1; }
+		|| { echo "Failed to sed a file! ${1}"; return 1; }
 }
-restorePom() {
+restoreSed() {
 	mv -fv "${1}.original" "${1}" \
-		|| { echo "Failed to restore a pom file! ${1}"; return 1; }
+		|| { echo "Failed to restore a file! ${1}"; return 1; }
 }
 
 
