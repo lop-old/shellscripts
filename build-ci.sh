@@ -24,6 +24,7 @@ title "Build.."
 
 title "Deploy.."
 cp -fv "${WORKSPACE}/${NAME}"-*.noarch.rpm "${DL_PATH}/" || exit 1
-latest_version "${DL_PATH}/${NAME}-*.noarch.rpm"                    || exit 1
-ln -fs "${DL_PATH}/${LATEST_FILE}" "${YUM_PATH}/${NAME}.noarch.rpm" || exit 1
+latest_version "${DL_PATH}/${NAME}-*.noarch.rpm"         || exit 1
+echo "Latest version: "${LATEST_FILE}
+ln -fs "${LATEST_FILE}" "${YUM_PATH}/${NAME}.noarch.rpm" || exit 1
 
