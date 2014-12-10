@@ -21,7 +21,7 @@ title "Build.."
 
 
 title "Deploy.."
-cp -fv "${WORKSPACE}/${NAME}"-*.noarch.rpm "${PATH_DL}/" || exit 1
-latest_version "${PATH_DL}/${NAME}-*.noarch.rpm"                    || exit 1
-ln -fs "${PATH_DL}/${LATEST_FILE}" "${PATH_YUM}/${NAME}.noarch.rpm" || exit 1
+cp -fv "${WORKSPACE}/${NAME}"-*.noarch.rpm "${DL_PATH}/" || exit 1
+latest_version "${DL_PATH}/${NAME}-*.noarch.rpm"                    || exit 1
+ln -fs "${DL_PATH}/${LATEST_FILE}" "${YUM_PATH}/${NAME}.noarch.rpm" || exit 1
 
