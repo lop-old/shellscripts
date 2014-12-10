@@ -158,3 +158,10 @@ function rsync_backup {
 	rsync --progress --archive --delete-delay -Fyth "$@"  || exit 1
 }
 
+
+
+function latest_version {
+	LATEST_FILE=`ls -1Brv ${1} | head -n1` || return 1
+	[ -z "${LATEST_FILE}" ] || return 1
+}
+
