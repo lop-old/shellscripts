@@ -14,6 +14,8 @@ fi
 
 
 NAME="pxn-shellscripts"
+[ -z "${WORKSPACE}" ] && WORKSPACE=`pwd`
+rm -vf "${WORKSPACE}/${NAME}"-*.noarch.rpm
 
 
 title "Build.."
