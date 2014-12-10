@@ -48,6 +48,20 @@ while [ $# -ge 1 ]; do
 		shift
 		BUILD_NUMBER=$1
 	;;
+	--dl-path=*)
+		DL_PATH="${1#*=}"
+	;;
+	--dl-path)
+		shift
+		DL_PATH=$1
+	;;
+	--yum-path=*)
+		YUM_PATH="${1#*=}"
+	;;
+	--yum-path)
+		shift
+		YUM_PATH=$1
+	;;
 	*)
 		echo "Unknown argument: ${1}"
 		exit 1
