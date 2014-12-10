@@ -1,4 +1,4 @@
-# sh build-ci.sh  /home/pxn/www/dl/shellscripts  /home/pxn/www/yum/extras-testing/noarch
+# sh build-ci.sh  --dl-path=/home/pxn/www/dl/shellscripts  --yum-path=/home/pxn/www/yum/extras-testing/noarch
 
 
 # load build_utils.sh script
@@ -13,8 +13,7 @@ else
 fi
 
 
-PATH_DL="${1}"
-PATH_YUM="${2}"
+NAME="pxn-shellscripts"
 
 
 title "Build.."
@@ -22,7 +21,7 @@ title "Build.."
 
 
 title "Deploy.."
-cp -fv "${WORKSPACE}/pxnCommon"-*.noarch.rpm "${PATH_DL}/" || exit 1
-latest_version "${PATH_DL}/pxnCommon-*.noarch.rpm"                    || exit 1
-ln -fs "${PATH_DL}/${LATEST_FILE}" "${PATH_YUM}/pxnCommon.noarch.rpm" || exit 1
+cp -fv "${WORKSPACE}/${NAME}"-*.noarch.rpm "${PATH_DL}/" || exit 1
+latest_version "${PATH_DL}/${NAME}-*.noarch.rpm"                    || exit 1
+ln -fs "${PATH_DL}/${LATEST_FILE}" "${PATH_YUM}/${NAME}.noarch.rpm" || exit 1
 
