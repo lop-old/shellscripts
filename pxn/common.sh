@@ -148,3 +148,13 @@ function remove_lock {
 }
 
 
+
+function rsync_backup {
+	if [ -z "${1}" ] || [ -z "${2}" ]; then
+		echo "Source and destination arguments are required"
+		exit 1
+	fi
+	# --bwlimit="${bwlimit}" --link-dest="$DST/${1}.1" "$SRC" "$DST/${1}.pre"
+	rsync --progress --archive --delete-delay -Fyth "$@"  || exit 1
+}
+
