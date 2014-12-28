@@ -109,6 +109,10 @@ alias gge='gg && exit $?'
 alias gits='clear;git status'
 alias gitm='git mergetool'
 
+alias mvnv='mvn versions:display-dependency-updates'
+
+
+
 alias kk='konsole && exit $?'
 
 alias header='curl -I'
