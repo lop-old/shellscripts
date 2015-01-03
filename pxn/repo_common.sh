@@ -25,6 +25,8 @@
 
 
 
+REPO_USER="pxn"
+
 PATH_DL="/home/pxn/www/dl"
 PATH_YUM="/home/pxn/www/yum"
 PATH_YUM_TESTING="/home/pxn/www/yum/extras-testing"
