@@ -161,10 +161,11 @@ function rsync_backup {
 
 
 function latest_version {
-	LATEST_FILE=`ls -1Brv ${1} | head -n1`
-	[ -z "${LATEST_FILE}" ] && \
-		echo "Failed to find latest version" && \
+	LATEST_FILE=`ls -1Brv ${1} 2>/dev/null | head -n1`
+	if [ -z "${LATEST_FILE}" ]; then
+		>&2 echo "Failed to find latest version for: ${1}"
 		return 1
+	fi
 	return 0
 }
 
