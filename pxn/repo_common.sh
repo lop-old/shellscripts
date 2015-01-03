@@ -1,5 +1,5 @@
 ##===============================================================================
-## Copyright (c) 2013-2014 PoiXson, Mattsoft
+## Copyright (c) 2013-2015 PoiXson, Mattsoft
 ## <http://poixson.com> <http://mattsoft.net>
 ##
 ## Description: Common methods and utilities for managing a yum package repo.
@@ -7,7 +7,7 @@
 ## Install to location: /usr/local/bin/pxn
 ##
 ## Download the original from:
-##   http://dl.poixson.com/scripts/
+##   http://dl.poixson.com/shellscripts/
 ##
 ## Permission to use, copy, modify, and/or distribute this software for any
 ## purpose with or without fee is hereby granted, provided that the above

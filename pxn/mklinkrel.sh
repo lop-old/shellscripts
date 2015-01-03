@@ -1,5 +1,5 @@
 ##===============================================================================
-## Copyright (c) 2013-2014 PoiXson, Mattsoft
+## Copyright (c) 2013-2015 PoiXson, Mattsoft
 ## <http://poixson.com> <http://mattsoft.net>
 ##
 ## Description: Creates a relative symbolic link.
@@ -7,12 +7,9 @@
 ## Install to location: /usr/local/bin/pxn
 ##
 ## Download the original from:
-##   http://dl.poixson.com/scripts/ or
-##   https://github.com/PoiXson/shellscripts/
-##
+##   http://dl.poixson.com/shellscripts/
 ##
 ## Usage: mklinkrel <link_target> <create_here> <link_name>
-##
 ##
 ## Permission to use, copy, modify, and/or distribute this software for any
 ## purpose with or without fee is hereby granted, provided that the above
