@@ -56,18 +56,23 @@ echo "Install.."
 # create directories
 %{__install} -d -m 0755 \
 	"${RPM_BUILD_ROOT}%{prefix}" \
+	"${RPM_BUILD_ROOT}%{prefix}/yum_repo" \
 	"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d" \
 		|| exit 1
 # copy .sh files
 for shfile in \
 	aliases.sh \
+	build_utils.sh \
 	common.sh \
 	mklinkrel.sh \
 	profile.sh \
+	repo_common.sh \
 	sshkeygen.sh \
-	build_utils.sh \
 	workspace_utils.sh \
 	yesno.sh \
+	yum_repo/.htaccess \
+	yum_repo/promote.sh \
+	yum_repo/update.sh \
 ; do
 	%{__install} -m 0555 \
 		"%{SOURCE_ROOT}/${shfile}" \
@@ -98,12 +103,16 @@ fi
 %files
 %defattr(-,root,root,-)
 %{prefix}/aliases.sh
+%{prefix}/build_utils.sh
 %{prefix}/common.sh
 %{prefix}/mklinkrel.sh
 %{prefix}/profile.sh
+%{prefix}/repo_common.sh
 %{prefix}/sshkeygen.sh
-%{prefix}/build_utils.sh
 %{prefix}/workspace_utils.sh
 %{prefix}/yesno.sh
+%{prefix}/yum_repo/.htaccess
+%{prefix}/yum_repo/promote.sh
+%{prefix}/yum_repo/update.sh
 %{_sysconfdir}/profile.d/pxn-profile.sh
 
