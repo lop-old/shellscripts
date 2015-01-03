@@ -53,8 +53,7 @@ fi
 
 # get package names from dl.poixson.com
 function list_packages {
-	local FILES
-	FILES=( $(ls -dGv1 ${PATH_DL}/*) )
+	local FILES=( $(ls -dGv1 ${PATH_DL}/*) )
 	FILES='\n' read -a array <<< "$FILES"
 	PACKAGES=()
 	for FILE in "${FILES[@]}" ; do
