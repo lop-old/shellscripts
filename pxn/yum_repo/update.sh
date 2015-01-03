@@ -92,9 +92,8 @@ function link_package {
 	fi
 	local BASE_NAME=$(basename ${LATEST_FILE})
 	find_arch_in_filename ${LATEST_FILE}
-	sudo -u $REPO_USER \
-		ln -svf "${LATEST_FILE}" "${PATH_YUM_TESTING}/${ARCH}/${BASE_NAME}" \
-			|| return 1
+	ln -svf "${LATEST_FILE}" "${PATH_YUM_TESTING}/${ARCH}/${BASE_NAME}" \
+		|| return 1
 	echo ${BASE_NAME}
 	PACKAGE_COUNT=$[$PACKAGE_COUNT + 1]
 	return 0

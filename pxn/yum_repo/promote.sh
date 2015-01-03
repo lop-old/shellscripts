@@ -54,13 +54,11 @@ function link_package {
 	local BASE_NAME=$(basename ${LATEST_FILE})
 	find_arch_in_filename ${LATEST_FILE}
 	rm -fv "${PATH_YUM_STABLE}/${ARCH}/${PREPEND_FILENAME}*.rpm"
-	sudo -u $REPO_USER \
-		ln -svf "${LATEST_FILE}" "${PATH_YUM_STABLE}/${ARCH}/${BASE_NAME}" \
-			|| return 1
+	ln -svf "${LATEST_FILE}" "${PATH_YUM_STABLE}/${ARCH}/${BASE_NAME}" \
+		|| return 1
 	# update latest.rpm link
 	if [ "${2}" == "pxn-extras-stable" ]; then
-		sudo -u $REPO_USER \
-			ln -svf "${PATH_YUM_STABLE}/${ARCH}/${BASE_NAME}" "${PATH_YUM}/latest.rpm"
+		ln -svf "${PATH_YUM_STABLE}/${ARCH}/${BASE_NAME}" "${PATH_YUM}/latest.rpm"
 	fi
 	echo ${BASE_NAME}
 	PACKAGE_COUNT=$[$PACKAGE_COUNT + 1]
