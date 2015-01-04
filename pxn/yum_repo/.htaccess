@@ -3,7 +3,7 @@ IndexOptions +FancyIndexing +FoldersFirst +NameWidth=*
 AddType text/plain .sh .bat
 
 ReadmeName README.html
-Indexignore extras-private update.sh */README.html
+Indexignore extras-private update.sh promote.sh */README.html
 
 <Files extras-private/*>
 	Order deny,allow
