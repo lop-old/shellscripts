@@ -1,8 +1,26 @@
+Common Server Scripts
+by PoiXson/Mattsoft
 
-To install the PoiXson yum repository:
+
+*** Why these scripts? ***
+
+I started this project when I had mistakenly had 2 crons running at the same time running the same backup script. This made a mess of my incremental backups, which I end up deleting and reverting to a few days back. This was when I decided to make a set of scripts which I can easily install wherever I may need them. I've also included a list of easy shorthand command aliases, and a few library scripts used by my other projects. I later created an rpm package for these scripts so it can auto-update along with the rest of the system.
+
+
+*** Installing ***
 
 yum install http://yum.poixson.com/latest.rpm
 
-This repository will allow you to install GrowControl or other packages provided by PoiXson, and receive automatic updates.
+yum install pxn-extras-testing
 
+
+*** What does this do? ***
+
+aliases.sh - This script adds many shorthand commands to your shell. Some of these just make sense to have, for example, type 'e' rather than typing out exit. This can greatly speed up your shell experience, even with such short words.
+build_utils.sh - Common functions for use with build-mvn.sh and build-ci.sh scripts, which are helper scripts used with maven and jenkins.
+common.sh - Common functions for use with many scripts.
+mklinkrel.sh - This script can be used to auto calculate a relative path to a target and create a symlink.
+repo_common.sh - Common functions for use managing hosting a yum repo.
+sshkeygen.sh - This script can be used to install an ssl key to a remote host and generate a new key pair locally first if needed.
+workspace_utils.sh - Common functions for use with setup_workspace.sh scripts to checkout/clone source code repositories and create symlinks as needed.
 
