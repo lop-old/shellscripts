@@ -79,8 +79,7 @@ alias httpw='watch -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-serve
 
 alias df='df -h'
 alias dfi='df -i'
-alias wdf='watch df'
-alias wdfi='watch dfi'
+alias wdf='watch -n1 "df -h;echo;df -i"'
 
 alias cdu='clear;du -sch *'
 
