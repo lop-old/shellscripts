@@ -119,7 +119,7 @@ function sleepdotdot() {
 
 
 
-function create_lock {
+function create_lock() {
 	LOCK_NAME=${1}
 	if [ -z "$LOCK_NAME" ]; then
 		LOCK_NAME="lock"
