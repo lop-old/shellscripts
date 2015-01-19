@@ -25,15 +25,16 @@
 
 
 
+PWD=`pwd`
 # load common utils script
-if [ -e common.sh ]; then
-	source ./pxn_common.sh
-elif [ -e /usr/local/bin/pxn/common.sh ]; then
-	source /usr/local/bin/pxn/common.sh
+if [ -e "${PWD}/common.sh" ]; then
+	source "${PWD}/pxn_common.sh"
+elif [ -e "/usr/local/bin/pxn/common.sh" ]; then
+	source "/usr/local/bin/pxn/common.sh"
 else
-	wget https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh \
+	wget "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh" \
 		|| exit 1
-	source ./common.sh
+	source "${PWD}/common.sh"
 fi
 
 

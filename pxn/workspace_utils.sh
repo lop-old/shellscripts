@@ -1,3 +1,4 @@
+#!/bin/bash
 ##===============================================================================
 ## Copyright (c) 2013-2015 PoiXson, Mattsoft
 ## <http://poixson.com> <http://mattsoft.net>
@@ -25,30 +26,31 @@
 
 
 
+PWD=`pwd`
 # load common utils script
-if [ -e common.sh ]; then
-	source ./pxn_common.sh
-elif [ -e /usr/local/bin/pxn/common.sh ]; then
-	source /usr/local/bin/pxn/common.sh
+if [ -e "${PWD}/common.sh" ]; then
+	source "${PWD}/common.sh"
+elif [ -e "/usr/local/bin/pxn/common.sh" ]; then
+	source "/usr/local/bin/pxn/common.sh"
 else
-	wget https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh \
+	wget "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh" \
 		|| exit 1
-	source ./common.sh
+	source "${PWD}/common.sh"
 fi
 # download mklinkrel.sh
-if [ ! -e mklinkrel.sh ] && [ ! -f /usr/local/bin/pxn/mklinkrel.sh ]; then
-	wget https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/mklinkrel.sh \
+if [ ! -e "${PWD}/mklinkrel.sh" ] && [ ! -f "/usr/local/bin/pxn/mklinkrel.sh" ]; then
+	wget "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/mklinkrel.sh" \
 		|| exit 1
 fi
 # load yesno.sh
-if [ -e yesno.sh ]; then
-	source ./yesno.sh
-elif [ -e /usr/local/bin/pxn/yesno.sh ]; then
-	source /usr/local/bin/pxn/yesno.sh
+if [ -e "${PWD}/yesno.sh" ]; then
+	source "${PWD}/yesno.sh"
+elif [ -e "/usr/local/bin/pxn/yesno.sh" ]; then
+	source "/usr/local/bin/pxn/yesno.sh"
 else
-	wget https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/yesno.sh \
+	wget "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/yesno.sh" \
 		|| exit 1
-	source ./yesno.sh
+	source "${PWD}/yesno.sh"
 fi
 
 

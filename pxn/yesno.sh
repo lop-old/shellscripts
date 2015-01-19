@@ -34,7 +34,18 @@
 
 
 
-source /usr/local/bin/pxn/common.sh
+
+PWD=`pwd`
+# load common utils script
+if [ -e "${PWD}/common.sh" ]; then
+	source "${PWD}/common.sh"
+elif [ -e "/usr/local/bin/pxn/common.sh" ]; then
+	source "/usr/local/bin/pxn/common.sh"
+else
+	wget "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh" \
+		|| exit 1
+	source "${PWD}/common.sh"
+fi
 
 
 
