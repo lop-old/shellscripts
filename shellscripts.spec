@@ -68,6 +68,7 @@ for shfile in \
 	profile.sh \
 	repo_common.sh \
 	sshkeygen.sh \
+	pingssh.sh \
 	workspace_utils.sh \
 	yesno.sh \
 	yum_repo/.htaccess \
@@ -109,6 +110,7 @@ fi
 %{prefix}/profile.sh
 %{prefix}/repo_common.sh
 %{prefix}/sshkeygen.sh
+%{prefix}/pingssh.sh
 %{prefix}/workspace_utils.sh
 %{prefix}/yesno.sh
 %{prefix}/yum_repo/.htaccess
