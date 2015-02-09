@@ -25,6 +25,7 @@
 
 
 
+alias ~='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
@@ -54,7 +55,7 @@ alias yumupy='yumup -y'
 
 
 alias ls='ls -A --color=auto'
-alias ll='ls -lh'
+alias ll='ls -lhs'
 
 alias ls.='ls -d .*'
 alias ll.='ll -d .*'
@@ -65,16 +66,22 @@ alias cls='clear;pwd;ls'
 alias cll='clear;pwd;ll'
 alias cld='clear;pwd;ld'
 
+# sort by extension
+alias lx='ls -lXB'
+# sort by size
+alias lk='ls -lSr'
 
 
 alias W='watch'
 alias wf='watch -n0.2'
 alias ww='watch w'
 alias memtop='watch "free -m;echo;ps aux --sort -rss | head -11"'
-alias ports='netstat -tulanp'
 alias vtop='virt-top -d 1'
 alias httpw='watch -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-server-status'
 
+
+# alias ports='netstat -tulanp'
+alias ports='netstat -nape --inet'
 
 
 alias df='df -h'
@@ -82,7 +89,7 @@ alias dfi='df -i'
 alias wdf='watch -n1 "df -h;echo;df -i"'
 
 alias cdu='clear;du -sch *'
-
+alias du1='du -h --max-depth=1'
 
 
 alias wz='watch "zpool iostat -v;zpool status;echo;df -h;zfs get compressratio|grep --invert-match --color=none 1.00"'
@@ -120,4 +127,16 @@ alias header='curl -I'
 
 alias now='date +"%T"'
 alias nowdate='date +"%Y-%m%d"'
+
+
+alias gem='gem -V'
+
+alias hist='history | grep $1'
+
+alias psaux='ps auxf'
+
+alias untar='tar -zxvf'
+
+alias sux='xterm -fn 7x14 -bg DarkOrange4 -fg white -e su &'
+alias kon='konsole -e su &'
 
