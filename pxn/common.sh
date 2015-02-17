@@ -166,6 +166,7 @@ function latest_version {
 		>&2 echo "Failed to find latest version for: ${1}"
 		return 1
 	fi
+	LATEST_VERSION=`echo ${LATEST_FILE} | sed -ne 's/[^0-9]*\(\([0-9]\.\)\{0,4\}[0-9][^.]\).*/\1/p'`
 	return 0
 }
 
