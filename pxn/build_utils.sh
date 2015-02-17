@@ -83,7 +83,7 @@ fi
 sedVersion() {
 	sed -i.original "s@x-SNAPSHOT@${BUILD_NUMBER}-SNAPSHOT@" "${1}" \
 		|| { echo "Failed to sed a file! ${1}"; return 1; }
-	sed -i "s@x-\</version\>@${BUILD_NUMBER}-\</version\>@" "${1}" \
+	sed -i "s@x</version>@${BUILD_NUMBER}</version>@" "${1}" \
 		|| { echo "Failed to sed a file! ${1}"; return 1; }
 }
 restoreSed() {
