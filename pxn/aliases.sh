@@ -131,7 +131,7 @@ alias nowdate='date +"%Y-%m%d"'
 
 alias gem='gem -V'
 
-alias hist='history | grep $1'
+alias hist='clear;history | grep $1'
 
 alias psaux='ps auxf'
 
