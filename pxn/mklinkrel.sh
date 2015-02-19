@@ -1,3 +1,4 @@
+#!/bin/bash
 ##===============================================================================
 ## Copyright (c) 2013-2015 PoiXson, Mattsoft
 ## <http://poixson.com> <http://mattsoft.net>
