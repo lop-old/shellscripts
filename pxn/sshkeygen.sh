@@ -57,4 +57,3 @@ else
 	echo "Key installed to ${1}"
 fi
 echo
-

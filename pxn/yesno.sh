@@ -203,5 +203,3 @@ if [[ $(basename "$0" .sh) == 'yesno' ]]; then
 	fi
 	exit $NO
 fi
-
-
