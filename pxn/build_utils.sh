@@ -93,6 +93,32 @@ sedVersion() {
 	sed -i "s@x</version>@${BUILD_NUMBER}</version>@" "${1}" \
 		|| { echo "Failed to sed a file! ${1}"; return 1; }
 }
+
+
+
+# search for and load a config
+loadConfig() {
+	FILENAME=${1}
+	LEVELSDEEP=2
+	for (( i=0; i<=$LEVELSDEEP; i++ )); do
+		UPDIRS=""
+		for (( ii=0; ii<$i; ii++ )); do
+			UPDIRS+="../"
+		done
+		FILEPATH="${PWD}/${UPDIRS}${FILENAME}"
+		if [ -f "${FILEPATH}" ]; then
+			if [ $i -eq 0 ]; then
+				echo "Found config in current dir: ${FILEPATH}"
+			else
+				echo "Found config ${i} dirs up: ${FILEPATH}"
+			fi
+			source "${FILEPATH}"
+			return
+		fi
+	done
+	echo "Config not found: ${FILENAME}"
+	exit 1
+}
 restoreSed() {
 	mv -fv "${1}.original" "${1}" \
 		|| { echo "Failed to restore a file! ${1}"; return 1; }
