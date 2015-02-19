@@ -126,34 +126,4 @@ restoreSed() {
 
 
 
-# prepare rpm build space
-if [ "${0}" == "build-rpm.sh" ]; then
-	# ensure rpmbuild tool is available
-	which rpmbuild >/dev/null || { echo "rpmbuild not installed - yum install rpmdevtools"; exit 1; }
-	# ensure .spec file exists
-	[[ -z $SPEC_FILE ]] \
-		&& { echo 'SPEC_FILE variable not set!'; exit 1; }
-	[[ -e "${PWD}/${SPEC_FILE}" ]] \
-		|| { echo "${SPEC_FILE} file not found!"; exit 1; }
-	# output location
-	if [ -z $OUTPUT_DIR ]; then
-		OUTPUT_DIR="${PWD}"
-	fi
-	# build location
-	export BUILD_ROOT="${PWD}/rpmbuild-root"
-	# create build space
-	for dir in BUILD RPMS SOURCE SOURCES SPECS SRPMS tmp ; do
-		if [ -d "${BUILD_ROOT}/${dir}" ]; then
-			rm -rf --preserve-root "${BUILD_ROOT}/${dir}" \
-				|| exit 1
-		fi
-		mkdir -p "${BUILD_ROOT}/${dir}" \
-			|| exit 1
-	done
-	# copy .spec file
-	[[ -z $SPEC_FILE ]] \
-		&& { echo 'SPEC_FILE variable not set!'; exit 1; }
-	cp -fv "${SPEC_FILE}" "${BUILD_ROOT}/SPECS/" \
-		|| exit 1
-fi
 
