@@ -114,7 +114,7 @@ fi
 %{prefix}/workspace_utils.sh
 %{prefix}/yesno.sh
 %{prefix}/yum_repo/.htaccess
-%{prefix}/yum_repo/promote.sh
-%{prefix}/yum_repo/update.sh
+%{prefix}/repo_promote.sh
+%{prefix}/repo_update.sh
 %{_sysconfdir}/profile.d/pxn-profile.sh
 
