@@ -63,6 +63,7 @@ echo "Install.."
 for shfile in \
 	aliases.sh \
 	build_utils.sh \
+	xbuild.sh \
 	common.sh \
 	mklinkrel.sh \
 	profile.sh \
@@ -103,6 +104,7 @@ pushd "%{RPM_BUILD_ROOT}%{prefix}"
 	ln -s mklinkrel.sh     mklinkrel
 	ln -s sshkeygen.sh     sshkeygen
 	ln -s pingssh.sh       pingssh
+	ln -s xbuild.sh        xbuild
 	ln -s repo_promote.sh  repo_promote
 	ln -s repo_update.sh   repo_update
 popd
@@ -114,6 +116,7 @@ popd
 %defattr(-,root,root,-)
 %{prefix}/aliases.sh
 %{prefix}/build_utils.sh
+%{prefix}/xbuild.sh
 %{prefix}/common.sh
 %{prefix}/mklinkrel.sh
 %{prefix}/profile.sh
