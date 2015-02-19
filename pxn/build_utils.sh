@@ -75,24 +75,10 @@ while [ $# -ge 1 ]; do
 	esac
 	shift
 done
-
-
-
 # default build number
 if [ -z ${BUILD_NUMBER} ]; then
         BUILD_NUMBER="x"
 fi
-
-
-
-sedVersion() {
-	sed -i.original "s@x-SNAPSHOT@${BUILD_NUMBER}-SNAPSHOT@" "${1}" \
-		|| { echo "Failed to sed a file! ${1}"; return 1; }
-	sed -i "s@x-FINAL</version>@${BUILD_NUMBER}-FINAL</version>@" "${1}" \
-		|| { echo "Failed to sed a file! ${1}"; return 1; }
-	sed -i "s@x</version>@${BUILD_NUMBER}</version>@" "${1}" \
-		|| { echo "Failed to sed a file! ${1}"; return 1; }
-}
 
 
 
@@ -119,11 +105,33 @@ loadConfig() {
 	echo "Config not found: ${FILENAME}"
 	exit 1
 }
-restoreSed() {
-	mv -fv "${1}.original" "${1}" \
-		|| { echo "Failed to restore a file! ${1}"; return 1; }
+
+
+
+sedVersion() {
+	[[ -z ${BUILD_NUMBER} ]]       && return
+	[[ "${BUILD_NUMBER}" == "x" ]] && return
+	sed -i.original "s@x-SNAPSHOT@${BUILD_NUMBER}-SNAPSHOT@" "${1}" || {
+		echo "Failed to sed a file! ${1}"
+		restoreSed "${1}"
+		return 1
+	}
+	sed -i "s@x-FINAL</version>@${BUILD_NUMBER}-FINAL</version>@" "${1}" || {
+		echo "Failed to sed a file! ${1}"
+		restoreSed "${1}"
+		return 1
+	}
+	sed -i "s@x</version>@${BUILD_NUMBER}</version>@" "${1}" || {
+		echo "Failed to sed a file! ${1}"
+		restoreSed "${1}"
+		return 1
+	}
 }
-
-
-
-
+restoreSed() {
+	if [ -f "${1}.original" ]; then
+		mv -fv "${1}.original" "${1}" || {
+			echo "Failed to restore a sed file! ${1}"
+			return 1
+		}
+	fi
+}
