@@ -23,10 +23,11 @@
 ## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ##===============================================================================
 # sshkeygen.sh
-
-
-
+clear
 echo
+
+
+
 # generate a public key if needed
 if [ -f ~/.ssh/id_rsa.pub ]; then
 	echo "Using existing key.."

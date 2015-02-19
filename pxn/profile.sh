@@ -1,4 +1,6 @@
 #!/bin/bash
+# profile.sh
+
 
 export PATH="$PATH:/usr/local/bin/pxn"
 

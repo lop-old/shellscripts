@@ -23,6 +23,7 @@
 ## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ##===============================================================================
 # pingssh.sh
+clear
 
 
 
