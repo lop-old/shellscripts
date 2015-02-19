@@ -43,7 +43,7 @@ if [ -e "${PWD}/common.sh" ]; then
 elif [ -e "/usr/local/bin/pxn/common.sh" ]; then
 	source "/usr/local/bin/pxn/common.sh"
 else
-	wget "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh" \
+	wget -O "${PWD}/common.sh" "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh" \
 		|| exit 1
 	source "${PWD}/common.sh"
 fi
