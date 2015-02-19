@@ -66,10 +66,8 @@ for shfile in \
 	common.sh \
 	mklinkrel.sh \
 	profile.sh \
-	repo_common.sh \
 	sshkeygen.sh \
 	pingssh.sh \
-	workspace_utils.sh \
 	yesno.sh \
 	yum_repo/.htaccess \
 	yum_repo/promote.sh \
@@ -108,10 +106,8 @@ fi
 %{prefix}/common.sh
 %{prefix}/mklinkrel.sh
 %{prefix}/profile.sh
-%{prefix}/repo_common.sh
 %{prefix}/sshkeygen.sh
 %{prefix}/pingssh.sh
-%{prefix}/workspace_utils.sh
 %{prefix}/yesno.sh
 %{prefix}/yum_repo/.htaccess
 %{prefix}/repo_promote.sh
