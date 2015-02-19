@@ -27,6 +27,10 @@
 
 
 PWD=`pwd`
+if [[ "${PWD}" == "/usr/"* ]]; then
+        echo "Cannot run build_utils.sh script from this location."
+        exit 1
+fi
 # load common utils script
 if [ -e "${PWD}/common.sh" ]; then
 	source "${PWD}/pxn_common.sh"
