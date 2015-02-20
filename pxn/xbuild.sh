@@ -35,13 +35,13 @@ if [[ "${PWD}" == "/usr/"* ]]; then
 fi
 # load build utils script
 if [ -e "${PWD}/build_utils.sh" ]; then
-        source "${PWD}/build_utils.sh"
+	source "${PWD}/build_utils.sh"
 elif [ -e "/usr/local/bin/pxn/build_utils.sh" ]; then
-        source "/usr/local/bin/pxn/build_utils.sh"
+	source "/usr/local/bin/pxn/build_utils.sh"
 else
-        wget -O "${PWD}/build_utils.sh" "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/build_utils.sh" \
-                || exit 1
-        source "${PWD}/build_utils.sh"
+	wget -O "${PWD}/build_utils.sh" "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/build_utils.sh" \
+		|| exit 1
+	source "${PWD}/build_utils.sh"
 fi
 
 
