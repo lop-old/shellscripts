@@ -52,8 +52,15 @@ if [ ! -f "${PWD}/xbuild.conf" ]; then
 	exit 1
 fi
 source "${PWD}/xbuild.conf"
-if [ -z ${BUILD_NAME} ]; then
-	BUILD_NAME=`grep -m1 -oP '<artifactId>\K.*?(?=<\/artifactId>)' ${PWD}/pom.xml`
+if [ -z $BUILD_MVN ] || [ $BUILD_MVN == 0 ]; then
+	BUILD_MVN=0
+else
+	BUILD_MVN=1
+fi
+if [ -z $BUILD_RPM ] || [ $BUILD_RPM == 0 ]; then
+	BUILD_RPM=0
+else
+	BUILD_RPM=1
 fi
 
 
@@ -62,58 +69,101 @@ fi
 if [[ -z ${BUILD_NUMBER} ]] || [[ "${BUILD_NUMBER}" == "x" ]]; then
 	echo "Build number: <Not Set>"
 else
-	# replace version in pom.xml files
-	for a in "${POM_FILES[@]}"; do
-		sedVersion "${a}" || exit 1
-	done
 	echo "Build number: ${BUILD_NUMBER}"
 fi
-BUILD_VERSION=`grep -m1 -oP '<version>\K.*?(?=<\/version>)' ${PWD}/pom.xml`
 
 
 
-title "${BUILD_NAME} ${BUILD_VERSION}"
+# ==================================================
+# build maven
 
 
 
-# build with maven
-if [ -z ${MAVEN_GOALS} ]; then
-	MAVEN_GOALS="clean install source:jar"
+if [ $BUILD_MVN == 1 ]; then
+
+	# get build name from pom.xml
+	if [ -z $BUILD_NAME ] && [ -f "${PWD}/pom.xml" ]; then
+		BUILD_NAME=`grep -m1 -oP '<artifactId>\K.*?(?=<\/artifactId>)' ${PWD}/pom.xml`
+	fi
+
+	# build number
+	if [[ ! -z $BUILD_NUMBER ]] && [[ "${BUILD_NUMBER}" != "x" ]]; then
+		# replace version in pom.xml files
+		for a in "${POM_FILES[@]}"; do
+			sedVersion "${a}" || exit 1
+		done
+	fi
+
+	# build version
+	if [ -z $BUILD_VERSION ]; then
+		BUILD_VERSION=`grep -m1 -oP '<version>\K.*?(?=<\/version>)' ${PWD}/pom.xml`
+	fi
+
+	title "MVN Build: ${BUILD_NAME} ${BUILD_VERSION}"
+
+	# build with maven
+	if [ -z "$MAVEN_GOALS" ]; then
+		MAVEN_GOALS="clean install source:jar"
+	fi
+	MVN_FAIL=0
+	mvn ${MAVEN_GOALS} || MVN_FAIL=1
+	newline
+
+	# restore original pom.xml
+	if [[ ! -z $BUILD_NUMBER ]] && [[ "${BUILD_NUMBER}" != "x" ]]; then
+		for a in "${POM_FILES[@]}"; do
+			restoreSed "${a}" || exit 1
+		done
+	fi
+
+	if [ $MVN_FAIL == 1 ]; then
+		echo "Failed to build maven project"
+		exit 1
+	fi
+	MVN_FAIL=""
+
+	newline
+	newline
+	newline
+
 fi
-mvn ${MAVEN_GOALS} || exit 1
 
 
 
-newline
-
-
-
-# restore original pom.xml
-if [[ ! -z ${BUILD_NUMBER} ]] && [[ "${BUILD_NUMBER}" != "x" ]]; then
-	for a in "${POM_FILES[@]}"; do
-		restoreSed "${a}" || exit 1
-	done
-fi
-
-
-
-newline
-newline
-newline
-
-
-
+# ==================================================
 # build rpm
-if [ -z ${SPEC_FILE} ]; then
-	SPEC_FILE="${BUILD_NAME}.spec"
-fi
-if [ -f "${PWD}/${SPEC_FILE}" ]; then
+
+
+
+if [ $BUILD_RPM == 1 ]; then
+
+	if [ -z $SPEC_FILE ] && [ ! -z $BUILD_NAME ]; then
+		SPEC_FILE="${BUILD_NAME}.spec"
+	fi
+
+	if [ ! -f "${PWD}/${SPEC_FILE}" ]; then
+		echo "Spec file ${SPEC_FILE} not found"
+		exit 1
+	fi
 	echo "Found spec file: ${SPEC_FILE}"
+
 	# ensure rpmbuild tool is available
 	which rpmbuild >/dev/null || {
 		echo "rpmbuild not installed - yum install rpmdevtools"
 		exit 1
 	}
+
+	# build name
+	if [ -z $BUILD_NAME ]; then
+		BUILD_NAME=`grep Name ${PWD}/${SPEC_FILE} | sed 's/.*\://' | sed 's/ //g'`
+	fi
+	# build version
+	if [ -z $BUILD_VERSION ]; then
+		BUILD_VERSION=`grep Version ${PWD}/${SPEC_FILE} | sed 's/.*\://' | sed 's/ //g' | sed -e "s/%{BUILD_NUMBER}/${BUILD_NUMBER}/"`
+	fi
+
+	title "RPM Build: ${BUILD_NAME} ${BUILD_VERSION}"
+
 	# create build space
 	BUILD_ROOT="${PWD}/rpmbuild-root"
 	for DIR in BUILD RPMS SOURCE SOURCES SPECS SRPMS tmp ; do
@@ -121,8 +171,7 @@ if [ -f "${PWD}/${SPEC_FILE}" ]; then
 			rm -rf --preserve-root "${BUILD_ROOT}/${DIR}" \
 				|| exit 1
 		fi
-		mkdir -p "${BUILD_ROOT}/${DIR}" \
-			|| exit 1
+		mkdir -p "${BUILD_ROOT}/${DIR}" || exit 1
 	done
 	cp -fv "${PWD}/${SPEC_FILE}" "${BUILD_ROOT}/SPECS/" \
 		|| exit 1
@@ -138,6 +187,11 @@ if [ -f "${PWD}/${SPEC_FILE}" ]; then
 	newline
 	newline
 fi
+
+
+
+# ==================================================
+# deploy
 
 
 
