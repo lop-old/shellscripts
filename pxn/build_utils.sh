@@ -84,8 +84,16 @@ fi
 
 # search for and load a config
 loadConfig() {
+	if [ $# == 0 ] || [ -z $1 ]; then
+		echo "filename argument is required in loadConfig() function"
+		return 1
+	fi
 	FILENAME=${1}
-	LEVELSDEEP=2
+	if [ $# -lt 2 ]; then
+		LEVELSDEEP=0
+	else
+		LEVELSDEEP=${2}
+	fi
 	for (( i=0; i<=$LEVELSDEEP; i++ )); do
 		UPDIRS=""
 		for (( ii=0; ii<$i; ii++ )); do
@@ -99,11 +107,11 @@ loadConfig() {
 				echo "Found config ${i} dirs up: ${FILEPATH}"
 			fi
 			source "${FILEPATH}"
-			return
+			return 0
 		fi
 	done
 	echo "Config not found: ${FILENAME}"
-	exit 1
+	return 1
 }
 
 
@@ -135,3 +143,4 @@ restoreSed() {
 		}
 	fi
 }
+
