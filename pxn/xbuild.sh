@@ -47,7 +47,11 @@ fi
 
 
 # load xbuild.conf file
-loadConfig "xbuild.conf"
+if [ ! -f "${PWD}/xbuild.conf" ]; then
+	echo "xbuild.conf file not found here"
+	exit 1
+fi
+source "${PWD}/xbuild.conf"
 if [ -z ${BUILD_NAME} ]; then
 	BUILD_NAME=`grep -m1 -oP '<artifactId>\K.*?(?=<\/artifactId>)' ${PWD}/pom.xml`
 fi
