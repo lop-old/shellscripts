@@ -97,9 +97,11 @@ if [ $BUILD_MVN == 1 ]; then
 	# build number
 	if [[ ! -z $BUILD_NUMBER ]] && [[ "${BUILD_NUMBER}" != "x" ]]; then
 		# replace version in pom.xml files
-		for a in "${POM_FILES[@]}"; do
-			sedVersion "${a}" || exit 1
+		TARGET=""
+		for TARGET in "${POM_FILES[@]}"; do
+			sedVersion "${PWD}/${TARGET}" || exit 1
 		done
+		TARGET=""
 	fi
 
 	# build version
@@ -119,9 +121,11 @@ if [ $BUILD_MVN == 1 ]; then
 
 	# restore original pom.xml
 	if [[ ! -z $BUILD_NUMBER ]] && [[ "${BUILD_NUMBER}" != "x" ]]; then
-		for a in "${POM_FILES[@]}"; do
-			restoreSed "${a}" || exit 1
+		TARGET=""
+		for TARGET in "${POM_FILES[@]}"; do
+			restoreSed "${POM}/${TARGET}" || exit 1
 		done
+		TARGET=""
 	fi
 
 	if [ $MVN_FAIL == 1 ]; then
@@ -206,13 +210,12 @@ fi
 # list result files
 echo "Results:"
 LS_FAIL=0
+TARGET=""
 for TARGET in "${RESULT_FILES[@]}"; do
-(
 	TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
 	TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/${BUILD_VERSION}/"`
 	echo -n "  "
 	ls -1 "${PWD}/${TARGET}" || LS_FAIL=1
-)
 done
 if [ $LS_FAIL == 1 ]; then
 	echo "One or more built files are missing"
