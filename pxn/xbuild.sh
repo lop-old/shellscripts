@@ -187,14 +187,20 @@ if [ $BUILD_RPM == 1 ]; then
 	done
 	cp -fv "${PWD}/${SPEC_FILE}" "${BUILD_ROOT}/SPECS/" \
 		|| exit 1
+
+	# build rpm
+	if [ -z $RPM_SOURCE ]; then
+		RPM_SOURCE=""
+	fi
 	rpmbuild -bb \
 		--define="_topdir ${BUILD_ROOT}" \
 		--define="_tmppath ${BUILD_ROOT}/tmp" \
-		--define="SOURCE_ROOT ${PWD}/target" \
+		--define="SOURCE_ROOT ${PWD}/${RPM_SOURCE}" \
 		--define="_rpmdir ${PWD}/target" \
 		--define="BUILD_NUMBER ${BUILD_NUMBER}" \
 		"${BUILD_ROOT}/SPECS/${SPEC_FILE}" \
 			|| exit 1
+
 	newline
 	newline
 	newline

@@ -12,6 +12,7 @@ POM_FILES=(
 
 ### build rpm
 SPEC_FILE="${BUILD_NAME}.spec"
+RPM_SOURCE="target/"
 
 
 ### Deploy
