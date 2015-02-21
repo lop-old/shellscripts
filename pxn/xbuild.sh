@@ -74,6 +74,14 @@ fi
 
 
 
+# remove old target/ directory
+if [ -d "${PWD}/target/" ]; then
+	rm -Rvf "${PWD}/target/" || exit 1
+	echo "Removed old target/ directory"
+fi
+
+
+
 # ==================================================
 # build maven
 
