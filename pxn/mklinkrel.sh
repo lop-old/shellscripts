@@ -53,3 +53,4 @@ done
 	ln -s "${UPDIRS}${1}" "${3}" \
 		|| { echo "Failed to create symlink! ${UPDIRS}${1} ${3}"; exit 1; }
 )
+

@@ -191,3 +191,4 @@ function latest_version {
 	LATEST_VERSION=`echo ${LATEST_FILE} | sed -ne 's/[^0-9]*\(\([0-9]\.\)\{0,4\}[0-9][^.]\).*/\1/p'`
 	return 0
 }
+

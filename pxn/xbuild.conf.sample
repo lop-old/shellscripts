@@ -4,13 +4,15 @@ BUILD_NAME="pxnProject"
 
 
 ### build mvn
+BUILD_MVN=1
 MAVEN_GOALS="clean install source:jar"
 POM_FILES=(
-        "${PWD}/pom.xml"
+	"pom.xml"
 )
 
 
 ### build rpm
+BUILD_RPM=1
 SPEC_FILE="${BUILD_NAME}.spec"
 RPM_SOURCE="target/"
 

@@ -105,3 +105,4 @@ select SELECTED in "${PACKAGES[@]}" Quit ; do
 	promote_package $SELECTED
 	echo -ne "\n\n\n"
 done
+
