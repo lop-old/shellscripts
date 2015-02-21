@@ -1,4 +1,4 @@
-Name            : pxn-shellscripts
+Name            : shellscripts
 Summary         : A collection of commonly used shell scripts
 Version         : 1.3.%{BUILD_NUMBER}
 Release         : 1
@@ -71,8 +71,8 @@ for shfile in \
 	pingssh.sh \
 	yesno.sh \
 	yum_repo/.htaccess \
-	yum_repo/promote.sh \
-	yum_repo/update.sh \
+	repo_promote.sh \
+	repo_update.sh \
 ; do
 	%{__install} -m 0555 \
 		"%{SOURCE_ROOT}/${shfile}" \
