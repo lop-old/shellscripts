@@ -230,21 +230,69 @@ fi
 LS_FAIL=""
 TARGET=""
 
+# load xbuild-deploy.conf
+loadConfig "xbuild-deploy.conf" 2 && {
+
+	title "Deploy: ${BUILD_NAME} ${BUILD_VERSION}"
+
+	if [ -z $XBUILD_PATH_DOWNLOADS ]; then
+		echo "XBUILD_PATH_DOWNLOADS not set in xbuild-deploy.conf"
+		exit 1
+	fi
+
+	mkdir -pv "${XBUILD_PATH_DOWNLOADS}/"   || exit 1
+	mkdir -pv "${XBUILD_PATH_YUM_TESTING}/" || exit 1
+	mkdir -pv "${XBUILD_PATH_YUM_STABLE}/"  || exit 1
+
+	# remove old versions from yum
+	TARGET=""
+	echo "Removing old rpm versions.."
+	for TARGET in "${RESULT_FILES[@]}"; do
+		if [[ "${TARGET}" == *".rpm" ]]; then
+			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
+			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/*/"`
+			FILENAME=`echo "${TARGET}" | sed 's/.*\///' | sed 's/ //g'`
+			ls -l "${XBUILD_PATH_YUM_TESTING}/"{noarch,i386,x86_64}/${FILENAME} 2>/dev/null
+			rm -fv "${XBUILD_PATH_YUM_TESTING}/"{noarch,i386,x86_64}/${FILENAME} 2>/dev/null
+		fi
+	done
+	TARGET=""
+	newline
+
+	# copy and symlink rpm's
+	TARGET=""
+	for TARGET in "${RESULT_FILES[@]}"; do
+		TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
+		TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/${BUILD_VERSION}/"`
+		FILENAME=`echo "${TARGET}" | sed 's/.*\///' | sed 's/ //g'`
+
+		# copy to dl
+		echo -n "cp  "
+		cp -fv "${PWD}/${TARGET}" "${XBUILD_PATH_DOWNLOADS}/" || exit 1
+
+		# symlink rpm to yum
+		if [[ "${FILENAME}" == *".rpm" ]]; then
+			# detect arch
+			if [[ "${FILENAME}" == *".x86_64.rpm" ]]; then
+				ARCH="x86_64"
+			elif [[ "${FILENAME}" == *".i386.rpm" ]]; then
+				ARCH="i386"
+			else
+				ARCH="noarch"
+			fi
+			echo -n "ln  "
+			ln -fsv "${XBUILD_PATH_DOWNLOADS}/${FILENAME}" "${XBUILD_PATH_YUM_TESTING}/${ARCH}/${FILENAME}"
+		fi
+
+	done
+	TARGET=""
+	newline
+	newline
+	newline
+}
 
 
-newline
-newline
-newline
 
-
-
-# deploy
-newline
-newline
-newline
-
-
-
-echo "Finished building: ${BUILD_NAME} ${BUILD_VERSION}"
+echo "Finished building!  ${BUILD_NAME} ${BUILD_VERSION}"
 newline
 newline
