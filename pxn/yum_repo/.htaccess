@@ -3,7 +3,7 @@ IndexOptions +FancyIndexing +FoldersFirst +NameWidth=*
 AddType text/plain .sh .bat
 
 ReadmeName README.html
-Indexignore extras-private update.sh promote.sh */README.html
+Indexignore private README.html
 
 <Files extras-private/*>
 	Order deny,allow
@@ -13,6 +13,9 @@ Indexignore extras-private update.sh promote.sh */README.html
 	Allow from 192.168.1.0/24
 	Allow from 192.168.2.0/24
 	Allow from 192.168.3.0/24
+	Allow from 192.168.11.0/24
+	Allow from 192.168.20.0/24
+	Allow from 192.168.40.0/24
 	Allow from 24.229.105.3
 	Allow from 24.229.0.16/28
 </Files>
