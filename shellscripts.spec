@@ -84,6 +84,11 @@ pushd "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d"
 ln -sf "%{prefix}/profile.sh" "pxn-profile.sh" \
 	|| exit 1
 popd
+# readme
+%{__install} -m 0555 \
+	"%{SOURCE_ROOT}/../README" \
+	"${RPM_BUILD_ROOT}%{prefix}/yum_repo/README.html" \
+		|| exit 1
 
 
 
@@ -126,4 +131,5 @@ ln -sf  %{prefix}/repo_update.sh   %{prefix}/repo_update
 %{prefix}/repo_promote.sh
 %{prefix}/repo_update.sh
 %{_sysconfdir}/profile.d/pxn-profile.sh
+%{prefix}/yum_repo/README.html
 
