@@ -189,12 +189,14 @@ if [ $BUILD_RPM == 1 ]; then
 
 	# build rpm
 	if [ -z $RPM_SOURCE ]; then
-		RPM_SOURCE=""
+		_RPM_SOURCE="${PWD}"
+	else
+		_RPM_SOURCE="${PWD}/${RPM_SOURCE}"
 	fi
 	rpmbuild -bb \
 		--define="_topdir ${BUILD_ROOT}" \
 		--define="_tmppath ${BUILD_ROOT}/tmp" \
-		--define="SOURCE_ROOT ${PWD}/${RPM_SOURCE}" \
+		--define="SOURCE_ROOT ${_RPM_SOURCE}" \
 		--define="_rpmdir ${PWD}/target" \
 		--define="BUILD_NUMBER ${BUILD_NUMBER}" \
 		"${BUILD_ROOT}/SPECS/${SPEC_FILE}" \
@@ -288,10 +290,10 @@ loadConfig "xbuild-deploy.conf" 2 && {
 
 	done
 	TARGET=""
-	newline
-	newline
-	newline
 }
+newline
+newline
+newline
 
 
 
