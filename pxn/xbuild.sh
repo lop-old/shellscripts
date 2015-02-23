@@ -77,7 +77,6 @@ fi
 # remove old target/ directory
 if [ -d "${PWD}/target/" ]; then
 	rm -Rvf "${PWD}/target/" || exit 1
-	echo "Removed old target/ directory"
 fi
 
 
@@ -229,6 +228,9 @@ if [ $LS_FAIL == 1 ]; then
 fi
 LS_FAIL=""
 TARGET=""
+newline
+newline
+newline
 
 # load xbuild-deploy.conf
 loadConfig "xbuild-deploy.conf" 2 && {
