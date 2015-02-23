@@ -20,7 +20,11 @@ aliases.sh - This script adds many shorthand commands to your shell. Some of the
 build_utils.sh - Common functions for use with build-mvn.sh and build-ci.sh scripts, which are helper scripts used with maven and jenkins.
 common.sh - Common functions for use with many scripts.
 mklinkrel.sh - This script can be used to auto calculate a relative path to a target and create a symlink.
-repo_common.sh - Common functions for use managing hosting a yum repo.
+pingssh.sh - This is a simple tool which pings a host until it's able to make a connection via ssh. If the connection is lost, or the host is rebooted, the script will also start working in these cases and will reconnect once it's able.
+profile.sh - This script is installed to /etc/profile.d in order to load aliases.sh and other scripts automatically with new sessions.
+repo_promote.sh - This is a tool to easily promote packages from testing to stable in a yum repository.
+repo_update.sh - This script is used to update the meta data for a yum repository.
 sshkeygen.sh - This script can be used to install an ssl key to a remote host and generate a new key pair locally first if needed.
-workspace_utils.sh - Common functions for use with setup_workspace.sh scripts to checkout/clone source code repositories and create symlinks as needed.
+xbuild.sh - This tool is used to compile/build projects from a xbuild.conf config file.
+yesno.sh - This is a simple script to ask a yes/no question.
 
