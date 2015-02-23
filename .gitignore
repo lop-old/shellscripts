@@ -1,4 +1,5 @@
 rpmbuild-root/
+target/
 .git/
 *.rpm
 
