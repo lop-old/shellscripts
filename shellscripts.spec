@@ -55,9 +55,10 @@ echo "Install.."
 %{__rm} -fv "%{_rpmdir}/%{name}-"*.noarch.rpm
 # create directories
 %{__install} -d -m 0755 \
-	"${RPM_BUILD_ROOT}%{prefix}" \
-	"${RPM_BUILD_ROOT}%{prefix}/yum_repo" \
-	"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d" \
+	"${RPM_BUILD_ROOT}%{_bindir}/" \
+	"${RPM_BUILD_ROOT}%{prefix}/" \
+	"${RPM_BUILD_ROOT}%{prefix}/yum_repo/" \
+	"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/" \
 		|| exit 1
 # copy .sh files
 for shfile in \
@@ -80,7 +81,6 @@ for shfile in \
 			|| exit 1
 done
 # alias symlinks
-%{__install} -d -m 0555 "${RPM_BUILD_ROOT}%{_bindir}/" || exit 1
 ln -sf  "%{prefix}/mklinkrel.sh"     "${RPM_BUILD_ROOT}%{_bindir}/mklinkrel"
 ln -sf  "%{prefix}/sshkeygen.sh"     "${RPM_BUILD_ROOT}%{_bindir}/sshkeygen"
 ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/pingssh"
@@ -89,7 +89,6 @@ ln -sf  "%{prefix}/xbuild.sh"        "${RPM_BUILD_ROOT}%{_bindir}/xbuild"
 ln -sf  "%{prefix}/repo_promote.sh"  "${RPM_BUILD_ROOT}%{_bindir}/repo_promote"
 ln -sf  "%{prefix}/repo_update.sh"   "${RPM_BUILD_ROOT}%{_bindir}/repo_update"
 # create profile.d symlink
-%{__install} -d -m 0755 "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/" || exit 1
 ln -sf  "%{prefix}/profile.sh"  "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/pxn-profile.sh"
 # readme
 %{__install} -m 0555 \
