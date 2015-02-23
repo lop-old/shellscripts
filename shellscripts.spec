@@ -104,6 +104,7 @@ pushd "%{RPM_BUILD_ROOT}%{prefix}"
 	ln -s mklinkrel.sh     mklinkrel
 	ln -s sshkeygen.sh     sshkeygen
 	ln -s pingssh.sh       pingssh
+	ln -s pingssh.sh       sshping
 	ln -s xbuild.sh        xbuild
 	ln -s repo_promote.sh  repo_promote
 	ln -s repo_update.sh   repo_update
