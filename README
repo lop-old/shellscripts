@@ -1,30 +1,31 @@
-Common Server Scripts
-by PoiXson/Mattsoft
+<h1>Common Server Scripts</h1>
+<h4>by PoiXson/Mattsoft</h4>
 
 
-*** Why these scripts? ***
+<h2>Why these scripts?</h2>
+<p>I started this project when I had mistakenly had 2 crons running at the same time running the same backup script. This made a mess of my incremental backups, which I end up deleting and reverting to a few days back. This was when I decided to make a set of scripts which I can easily install wherever I may need them. I've also included a list of easy shorthand command aliases, and a few library scripts used by my other projects. I later created an rpm package for these scripts so it can auto-update along with the rest of the system.</p>
 
-I started this project when I had mistakenly had 2 crons running at the same time running the same backup script. This made a mess of my incremental backups, which I end up deleting and reverting to a few days back. This was when I decided to make a set of scripts which I can easily install wherever I may need them. I've also included a list of easy shorthand command aliases, and a few library scripts used by my other projects. I later created an rpm package for these scripts so it can auto-update along with the rest of the system.
 
-
-*** Installing ***
-
+<h2>Using the PoiXson Yum Repository</h2>
+<p>This repository is built for compatibility with CentOS and Fedora. You may also download the RPM files for manual installation on most OS's which support RPM. Additional file formats for these packages can be found at <a href="http://dl.poixson.com/">http://dl.poixson.com/</a></p>
+<p>You may run the following command to install the pxn repo into your system. This will allow you to easily and quickly install packages, and receive automatic updates.</p>
+<textarea style="width: 450px; height: 60px;" onfocus="this.select();">
 yum install http://yum.poixson.com/latest.rpm
+yum install pxn-release-testing
+</textarea>
 
-yum install pxn-extras-testing
 
-
-*** What does this do? ***
-
-aliases.sh - This script adds many shorthand commands to your shell. Some of these just make sense to have, for example, type 'e' rather than typing out exit. This can greatly speed up your shell experience, even with such short words.
-build_utils.sh - Common functions for use with build-mvn.sh and build-ci.sh scripts, which are helper scripts used with maven and jenkins.
-common.sh - Common functions for use with many scripts.
-mklinkrel.sh - This script can be used to auto calculate a relative path to a target and create a symlink.
-pingssh.sh - This is a simple tool which pings a host until it's able to make a connection via ssh. If the connection is lost, or the host is rebooted, the script will also start working in these cases and will reconnect once it's able.
-profile.sh - This script is installed to /etc/profile.d in order to load aliases.sh and other scripts automatically with new sessions.
-repo_promote.sh - This is a tool to easily promote packages from testing to stable in a yum repository.
-repo_update.sh - This script is used to update the meta data for a yum repository.
-sshkeygen.sh - This script can be used to install an ssl key to a remote host and generate a new key pair locally first if needed.
-xbuild.sh - This tool is used to compile/build projects from a xbuild.conf config file.
-yesno.sh - This is a simple script to ask a yes/no question.
-
+<h2>What does this do?</h2>
+<ul>
+<li><b>aliases.sh</b> - This script adds many shorthand commands to your shell. Some of these just make sense to have, for example, type 'e' rather than typing out exit. This can greatly speed up your shell experience, even with such short words.</p>
+<li><b>build_utils.sh</b> - Common functions for use with build-mvn.sh and build-ci.sh scripts, which are helper scripts used with maven and jenkins.</p>
+<li><b>common.sh</b> - Common functions for use with many scripts.</p>
+<li><b>mklinkrel.sh</b> - This script can be used to auto calculate a relative path to a target and create a symlink.</p>
+<li><b>pingssh.sh</b> - This is a simple tool which pings a host until it's able to make a connection via ssh. If the connection is lost, or the host is rebooted, the script will also start working in these cases and will reconnect once it's able.</p>
+<li><b>profile.sh</b> - This script is installed to /etc/profile.d in order to load aliases.sh and other scripts automatically with new sessions.</p>
+<li><b>repo_promote.sh</b> - This is a tool to easily promote packages from testing to stable in a yum repository.</p>
+<li><b>repo_update.sh</b> - This script is used to update the meta data for a yum repository.</p>
+<li><b>sshkeygen.sh</b> - This script can be used to install an ssl key to a remote host and generate a new key pair locally first if needed.</p>
+<li><b>xbuild.sh</b> - This tool is used to compile/build projects from a xbuild.conf config file.</p>
+<li><b>yesno.sh</b> - This is a simple script to ask a yes/no question.</p>
+</ul>
