@@ -79,11 +79,18 @@ for shfile in \
 		"${RPM_BUILD_ROOT}%{prefix}/${shfile}" \
 			|| exit 1
 done
+# alias symlinks
+%{__install} -d -m 0555 "${RPM_BUILD_ROOT}%{_bindir}/" || exit 1
+ln -sf  "%{prefix}/mklinkrel.sh"     "${RPM_BUILD_ROOT}%{_bindir}/mklinkrel"
+ln -sf  "%{prefix}/sshkeygen.sh"     "${RPM_BUILD_ROOT}%{_bindir}/sshkeygen"
+ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/pingssh"
+ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/sshping"
+ln -sf  "%{prefix}/xbuild.sh"        "${RPM_BUILD_ROOT}%{_bindir}/xbuild"
+ln -sf  "%{prefix}/repo_promote.sh"  "${RPM_BUILD_ROOT}%{_bindir}/repo_promote"
+ln -sf  "%{prefix}/repo_update.sh"   "${RPM_BUILD_ROOT}%{_bindir}/repo_update"
 # create profile.d symlink
-pushd "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d"
-ln -sf "%{prefix}/profile.sh" "pxn-profile.sh" \
-	|| exit 1
-popd
+%{__install} -d -m 0755 "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/" || exit 1
+ln -sf  "%{prefix}/profile.sh"  "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/pxn-profile.sh"
 # readme
 %{__install} -m 0555 \
 	"%{SOURCE_ROOT}/../README" \
@@ -104,17 +111,6 @@ fi
 
 
 
-%post
-ln -sf  %{prefix}/mklinkrel.sh     %{prefix}/mklinkrel
-ln -sf  %{prefix}/sshkeygen.sh     %{prefix}/sshkeygen
-ln -sf  %{prefix}/pingssh.sh       %{prefix}/pingssh
-ln -sf  %{prefix}/pingssh.sh       %{prefix}/sshping
-ln -sf  %{prefix}/xbuild.sh        %{prefix}/xbuild
-ln -sf  %{prefix}/repo_promote.sh  %{prefix}/repo_promote
-ln -sf  %{prefix}/repo_update.sh   %{prefix}/repo_update
-
-
-
 ### Files ###
 %files
 %defattr(-,root,root,-)
@@ -130,6 +126,13 @@ ln -sf  %{prefix}/repo_update.sh   %{prefix}/repo_update
 %{prefix}/yum_repo/.htaccess
 %{prefix}/repo_promote.sh
 %{prefix}/repo_update.sh
+%{_bindir}/mklinkrel
+%{_bindir}/sshkeygen
+%{_bindir}/pingssh
+%{_bindir}/sshping
+%{_bindir}/xbuild
+%{_bindir}/repo_promote
+%{_bindir}/repo_update
 %{_sysconfdir}/profile.d/pxn-profile.sh
 %{prefix}/yum_repo/README.html
 
