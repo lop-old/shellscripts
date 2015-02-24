@@ -64,6 +64,7 @@ COLOR_RESET='\e[0m'
 
 
 
+if [ "${0}" != "-bash" ]; then
 trap ctrl_c INT
 function ctrl_c() {
 	newline
@@ -71,6 +72,7 @@ function ctrl_c() {
 	newline
 	exit 1
 }
+fi
 
 
 
