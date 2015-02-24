@@ -225,7 +225,8 @@ for TARGET in "${RESULT_FILES[@]}"; do
 	ls -1 "${PWD}/${TARGET}" || LS_FAIL=1
 done
 if [ $LS_FAIL == 1 ]; then
-	echo "One or more built files are missing"
+	newline
+	echo "One or more build result files are missing!"
 	exit 1
 fi
 LS_FAIL=""
@@ -235,7 +236,7 @@ newline
 newline
 
 # load xbuild-deploy.conf
-loadConfig "xbuild-deploy.conf" 2 && {
+if  loadConfig "xbuild-deploy.conf" 2  ; then
 
 	title "Deploy: ${BUILD_NAME} ${BUILD_VERSION}"
 
@@ -290,7 +291,9 @@ loadConfig "xbuild-deploy.conf" 2 && {
 
 	done
 	TARGET=""
-}
+else
+	echo "Skipping deploy.."
+fi
 newline
 newline
 newline
