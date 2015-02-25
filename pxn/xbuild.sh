@@ -30,7 +30,7 @@ echo
 
 PWD=`pwd`
 if [[ "${PWD}" == "/usr/"* ]]; then
-	echo "Cannot run build-mvn.sh script from this location."
+	echo "Cannot run xbuild.sh script from this location."
 	exit 1
 fi
 # load build utils script
