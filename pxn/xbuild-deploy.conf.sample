@@ -1,4 +1,6 @@
 
+WORKERS=0
+
 XBUILD_PATH_DOWNLOADS="/home/pxn/www/dl/${BUILD_NAME}"
 XBUILD_PATH_YUM_TESTING="/home/pxn/www/yum/extras-testing"
 XBUILD_PATH_YUM_STABLE="/home/pxn/www/yum/extras-stable"
