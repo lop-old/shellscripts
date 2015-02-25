@@ -223,19 +223,22 @@ fi
 # list result files
 echo "Results:"
 LS_FAIL=0
+LS_FOUND=0
 TARGET=""
 for TARGET in "${RESULT_FILES[@]}"; do
 	TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
 	TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/${BUILD_VERSION}/"`
 	echo -n "  "
 	ls -1 "${PWD}/${TARGET}" || LS_FAIL=1
+	[ $LS_FAIL != 1 ] && LS_FOUND=1
 done
-if [ $LS_FAIL == 1 ]; then
+if [ $LS_FAIL == 1 ] || [ $LS_FOUND != 1 ]; then
 	newline
 	echo "One or more build result files are missing!"
 	exit 1
 fi
 LS_FAIL=""
+LS_FOUND=""
 TARGET=""
 newline
 newline
