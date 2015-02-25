@@ -47,7 +47,7 @@ fi
 
 
 # load xbuild-deploy.conf
-if  loadConfig "xbuild-deploy.conf" 2  ; then
+if  loadConfig "xbuild-deploy.conf" 4  ; then
 	# single instance
 	get_lock
 	# workers / cpu cores

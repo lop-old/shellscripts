@@ -246,7 +246,7 @@ newline
 newline
 
 # load xbuild-deploy.conf
-if  loadConfig "xbuild-deploy.conf" 2  ; then
+if  loadConfig "xbuild-deploy.conf" 4  ; then
 
 	title "Deploy: ${BUILD_NAME} ${BUILD_VERSION}"
 
