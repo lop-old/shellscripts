@@ -122,7 +122,7 @@ if [ $BUILD_MVN == 1 ]; then
 	if [[ ! -z $BUILD_NUMBER ]] && [[ "${BUILD_NUMBER}" != "x" ]]; then
 		TARGET=""
 		for TARGET in "${POM_FILES[@]}"; do
-			restoreSed "${POM}/${TARGET}" || exit 1
+			restoreSed "${PWD}/${TARGET}" || exit 1
 		done
 		TARGET=""
 	fi
