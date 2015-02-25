@@ -48,6 +48,9 @@ fi
 
 # load xbuild-deploy.conf
 if  loadConfig "xbuild-deploy.conf" 2  ; then
+	# single instance
+	get_lock
+	# workers / cpu cores
 	if [ -z $WORKERS ] || [ $WORKERS == 0 ]; then
 		WORKERS=$((`nproc`+1))
 	fi
