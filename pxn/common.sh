@@ -143,32 +143,24 @@ function sleepdotdot() {
 
 
 
-function create_lock() {
-	LOCK_NAME=${1}
-	if [ -z "$LOCK_NAME" ]; then
-		LOCK_NAME="lock"
+function get_lock() {
+	if [ -z $1 ]; then
+		LOCK_NAME="$0"
+	else
+		LOCK_NAME="$1"
 	fi
-	while true; do
-		if [[ -e "$LOCK_NAME" ]]; then
-			OLDPID=`cat $LOCK_NAME`
-#			if [ "ps p $OLDPID" > /dev/null ]; then
-#				return 1
-#			fi
-#			rm -v $LOCK_NAME
-			echo -n "Script is already running."; sleepdotdot
-		else
-			# got lock
-			echo $$ > $LOCK_NAME
-			break
+	for i in {1..20} ; do
+		LOCK_COUNT=`lsof -t $LOCK_NAME | wc -l`
+		if [ $LOCK_COUNT -le 1 ]; then
+			return 0
 		fi
+		echo -n " [${i}] Another instance is running."; sleepdotdot
+		newline
 	done
-	return 0
-}
-function remove_lock {
-        LOCK_NAME=${1}
-	if [ ! -z "$LOCK_NAME" ]; then
-	        rm -vf $LOCK_NAME
-	fi
+	newline
+	echo "Timeout waiting for other instance to complete!"
+	newline
+	exit 1
 }
 
 
