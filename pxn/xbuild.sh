@@ -187,6 +187,12 @@ if [ $BUILD_RPM == 1 ]; then
 	cp -fv "${PWD}/${SPEC_FILE}" "${BUILD_ROOT}/SPECS/" \
 		|| exit 1
 
+	# download source
+	if [ ! -z $SOURCE_URL ]; then
+		wget -P "${BUILD_ROOT}/SOURCES/" "${SOURCE_URL}" \
+			|| { echo "Failed to download source!"; exit 1; }
+        fi
+
 	# build rpm
 	if [ -z $RPM_SOURCE ]; then
 		_RPM_SOURCE="${PWD}"
