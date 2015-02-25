@@ -33,7 +33,7 @@ if [[ "${PWD}" == "/usr/"* ]]; then
 fi
 # load common utils script
 if [ -e "${PWD}/common.sh" ]; then
-	source "${PWD}/pxn_common.sh"
+	source "${PWD}/common.sh"
 elif [ -e "/usr/local/bin/pxn/common.sh" ]; then
 	source "/usr/local/bin/pxn/common.sh"
 else
