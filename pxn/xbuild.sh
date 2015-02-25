@@ -266,6 +266,7 @@ if  loadConfig "xbuild-deploy.conf" 2  ; then
 		if [[ "${TARGET}" == *".rpm" ]]; then
 			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
 			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/*/"`
+			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NUMBER>/*/"`
 			FILENAME=`echo "${TARGET}" | sed 's/.*\///' | sed 's/ //g'`
 			ls -l  "${XBUILD_PATH_YUM_TESTING}/${FILENAME}" 2>/dev/null
 			rm -fv "${XBUILD_PATH_YUM_TESTING}/${FILENAME}" 2>/dev/null
@@ -279,6 +280,7 @@ if  loadConfig "xbuild-deploy.conf" 2  ; then
 	for TARGET in "${RESULT_FILES[@]}"; do
 		TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
 		TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/${BUILD_VERSION}/"`
+		TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NUMBER>/${BUILD_NUMBER}/"`
 		FILENAME=`echo "${TARGET}" | sed 's/.*\///' | sed 's/ //g'`
 
 		# copy to dl
