@@ -268,8 +268,8 @@ if  loadConfig "xbuild-deploy.conf" 4  ; then
 			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/*/"`
 			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NUMBER>/*/"`
 			FILENAME=`echo "${TARGET}" | sed 's/.*\///' | sed 's/ //g'`
-			ls -l  "${XBUILD_PATH_YUM_TESTING}/${FILENAME}" 2>/dev/null
-			rm -fv "${XBUILD_PATH_YUM_TESTING}/${FILENAME}" 2>/dev/null
+			ls -l  "${XBUILD_PATH_YUM_TESTING}/"${FILENAME} 2>/dev/null
+			rm -fv "${XBUILD_PATH_YUM_TESTING}/"${FILENAME} 2>/dev/null
 		fi
 	done
 	TARGET=""
