@@ -228,6 +228,7 @@ TARGET=""
 for TARGET in "${RESULT_FILES[@]}"; do
 	TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
 	TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/${BUILD_VERSION}/"`
+	TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NUMBER>/${BUILD_NUMBER}/"`
 	echo -n "  "
 	ls -1 "${PWD}/${TARGET}" || LS_FAIL=1
 	[ $LS_FAIL != 1 ] && LS_FOUND=1
