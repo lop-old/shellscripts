@@ -63,7 +63,7 @@ if  loadConfig "xbuild-deploy.conf" 4  ; then
 			createrepo --workers=${WORKERS} .
 		) || { echo "Failed to update repo!"; exit 1; }
 		CHOWNED=`chown -Rcf pxn. "${XBUILD_PATH_YUM_STABLE}" | wc -l`
-		if [ "$CHOWN" -gt 0 ]; then
+		if [ "$CHOWN" > 0 ]; then
 			echo "Updated owner of ${CHOWNED} files"
 		fi
 		newline
@@ -79,7 +79,7 @@ if  loadConfig "xbuild-deploy.conf" 4  ; then
 			createrepo --workers=${WORKERS} .
 		) || { echo "Failed to update repo!"; exit 1; }
 		CHOWNED=`chown -Rcf pxn. "${XBUILD_PATH_YUM_STABLE}" | wc -l`
-		if [ $CHOWN -gt 0 ]; then
+		if [ $CHOWN > 0 ]; then
 			echo "Updated owner of ${CHOWNED} files"
 		fi
 		newline
