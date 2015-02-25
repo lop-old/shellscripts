@@ -267,8 +267,8 @@ if  loadConfig "xbuild-deploy.conf" 2  ; then
 			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
 			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/*/"`
 			FILENAME=`echo "${TARGET}" | sed 's/.*\///' | sed 's/ //g'`
-			ls -l "${XBUILD_PATH_YUM_TESTING}/"{noarch,i386,x86_64}/${FILENAME} 2>/dev/null
-			rm -fv "${XBUILD_PATH_YUM_TESTING}/"{noarch,i386,x86_64}/${FILENAME} 2>/dev/null
+			ls -l  "${XBUILD_PATH_YUM_TESTING}/${FILENAME}" 2>/dev/null
+			rm -fv "${XBUILD_PATH_YUM_TESTING}/${FILENAME}" 2>/dev/null
 		fi
 	done
 	TARGET=""
@@ -287,16 +287,8 @@ if  loadConfig "xbuild-deploy.conf" 2  ; then
 
 		# symlink rpm to yum
 		if [[ "${FILENAME}" == *".rpm" ]]; then
-			# detect arch
-			if [[ "${FILENAME}" == *".x86_64.rpm" ]]; then
-				ARCH="x86_64"
-			elif [[ "${FILENAME}" == *".i386.rpm" ]]; then
-				ARCH="i386"
-			else
-				ARCH="noarch"
-			fi
 			echo -n "ln  "
-			ln -fsv "${XBUILD_PATH_DOWNLOADS}/${FILENAME}" "${XBUILD_PATH_YUM_TESTING}/${ARCH}/${FILENAME}"
+			ln -fsv "${XBUILD_PATH_DOWNLOADS}/${FILENAME}" "${XBUILD_PATH_YUM_TESTING}/${FILENAME}"
 		fi
 
 	done
