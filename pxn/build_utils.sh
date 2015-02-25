@@ -28,8 +28,8 @@
 
 PWD=`pwd`
 if [[ "${PWD}" == "/usr/"* ]]; then
-        echo "Cannot run build_utils.sh script from this location."
-        exit 1
+	echo "Cannot run build_utils.sh script from this location."
+	exit 1
 fi
 # load common utils script
 if [ -e "${PWD}/common.sh" ]; then
@@ -77,7 +77,7 @@ while [ $# -ge 1 ]; do
 done
 # default build number
 if [ -z ${BUILD_NUMBER} ]; then
-        BUILD_NUMBER="x"
+	BUILD_NUMBER="x"
 fi
 
 

@@ -129,16 +129,16 @@ function title() {
 
 # sleep
 function sleepdot() {
-        sleep 1;echo -n "."
-        sleep 1;echo -n "."
-        sleep 1;echo ""
+	sleep 1;echo -n "."
+	sleep 1;echo -n "."
+	sleep 1;echo ""
 }
 function sleepdotdot() {
-        sleep 2;echo -n " ."
-        sleep 2;echo -n " ."
-        sleep 2;echo -n " ."
-        sleep 2;echo -n " ."
-        sleep 2;echo ""
+	sleep 2;echo -n " ."
+	sleep 2;echo -n " ."
+	sleep 2;echo -n " ."
+	sleep 2;echo -n " ."
+	sleep 2;echo ""
 }
 
 

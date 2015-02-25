@@ -191,7 +191,7 @@ if [ $BUILD_RPM == 1 ]; then
 	if [ ! -z $SOURCE_URL ]; then
 		wget -P "${BUILD_ROOT}/SOURCES/" "${SOURCE_URL}" \
 			|| { echo "Failed to download source!"; exit 1; }
-        fi
+	fi
 
 	# build rpm
 	if [ -z $RPM_SOURCE ]; then
