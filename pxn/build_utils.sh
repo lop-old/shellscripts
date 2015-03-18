@@ -134,7 +134,7 @@ sedVersion() {
 		restoreSed "${1}"
 		return 1
 	}
-	sed -i "s/.x$/.${BUILD_NUMBER}/" "${1}" || {
+	sed -i "s/\.x$/\.${BUILD_NUMBER}/" "${1}" || {
 		echo "Failed to sed a file! ${1}"
 		restoreSed "${1}"
 		return 1
