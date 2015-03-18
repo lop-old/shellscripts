@@ -64,15 +64,15 @@ COLOR_RESET='\e[0m'
 
 
 
-if [ "${0}" != *"bash" ]; then
-trap ctrl_c INT
-function ctrl_c() {
-	newline
-	echo "*** Trapped CTRL-C ***"
-	newline
-	exit 1
-}
-fi
+# if [ "${0}" != *"bash" ]; then
+# trap ctrl_c INT
+# function ctrl_c() {
+#	newline
+#	echo "*** Trapped CTRL-C ***"
+#	newline
+#	exit 1
+# }
+# fi
 
 
 
