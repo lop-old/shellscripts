@@ -141,3 +141,5 @@ alias untar='tar -zxvf'
 alias sux='xterm -fn 7x14 -bg DarkOrange4 -fg white -e su &'
 alias kon='konsole -e su &'
 
+alias reboot='yesno.sh "Reboot?" --timeout 10 --default y && shutdown -r now'
+
