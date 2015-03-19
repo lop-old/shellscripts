@@ -5,7 +5,7 @@ Release         : 1
 BuildArch       : noarch
 Provides        : pxnscripts
 Requires        : screen, bash, wget, rsync, zip, unzip, grep
-Prefix          : /usr/local/bin/pxn
+Prefix          : /usr/bin/shellscripts
 %define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
 Group           : Base System/System Tools
