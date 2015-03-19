@@ -5,7 +5,7 @@
 ##
 ## Description: Common methods and utilities for building jar's or rpm's.
 ##
-## Install to location: /usr/local/bin/pxn
+## Install to location: /usr/bin/shellscripts
 ##
 ## Download the original from:
 ##   http://dl.poixson.com/shellscripts/
@@ -34,8 +34,8 @@ fi
 # load common utils script
 if [ -e "${PWD}/common.sh" ]; then
 	source "${PWD}/common.sh"
-elif [ -e "/usr/local/bin/pxn/common.sh" ]; then
-	source "/usr/local/bin/pxn/common.sh"
+elif [ -e "/usr/bin/shellscripts/common.sh" ]; then
+	source "/usr/bin/shellscripts/common.sh"
 else
 	wget -O "${PWD}/common.sh" "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh" \
 		|| exit 1

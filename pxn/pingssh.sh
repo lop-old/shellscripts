@@ -5,7 +5,7 @@
 ##
 ## Description: pings a remote host until it's able to connect with ssh
 ##
-## Install to location: /usr/local/bin/pxn
+## Install to location: /usr/bin/shellscripts
 ##
 ## Download the original from:
 ##   http://dl.poixson.com/shellscripts/

@@ -5,7 +5,7 @@
 ##
 ## Description: Updates meta data for yum repos on this system.
 ##
-## Install to location: /usr/local/bin/pxn
+## Install to location: /usr/bin/shellscripts
 ##
 ## Download the original from:
 ##   http://dl.poixson.com/shellscripts/
@@ -36,8 +36,8 @@ fi
 # load build utils script
 if [ -e "${PWD}/build_utils.sh" ]; then
 	source "${PWD}/build_utils.sh"
-elif [ -e "/usr/local/bin/pxn/build_utils.sh" ]; then
-	source "/usr/local/bin/pxn/build_utils.sh"
+elif [ -e "/usr/bin/shellscripts/build_utils.sh" ]; then
+	source "/usr/bin/shellscripts/build_utils.sh"
 else
 	wget -O "${PWD}/build_utils.sh" "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/build_utils.sh" \
 		|| exit 1

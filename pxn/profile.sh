@@ -2,8 +2,8 @@
 # profile.sh
 
 
-export PATH="$PATH:/usr/local/bin/pxn"
+export PATH="$PATH:/usr/bin/shellscripts"
 
-source /usr/local/bin/pxn/aliases.sh
-source /usr/local/bin/pxn/common.sh
+source /usr/bin/shellscripts/aliases.sh
+source /usr/bin/shellscripts/common.sh
 

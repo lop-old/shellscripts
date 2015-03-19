@@ -5,7 +5,7 @@
 ##
 ## Description: Common methods and utilities for pxn shell scripts.
 ##
-## Install to location: /usr/local/bin/pxn
+## Install to location: /usr/bin/shellscripts
 ##
 ## Download the original from:
 ##   http://dl.poixson.com/shellscripts/
@@ -27,8 +27,8 @@
 
 
 # ensure path is set
-if [[ ":${PATH}:" != *:/usr/local/bin/pxn:* ]]; then
-	export PATH="/usr/local/bin/pxn:$PATH"
+if [[ ":${PATH}:" != *:/usr/bin/shellscripts:* ]]; then
+	export PATH="/usr/bin/shellscripts:$PATH"
 fi
 
 
@@ -77,7 +77,7 @@ COLOR_RESET='\e[0m'
 
 
 # debug mode
-if [ -e /usr/local/bin/pxn/debug ] || [ -e debug ]; then
+if [ -e /usr/bin/shellscripts/debug ] || [ -e debug ]; then
 	DEBUG=true
 fi
 if [ "$DEBUG" = true ]; then

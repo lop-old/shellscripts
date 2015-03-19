@@ -5,7 +5,7 @@
 ##
 ## Description: Promotes a package from testing to stable in a yum repo.
 ##
-## Install to location: /usr/local/bin/pxn
+## Install to location: /usr/bin/shellscripts
 ##
 ## Download the original from:
 ##   http://dl.poixson.com/shellscripts/
@@ -28,7 +28,7 @@ echo
 
 
 
-source /usr/local/bin/pxn/repo_common.sh
+source /usr/bin/shellscripts/repo_common.sh
 
 
 

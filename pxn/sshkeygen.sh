@@ -5,7 +5,7 @@
 ##
 ## Description: Auto-installs a key to a remote location.
 ##
-## Install to location: /usr/local/bin/pxn
+## Install to location: /usr/bin/shellscripts
 ##
 ## Download the original from:
 ##   http://dl.poixson.com/shellscripts/

@@ -5,7 +5,7 @@
 ##
 ## Description: Shell command aliases and shortcuts.
 ##
-## Install to location: /usr/local/bin/pxn
+## Install to location: /usr/bin/shellscripts
 ##
 ## Download the original from:
 ##   http://dl.poixson.com/shellscripts/
