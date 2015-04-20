@@ -72,6 +72,8 @@ alias lx='ls -lXB'
 # sort by size
 alias lk='ls -lSr'
 
+alias ccat='clear;cat'
+
 
 alias W='watch'
 alias wf='watch -n0.2'
@@ -79,6 +81,7 @@ alias ww='watch w'
 alias memtop='watch "free -m;echo;ps aux --sort -rss | head -11"'
 alias vtop='virt-top -d 1'
 alias httpw='watch -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-server-status'
+alias wdd="watch -n5 kill -USR1 `pgrep -l '^dd$' | awk '{ print $1 }'`"
 
 
 # alias ports='netstat -tulanp'
@@ -142,4 +145,5 @@ alias sux='xterm -fn 7x14 -bg DarkOrange4 -fg white -e su &'
 alias kon='konsole -e su &'
 
 alias reboot='yesno.sh "Reboot?" --timeout 10 --default y && shutdown -r now'
+alias stop='yesno.sh "Shutdown?" --timeout 10 --default y && shutdown -h now'
 
