@@ -52,7 +52,7 @@ fi
 function yesno() {
 	# question arg
 	if [ $# -lt 1 ] || [ -z "$1" ]; then
-		echoerr "Missing options argument."
+		echoerr "Missing question argument."
 		return $NO
 	fi
 	local question=$1
@@ -197,11 +197,11 @@ if [[ $(basename "$0" .sh) == 'yesno' ]]; then
 		yesno_demo
 		exit $NO
 	fi
-	if [ $# -lt 2 ]; then
-		echo "Missing arguments: yesno <options> <question> [--timeout N] [--default X]"
+	if [ $# -lt 1 ]; then
+		echo "Missing question argument: yesno <question> [--timeout N] [--default X]"
 		exit $NO
 	fi
-	# yesno <options> <question> [--timeout N] [--default X]
+	# yesno <question> [--timeout N] [--default X]
 	if yesno $@ ; then
 		exit $YES
 	fi
