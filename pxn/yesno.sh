@@ -108,6 +108,11 @@ function yesno() {
 		echoerr "Using --timeout requires a --default answer."
 		return $default
 	fi
+	if [ "$default" == "$YES" ]; then
+		local question="${question} [Y/n]"
+	elif [ "$default" == "$NO" ]; then
+		local question="${question} [y/N]"
+	fi
 	local answer
 	local ok=0
 	# ask until answered
