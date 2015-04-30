@@ -67,6 +67,7 @@ for shfile in \
 	xbuild.sh \
 	common.sh \
 	mklinkrel.sh \
+	monitorhost.sh \
 	profile.sh \
 	sshkeygen.sh \
 	pingssh.sh \
@@ -82,6 +83,7 @@ for shfile in \
 done
 # alias symlinks
 ln -sf  "%{prefix}/mklinkrel.sh"     "${RPM_BUILD_ROOT}%{_bindir}/mklinkrel"
+ln -sf  "%{prefix}/monitorhost.sh"   "${RPM_BUILD_ROOT}%{_bindir}/monitorhost"
 ln -sf  "%{prefix}/sshkeygen.sh"     "${RPM_BUILD_ROOT}%{_bindir}/sshkeygen"
 ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/pingssh"
 ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/sshping"
@@ -118,6 +120,7 @@ fi
 %{prefix}/xbuild.sh
 %{prefix}/common.sh
 %{prefix}/mklinkrel.sh
+%{prefix}/monitorhost.sh
 %{prefix}/profile.sh
 %{prefix}/sshkeygen.sh
 %{prefix}/pingssh.sh
@@ -126,6 +129,7 @@ fi
 %{prefix}/repo_promote.sh
 %{prefix}/repo_update.sh
 %{_bindir}/mklinkrel
+%{_bindir}/monitorhost
 %{_bindir}/sshkeygen
 %{_bindir}/pingssh
 %{_bindir}/sshping
