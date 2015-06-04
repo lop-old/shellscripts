@@ -32,6 +32,8 @@ if [[ ":${PATH}:" != *:/usr/bin/shellscripts:* ]]; then
 fi
 
 
+alias errcho='>&2 echo'
+
 
 # export PXN_DATA="/files"
 # export PXN_BACKUPS="/backups"
