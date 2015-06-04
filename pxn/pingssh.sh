@@ -43,7 +43,7 @@ function find_in_ssh_config() {
 			continue
 		fi
 		# host
-		if [[ $LINE == "Host"* ]]; then
+		if [[ $LINE == "Host:"* ]] || [[ $LINE == "Host "* ]] || [[ $LINE == "Host\t"* ]] ; then
 			# already found host
 			if [ ! -z "$FOUND_HOST" ]; then
 				break
@@ -55,20 +55,26 @@ function find_in_ssh_config() {
 				FOUND_HOST=${ARRAY[1]}
 			fi
 		fi
-		if [ -z $FOUND_HOST ]; then
-			continue
-		fi
-		# port
-		if [[ $LINE == "Port"* ]]; then
-			# parse line
-			IFS=' ' read -ra ARRAY <<< "$LINE"
-			FOUND_PORT=${ARRAY[1]}
-		fi
-		# user
-		if [[ $LINE == "User"* ]]; then
-			# parse line
-			IFS=' ' read -ra ARRAY <<< "$LINE"
-			FOUND_USER=${ARRAY[1]}
+		# params for found host
+		if [ ! -z $FOUND_HOST ]; then
+			# hostname
+			if [[ $LINE == "Hostname:"* ]] || [[ $LINE == "Hostname "* ]] || [[ $LINE == "Hostname\t"* ]] ; then
+				# parse line
+				IFS=' ' read -ra ARRAY <<< "$LINE"
+				FOUND_HOST=${ARRAY[1]}
+			fi
+			# port
+			if [[ $LINE == "Port:"* ]] || [[ $LINE == "Port "* ]] || [[ $LINE == "Port\t"* ]] ; then
+				# parse line
+				IFS=' ' read -ra ARRAY <<< "$LINE"
+				FOUND_PORT=${ARRAY[1]}
+			fi
+			# user
+			if [[ $LINE == "User:"* ]] || [[ $LINE == "User "* ]] || [[ $LINE == "User\t"* ]] ; then
+				# parse line
+				IFS=' ' read -ra ARRAY <<< "$LINE"
+				FOUND_USER=${ARRAY[1]}
+			fi
 		fi
 	done < ~/.ssh/config
 	if [ -z "$FOUND_HOST" ]; then
@@ -139,7 +145,7 @@ while true; do
 	echo
 
 	# ping remote host
-	PING_RESULT=`/usr/bin/ping -w1 -c1 ${REMOTE_HOST} 1>/dev/null 2>/dev/null && echo 0 || echo 1` 
+	PING_RESULT=`/usr/bin/ping -w1 -c1 ${REMOTE_HOST} 1>/dev/null 2>/dev/null && echo 0 || echo 1`
 	if [[ $PING_RESULT -eq 0 ]]; then
 		echo
 		echo
