@@ -492,14 +492,21 @@ DeployFiles() {
 		echo 'No files configured to deploy.'
 		return 0
 	fi
-	RESULT_FILES="${@}"
-	for TARGET in "${RESULT_FILES[@]}"; do
+	RESULT_FILES=()
+	local count=$#
+	local i
+	for (( i=0; i<$count; i++ )); do
+		TARGET="${1}"
+		shift
 		TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
 		TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/${BUILD_VERSION}/"`
 		TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NUMBER>/${BUILD_NUMBER}/"`
 		echo -n "  "
 		ls -1 "${PWD}/${TARGET}" || LS_FAIL=true
-		[ $LS_FAIL != true ] && LS_FOUND=true
+		if [ $LS_FAIL == false ]; then
+			LS_FOUND=true
+			RESULT_FILES+=("${TARGET}")
+		fi
 	done
 	if [ $LS_FAIL == true ] || [ $LS_FOUND == false ]; then
 		newline
