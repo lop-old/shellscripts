@@ -109,44 +109,6 @@ fi
 
 
 
-# search for and load a config
-searchConfig() {
-	[ $BUILD_FAILED == true ] && return 1
-	if [ $# == 0 ] || [ -z $1 ]; then
-		echo "filename argument is required in loadConfig() function"
-		return 1
-	fi
-	local FILENAME=${1}
-	local FILEPATH
-	local LEVELSDEEP
-	local UPDIRS
-	if [ $# -lt 2 ]; then
-		LEVELSDEEP=0
-	else
-		LEVELSDEEP=${2}
-	fi
-	for (( i=0; i<=$LEVELSDEEP; i++ )); do
-		UPDIRS=""
-		for (( ii=0; ii<$i; ii++ )); do
-			UPDIRS+="../"
-		done
-		FILEPATH="${PWD}/${UPDIRS}${FILENAME}"
-		if [ -f "${FILEPATH}" ]; then
-			if [ $i -eq 0 ]; then
-				echo "Found config in current dir: ${FILEPATH}"
-			else
-				echo "Found config ${i} dirs up: ${FILEPATH}"
-			fi
-			source "${FILEPATH}"
-			return 0
-		fi
-	done
-	echo "Config not found: ${FILENAME}"
-	return 1
-}
-
-
-
 #################
 ### sed Files ###
 #################
