@@ -301,6 +301,7 @@ BuildRPM() {
 	}
 	local RPM_SPEC=''
 	local RPM_SOURCES=()
+	local ARCH=''
 	# parse arguments
 	while [ $# -ge 1 ]; do
 		case $1 in
@@ -311,6 +312,10 @@ BuildRPM() {
 		SOURCE)
 			shift
 			RPM_SOURCES+=("${1}")
+		;;
+		ARCH)
+			shift
+			ARCH="${1}"
 		;;
 		*)
 			BUILD_FAILED=true
@@ -323,6 +328,9 @@ BuildRPM() {
 	# defaults
 	if [[ -z $RPM_SPEC ]] && [[ ! -z $BUILD_NAME ]]; then
 		RPM_SPEC="${BUILD_NAME}.spec"
+	fi
+	if [ -z ${ARCH} ]; then
+		ARCH='noarch'
 	fi
 
 	# spec file exists
@@ -388,6 +396,7 @@ BuildRPM() {
 		_RPM_SOURCE="${PWD}/${RPM_SOURCE}"
 	fi
 	rpmbuild -bb \
+		--target ${ARCH} \
 		--define="_topdir ${BUILD_ROOT}" \
 		--define="_tmppath ${BUILD_ROOT}/tmp" \
 		--define="SOURCE_ROOT ${_RPM_SOURCE}" \
