@@ -77,7 +77,7 @@ for shfile in \
 	repo_update.sh \
 ; do
 	%{__install} -m 0555 \
-		"%{SOURCE_ROOT}/${shfile}" \
+		"%{SOURCE_ROOT}/pxn/${shfile}" \
 		"${RPM_BUILD_ROOT}%{prefix}/${shfile}" \
 			|| exit 1
 done
@@ -94,7 +94,7 @@ ln -sf  "%{prefix}/repo_update.sh"   "${RPM_BUILD_ROOT}%{_bindir}/repo_update"
 ln -sf  "%{prefix}/profile.sh"  "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/pxn-profile.sh"
 # readme
 %{__install} -m 0555 \
-	"%{SOURCE_ROOT}/../README" \
+	"%{SOURCE_ROOT}/README" \
 	"${RPM_BUILD_ROOT}%{prefix}/yum_repo/README.html" \
 		|| exit 1
 
