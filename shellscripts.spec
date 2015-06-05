@@ -63,7 +63,6 @@ echo "Install.."
 # copy .sh files
 for shfile in \
 	aliases.sh \
-	build_utils.sh \
 	xbuild.sh \
 	common.sh \
 	mklinkrel.sh \
@@ -116,7 +115,6 @@ fi
 %files
 %defattr(-,root,root,-)
 %{prefix}/aliases.sh
-%{prefix}/build_utils.sh
 %{prefix}/xbuild.sh
 %{prefix}/common.sh
 %{prefix}/mklinkrel.sh
@@ -138,4 +136,3 @@ fi
 %{_bindir}/repo_update
 %{_sysconfdir}/profile.d/pxn-profile.sh
 %{prefix}/yum_repo/README.html
-
