@@ -33,15 +33,15 @@ if [[ "${PWD}" == "/usr/"* ]]; then
 	echo "Cannot run repo_update.sh script from this location."
 	exit 1
 fi
-# load build utils script
-if [ -e "${PWD}/build_utils.sh" ]; then
-	source "${PWD}/build_utils.sh"
-elif [ -e "/usr/bin/shellscripts/build_utils.sh" ]; then
-	source "/usr/bin/shellscripts/build_utils.sh"
+# load common utils script
+if [ -e "${PWD}/common.sh" ]; then
+	source "${PWD}/common.sh"
+elif [ -e "/usr/bin/shellscripts/common.sh" ]; then
+	source "/usr/bin/shellscripts/common.sh"
 else
-	wget -O "${PWD}/build_utils.sh" "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/build_utils.sh" \
+	wget -O "${PWD}/common.sh" "https://raw.githubusercontent.com/PoiXson/shellscripts/master/pxn/common.sh" \
 		|| exit 1
-	source "${PWD}/build_utils.sh"
+	source "${PWD}/common.sh"
 fi
 
 
