@@ -572,6 +572,20 @@ DeployFiles() {
 
 
 
+BuildFinished() {
+	newline
+	if [ $BUILD_FAILED == true ]; then
+		echo "Build Failed!  ${BUILD_NAME} ${BUILD_VERSION}"
+		exit 1
+	fi
+	echo "Finished Building!  ${BUILD_NAME} ${BUILD_VERSION}"
+	newline
+	newline
+	newline
+}
+
+
+
 ###################
 ### Load Config ###
 ###################
@@ -603,7 +617,5 @@ fi
 
 
 
-echo "Finished building!  ${BUILD_NAME} ${BUILD_VERSION}"
-newline
-newline
-newline
+BuildFinished
+
