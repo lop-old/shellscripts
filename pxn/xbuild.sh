@@ -121,7 +121,7 @@ SED_FILES=()
 
 # replace version/build number in a file
 sedVersion() {
-	[ $BUILD_FAILED == true ] && return 1
+	[ $BUILD_FAILED != false ] && return 1
 	[[ $# -eq 0 ]]                 && return 0
 	[[ -z ${BUILD_NUMBER} ]]       && return 0
 	[[ "${BUILD_NUMBER}" == "x" ]] && return 0
@@ -221,7 +221,7 @@ BUILD_FAILED=false
 
 # Maven
 BuildMVN() {
-	[ $BUILD_FAILED == true ] && return 1
+	[ $BUILD_FAILED != false ] && return 1
 	# ensure maven tool is available
 	which mvn >/dev/null || {
 		BUILD_FAILED=true
@@ -292,7 +292,7 @@ BuildMVN() {
 
 # RPM
 BuildRPM() {
-	[ $BUILD_FAILED == true ] && return 1
+	[ $BUILD_FAILED != false ] && return 1
 	# ensure rpmbuild tool is available
 	which rpmbuild >/dev/null || {
 		BUILD_FAILED=true
@@ -416,7 +416,7 @@ BuildRPM() {
 
 # Composer
 BuildComposer() {
-	[ $BUILD_FAILED == true ] && return 1
+	[ $BUILD_FAILED != false ] && return 1
 	local COMPOSER_GOAL=''
 	# parse arguments
 	while [ $# -ge 1 ]; do
@@ -453,7 +453,7 @@ return 1
 
 
 DeployFiles() {
-	[ $BUILD_FAILED == true ] && return 1
+	[ $BUILD_FAILED != false ] && return 1
 	# list result files
 	echo "Results:"
 	local LS_FAIL=false
@@ -574,8 +574,9 @@ DeployFiles() {
 
 BuildFinished() {
 	newline
-	if [ $BUILD_FAILED == true ]; then
+	if [ $BUILD_FAILED != false ]; then
 		echo "Build Failed!  ${BUILD_NAME} ${BUILD_VERSION}"
+		newline
 		exit 1
 	fi
 	echo "Finished Building!  ${BUILD_NAME} ${BUILD_VERSION}"
