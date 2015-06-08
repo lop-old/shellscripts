@@ -593,6 +593,13 @@ BuildFinished() {
 
 
 
+# remove old target/ directory
+if [ -d "${PWD}/target/" ]; then
+	rm -Rvf --preserve-root "${PWD}/target/" || exit 1
+fi
+
+
+
 # load xbuild.conf and start building
 newline
 newline
@@ -608,15 +615,6 @@ if [ ! -z $BUILD_MVN ] || [ ! -z $BUILD_RPM ]; then
 	newline
 	exit 1
 fi
-
-# remove old target/ directory
-if [ $BUILD_FAILED == false ]; then
-	if [ -d "${PWD}/target/" ]; then
-		rm -Rvf "${PWD}/target/" || exit 1
-	fi
-fi
-
-
 
 BuildFinished
 
