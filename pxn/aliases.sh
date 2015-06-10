@@ -78,9 +78,9 @@ alias ccat='clear;cat'
 alias W='watch'
 alias wf='watch -n0.2'
 alias ww='watch w'
-alias memtop='watch "free -m;echo;ps aux --sort -rss | head -11"'
+alias memtop='watch -d "free -m;echo;ps aux --sort -rss | head -11"'
 alias vtop='virt-top -d 1'
-alias httpw='watch -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-server-status'
+alias httpw='watch -d -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-server-status'
 alias wdd="watch -n5 kill -USR1 `pgrep -l '^dd$' | awk '{ print $1 }'`"
 
 
@@ -90,7 +90,7 @@ alias ports='netstat -nape --inet'
 
 alias df='df -h'
 alias dfi='df -i'
-alias wdf='watch -n1 "df -h;echo;df -i"'
+alias wdf='watch -d -n1 "df -h;echo;df -i"'
 
 alias cdu='clear;du -sch *'
 alias du1='du -h --max-depth=1'
@@ -102,7 +102,7 @@ alias syncmem='sync;echo 3 > /proc/sys/vm/drop_caches'
 
 alias snapshots='clear;zfs list -t snapshot'
 alias snaps='snapshots'
-alias wsnaps='watch -n10 "snapshots;echo;df -h"'
+alias wsnaps='watch -d -n10 "snapshots;echo;df -h"'
 alias wsnap='wsnaps'
 
 
