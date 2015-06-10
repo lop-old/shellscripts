@@ -76,7 +76,7 @@ alias ccat='clear;cat'
 
 
 alias W='watch'
-alias wf='watch -n0.2'
+alias wfast='watch -n0.2'
 alias ww='watch w'
 alias memtop='watch -d "free -m;echo;ps aux --sort -rss | head -11"'
 alias vtop='virt-top -d 1'
