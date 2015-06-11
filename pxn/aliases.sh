@@ -96,7 +96,7 @@ alias cdu='clear;du -sch *'
 alias du1='du -h --max-depth=1'
 
 
-alias z='zpool iostat -v | sed \\"/^\s*$/d\\" ; zpool status | sed \\"/^\s*$/d\\" | grep -v errors\\:\\ No\\ known\\ data\\ errors ; echo ; df -h ; zfs get compressratio | grep --invert-match --color=none 1.00'
+alias z='zpool iostat -v 2>&1 | sed "/^\s*$/d" ; zpool status 2>&1 | sed "/^\s*$/d" | grep -v errors\:\ No\ known\ data\ errors ; echo ; df -h ; zfs get compressratio 2>&1 | grep --invert-match --color=none 1.00'
 alias wz='watch -d -n 2 "z"'
 #alias wz='watch "zpool iostat -v;zpool status;echo;df -h;zfs get compressratio|grep --invert-match --color=none 1.00"'
 alias bmdisk='time dd if=/dev/zero of=$PWD/test.file bs=1M count=10000;ll $PWD/test.file;rm $PWD/test.file'
