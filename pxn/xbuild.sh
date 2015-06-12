@@ -186,7 +186,7 @@ restoreSed() {
 	if [[ $# -gt 1 ]]; then
 		local FILENAME
 		local FAILED
-		for FILENAME in ${@}; do
+		for FILENAME in "${@}"; do
 			restoreSed "${FILENAME}" || FAILED=true
 		done
 		newline
