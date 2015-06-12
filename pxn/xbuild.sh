@@ -300,6 +300,11 @@ BuildComposer() {
 		echo "Composer not installed - yum install php-composer"
 		return 1
 	}
+	# default to /
+	if [[ $# -eq 0 ]]; then
+		BuildComposer '/'
+		return $?
+	fi
 	RESULT_INSTALLS=()
 	title "Composer Install: ${BUILD_NAME} ${BUILD_VERSION}"
 	for DIR in "${@}"; do
@@ -349,6 +354,11 @@ BuildPhar() {
 		echo "Box not installed - yum install php-composer"
 		return 1
 	}
+	# default to /
+	if [[ $# -eq 0 ]]; then
+		BuildComposer '/'
+		return $?
+	fi
 	RESULT_INSTALLS=()
 	title "Phar Box: ${BUILD_NAME} ${BUILD_VERSION}"
 	for DIR in "${@}"; do
