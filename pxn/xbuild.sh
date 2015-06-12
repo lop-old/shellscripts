@@ -291,6 +291,104 @@ BuildMVN() {
 
 
 
+# Composer
+BuildComposer() {
+	[ $BUILD_FAILED != false ] && return 1
+	# ensure composer is available
+	which composer >/dev/null || {
+		BUILD_FAILED=true
+		echo "Composer not installed - yum install php-composer"
+		return 1
+	}
+	RESULT_INSTALLS=()
+	title "Composer Install: ${BUILD_NAME} ${BUILD_VERSION}"
+	for DIR in "${@}"; do
+		newline
+		newline
+		echo "Composer Install: $DIR"
+		if [ ! -d "$PWD/$DIR" ]; then
+			BUILD_FAILED=true
+			echo "Composer workspace not found: $DIR"
+			return 1
+		fi
+		if [ ! -f "$PWD/$DIR/composer.json" ]; then
+			BUILD_FAILED=true
+			echo "composer.json file not found in workspace: $DIR"
+			return 1
+		fi
+		# composer install
+		pushd "$PWD/$DIR"
+		/usr/bin/composer install -v || {
+			BUILD_FAILED=true
+			echo "Failed to install with composer: $DIR"
+			return 1
+		}
+		popd
+		RESULT_INSTALLS+=("${DIR}")
+	done
+	newline
+	newline
+	echo "Finished Composer Installs:"
+	for RESULT in "${RESULT_INSTALLS[@]}"; do
+		echo "  $RESULT"
+	done
+	newline
+	newline
+	newline
+	return 0
+}
+
+
+
+# Box Phar
+BuildPhar() {
+	[ $BUILD_FAILED != false ] && return 1
+	# ensure box is available
+	which box >/dev/null || {
+		BUILD_FAILED=true
+		echo "Box not installed - yum install php-composer"
+		return 1
+	}
+	RESULT_INSTALLS=()
+	title "Phar Box: ${BUILD_NAME} ${BUILD_VERSION}"
+	for DIR in "${@}"; do
+		newline
+		newline
+		echo "Box Build: $DIR"
+		if [ ! -d "$PWD/$DIR" ]; then
+			BUILD_FAILED=true
+			echo "Box workspace not found: $DIR"
+			return 1
+		fi
+		if [ ! -f "$PWD/$DIR/box.json" ]; then
+			BUILD_FAILED=true
+			echo "box.json file not found in workspace: $DIR"
+			return 1
+		fi
+		# composer install
+		pushd "$PWD/$DIR"
+		/usr/bin/box build -v || {
+			BUILD_FAILED=true
+			echo "Failed to build .phar with box: $DIR"
+			return 1
+		}
+		popd
+		RESULT_INSTALLS+=("${DIR}")
+	done
+	newline
+	newline
+	echo "Finished Phar Box Builds:"
+	for RESULT in "${RESULT_INSTALLS[@]}"; do
+		echo "$RESULT"
+	done
+	newline
+	newline
+	newline
+	return 0
+}
+
+
+
 # RPM
 BuildRPM() {
 	[ $BUILD_FAILED != false ] && return 1
@@ -412,38 +510,6 @@ BuildRPM() {
 	newline
 	newline
 	return 0
-}
-
-
-
-# Composer
-BuildComposer() {
-	[ $BUILD_FAILED != false ] && return 1
-	local COMPOSER_GOAL=''
-	# parse arguments
-	while [ $# -ge 1 ]; do
-		case $1 in
-		GOAL)
-			shift
-			COMPOSER_GOAL="${1}"
-		;;
-		*)
-			BUILD_FAILED=true
-			echo "Unknown argument: ${1}"
-			return 1
-		;;
-		esac
-		shift
-	done
-	newline
-	newline
-	newline
-echo 'UNFINISHED BuildComposer()'
-newline
-newline
-newline
-BUILD_FAILED=true
-return 1
 }
 
 
