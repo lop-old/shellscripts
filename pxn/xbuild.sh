@@ -322,13 +322,11 @@ BuildComposer() {
 			return 1
 		fi
 		# composer install
-		pushd "$PWD/$DIR"
-		/usr/bin/php /usr/bin/composer install -v || {
+		/usr/bin/php /usr/bin/composer install -v --working-dir "${PWD}/${DIR}" || {
 			BUILD_FAILED=true
 			echo "Failed to install with composer: ${DIR}"
 			return 1
 		}
-		popd
 		RESULT_INSTALLS+=("${DIR}")
 	done
 	newline
