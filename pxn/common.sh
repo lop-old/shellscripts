@@ -32,6 +32,21 @@ if [[ ":${PATH}:" != *:/usr/bin/shellscripts:* ]]; then
 fi
 
 
+BIN_PHP=`which php-cli 2>/dev/null`
+if [ -z ${BIN_PHP} ]; then
+	if [ -f /usr/bin/php ]; then
+		BIN_PHP='/usr/bin/php'
+	fi
+fi
+if [ -z ${BIN_PHP} ]; then
+	BIN_PHP=`which php 2>/dev/null`
+fi
+if [ -z ${BIN_PHP} ]; then
+	echo 'php not found - yum install php56w'
+fi
+export BIN_PHP
+
+
 alias errcho='>&2 echo'
 
 
