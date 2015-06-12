@@ -572,7 +572,7 @@ DeployFiles() {
 	if  searchConfig "xbuild-deploy.conf" 4  ; then
 		title "Deploy: ${BUILD_NAME} ${BUILD_VERSION}"
 	else
-		echo "Skipping deploy.."
+		echo "Deploy has been skipped.."
 		return 0
 	fi
 	if [ -z $XBUILD_PATH_DOWNLOADS ]; then
