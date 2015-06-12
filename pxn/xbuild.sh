@@ -286,6 +286,7 @@ BuildMVN() {
 	newline
 	newline
 	newline
+	return 0
 }
 
 
@@ -410,6 +411,7 @@ BuildRPM() {
 	newline
 	newline
 	newline
+	return 0
 }
 
 
@@ -568,6 +570,7 @@ DeployFiles() {
 	newline
 	newline
 	newline
+	return 0
 }
 
 
@@ -583,6 +586,7 @@ BuildFinished() {
 	newline
 	newline
 	newline
+	return 0
 }
 
 
