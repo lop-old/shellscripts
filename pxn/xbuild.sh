@@ -310,22 +310,22 @@ BuildComposer() {
 	for DIR in "${@}"; do
 		newline
 		newline
-		echo "Composer Install: $DIR"
-		if [ ! -d "$PWD/$DIR" ]; then
+		echo "Composer Install: ${DIR}"
+		if [ ! -d "${PWD}/${DIR}" ]; then
 			BUILD_FAILED=true
-			echo "Composer workspace not found: $DIR"
+			echo "Composer workspace not found: ${DIR}"
 			return 1
 		fi
-		if [ ! -f "$PWD/$DIR/composer.json" ]; then
+		if [ ! -f "${PWD}/${DIR}/composer.json" ]; then
 			BUILD_FAILED=true
-			echo "composer.json file not found in workspace: $DIR"
+			echo "composer.json file not found in workspace: ${DIR}"
 			return 1
 		fi
 		# composer install
 		pushd "$PWD/$DIR"
 		/usr/bin/php /usr/bin/composer install -v || {
 			BUILD_FAILED=true
-			echo "Failed to install with composer: $DIR"
+			echo "Failed to install with composer: ${DIR}"
 			return 1
 		}
 		popd
@@ -335,7 +335,7 @@ BuildComposer() {
 	newline
 	echo "Finished Composer Installs:"
 	for RESULT in "${RESULT_INSTALLS[@]}"; do
-		echo "  $RESULT"
+		echo "  ${RESULT}"
 	done
 	newline
 	newline
@@ -364,22 +364,22 @@ BuildPhar() {
 	for DIR in "${@}"; do
 		newline
 		newline
-		echo "Box Build: $DIR"
-		if [ ! -d "$PWD/$DIR" ]; then
+		echo "Box Build: ${DIR}"
+		if [ ! -d "${PWD}/${DIR}" ]; then
 			BUILD_FAILED=true
-			echo "Box workspace not found: $DIR"
+			echo "Box workspace not found: ${DIR}"
 			return 1
 		fi
-		if [ ! -f "$PWD/$DIR/box.json" ]; then
+		if [ ! -f "${PWD}/${DIR}/box.json" ]; then
 			BUILD_FAILED=true
-			echo "box.json file not found in workspace: $DIR"
+			echo "box.json file not found in workspace: ${DIR}"
 			return 1
 		fi
 		# composer install
-		pushd "$PWD/$DIR"
+		pushd "${PWD}/${DIR}"
 		/usr/bin/php /usr/bin/box build -v || {
 			BUILD_FAILED=true
-			echo "Failed to build .phar with box: $DIR"
+			echo "Failed to build .phar with box: ${DIR}"
 			return 1
 		}
 		popd
