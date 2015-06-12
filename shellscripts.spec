@@ -28,17 +28,6 @@ A collection of commonly used shell scripts for CentOS and Fedora.
 
 ### Prep ###
 %prep
-echo
-echo "Prep.."
-# check for existing workspace
-if [ -d "%{SOURCE_ROOT}" ]; then
-	echo "Found source workspace: %{SOURCE_ROOT}"
-else
-	echo "Source workspace not found: %{SOURCE_ROOT}"
-	exit 1
-fi
-echo
-echo
 
 
 
@@ -55,7 +44,6 @@ echo "Install.."
 %{__rm} -fv "%{_rpmdir}/%{name}-"*.noarch.rpm
 # create directories
 %{__install} -d -m 0755 \
-	"${RPM_BUILD_ROOT}%{_bindir}/" \
 	"${RPM_BUILD_ROOT}%{prefix}/" \
 	"${RPM_BUILD_ROOT}%{prefix}/yum_repo/" \
 	"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/" \
