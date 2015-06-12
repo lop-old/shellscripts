@@ -356,7 +356,7 @@ BuildPhar() {
 	}
 	# default to /
 	if [[ $# -eq 0 ]]; then
-		BuildComposer '/'
+		BuildPhar '/'
 		return $?
 	fi
 	RESULT_INSTALLS=()
