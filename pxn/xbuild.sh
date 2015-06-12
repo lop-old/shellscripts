@@ -323,7 +323,7 @@ BuildComposer() {
 		fi
 		# composer install
 		pushd "$PWD/$DIR"
-		/usr/bin/composer install -v || {
+		/usr/bin/php /usr/bin/composer install -v || {
 			BUILD_FAILED=true
 			echo "Failed to install with composer: $DIR"
 			return 1
@@ -377,7 +377,7 @@ BuildPhar() {
 		fi
 		# composer install
 		pushd "$PWD/$DIR"
-		/usr/bin/box build -v || {
+		/usr/bin/php /usr/bin/box build -v || {
 			BUILD_FAILED=true
 			echo "Failed to build .phar with box: $DIR"
 			return 1
