@@ -4,8 +4,8 @@ Version         : 1.3.%{BUILD_NUMBER}
 Release         : 1
 BuildArch       : noarch
 Provides        : pxnscripts
-Requires        : screen, bash, wget, rsync, zip, unzip, grep
-Prefix          : /usr/bin/shellscripts
+Requires        : screen, bash, wget, rsync, zip, unzip, grep, dialog, net-tools
+Prefix          : %{_bindir}/shellscripts
 %define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
 Group           : Base System/System Tools
