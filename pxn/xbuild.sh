@@ -23,6 +23,7 @@
 ## OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ##===============================================================================
 # xbuild.sh
+REQUIRED_CONFIG_VERSION=4
 clear
 echo
 
@@ -109,6 +110,23 @@ fi
 
 
 
+############################
+### Check config version ###
+############################
+
+
+
+CheckConfigVersion() {
+	if [[ -z $CONFIG_VERSION ]] || [[ $CONFIG_VERSION -ne $REQUIRED_CONFIG_VERSION ]]; then
+		echo 'xbuild.conf is outdated!'
+		echo '  config version: ${CONFIG_VERSION}'
+		echo '  required version: ${REQUIRED_CONFIG_VERSION}'
+		exit 1
+	fi
+}
+
+
+
 #################
 ### sed Files ###
 #################
@@ -121,6 +139,7 @@ SED_FILES=()
 
 # replace version/build number in a file
 sedVersion() {
+	CheckConfigVersion
 	[ $BUILD_FAILED != false ] && return 1
 	[[ $# -eq 0 ]]                 && return 0
 	[[ -z ${BUILD_NUMBER} ]]       && return 0
@@ -221,6 +240,7 @@ BUILD_FAILED=false
 
 # Maven
 BuildMVN() {
+	CheckConfigVersion
 	[ $BUILD_FAILED != false ] && return 1
 	# ensure maven tool is available
 	which mvn >/dev/null || {
@@ -293,6 +313,7 @@ BuildMVN() {
 
 # Composer
 BuildComposer() {
+	CheckConfigVersion
 	[ $BUILD_FAILED != false ] && return 1
 	# ensure composer is available
 	which composer >/dev/null || {
@@ -345,6 +366,7 @@ BuildComposer() {
 
 # Box Phar
 BuildPhar() {
+	CheckConfigVersion
 	[ $BUILD_FAILED != false ] && return 1
 	# ensure box is available
 	which box >/dev/null || {
@@ -399,6 +421,7 @@ BuildPhar() {
 
 # RPM
 BuildRPM() {
+	CheckConfigVersion
 	[ $BUILD_FAILED != false ] && return 1
 	# ensure rpmbuild tool is available
 	which rpmbuild >/dev/null || {
@@ -529,6 +552,7 @@ BuildRPM() {
 
 
 DeployFiles() {
+	CheckConfigVersion
 	[ $BUILD_FAILED != false ] && return 1
 	# list result files
 	echo "Results:"
@@ -675,8 +699,6 @@ BuildFinished() {
 if [ -d "${PWD}/target/" ]; then
 	rm -Rvf --preserve-root "${PWD}/target/" || exit 1
 fi
-
-
 
 # load xbuild.conf and start building
 newline
