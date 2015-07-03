@@ -564,10 +564,72 @@ BuildRPM() {
 
 
 
+LAST_TAG_FILE="${JENKINS_HOME}/jobs/${JOB_NAME}/last_tag"
+LAST_TAG_DEPLOYED=''
+LATEST_TAG=''
+CheckForNewTag() {
+	# running from jenkins
+	if [[ -z $WORKSPACE ]] || [[ -z $JENKINS_HOME ]] || [[ -z $JOB_NAME ]]; then
+		newline
+		echo 'Jenkins not detected; skipping stable deploy'
+		newline
+		return 1
+	fi
+	# look for .git/
+	if [ ! -d "${WORKSPACE}/.git/" ]; then
+		newline
+		echo '.git/ directory not found; skipping stable deploy'
+		newline
+		return 1
+	fi
+	# load last_tag file
+	if [ -f $LAST_TAG_FILE ]; then
+		LAST_TAG_DEPLOYED=`cat "${LAST_TAG_FILE}"`
+	fi
+	# get latest tag
+	pushd "${WORKSPACE}"
+		LATEST_TAG=`git describe --abbrev=40 --tags`
+	popd
+	# no tags found
+	if [ -z $LATEST_TAG ]; then
+		newline
+		echo 'No tags found to deploy stable; skipping stable deploy'
+		newline
+		return 1
+	fi
+	# new stable to deploy
+	if [[ -z $LAST_TAG_DEPLOYED ]] || [[ "${LAST_TAG_DEPLOYED}" != "${LATEST_TAG}" ]]; then
+		DEPLOY_STABLE="${LATEST_TAG}"
+		title "Deploying stable tag: ${LATEST_TAG}"
+	fi
+	echo "Last tag deployed: ${LAST_TAG_DEPLOYED}"
+	echo "Latest tag found:  ${LATEST_TAG}"
+	return 0
+}
+UpdateLastTagFile() {
+	if [ -z $DEPLOY_STABLE ]; then
+		return 1
+	fi
+	# ensure valid file path
+	if echo "${LAST_TAG_FILE}" | grep -q '//' ; then
+		return 1
+	fi
+	newline
+	echo "${DEPLOY_STABLE}" > "${LAST_TAG_FILE}" || { \
+		title '!!! Failed to update last_tag file !!!'; exit 1; }
+	echo "Updated last_tag file to: ${DEPLOY_STABLE}"
+	newline
+	return 0
+}
+
+
+
 DeployFiles() {
 	CheckConfigVersion
 	[ $BUILD_FAILED != false ] && return 1
 	# list result files
+	newline
+	newline
 	echo "Results:"
 	local LS_FAIL=false
 	local LS_FOUND=false
@@ -612,6 +674,7 @@ DeployFiles() {
 		echo "Deploy has been skipped.."
 		return 0
 	fi
+	CheckForNewTag
 	if [ -z $XBUILD_PATH_DOWNLOADS ]; then
 		BUILD_FAILED=true
 		echo "XBUILD_PATH_DOWNLOADS not set in xbuild-deploy.conf"
@@ -675,10 +738,17 @@ DeployFiles() {
 		if [[ "${FILENAME}" == *".rpm" ]]; then
 			echo -n "ln  "
 			ln -fsv "${XBUILD_PATH_DOWNLOADS}/${FILENAME}" "${XBUILD_PATH_YUM_TESTING}/${FILENAME}"
+			# symlink rpm to yum stable
+			if [ ! -z $DEPLOY_STABLE ]; then
+				echo -n "st  "
+				ln -fsv "${XBUILD_PATH_DOWNLOADS}/${FILENAME}" "${XBUILD_PATH_YUM_STABLE}/${FILENAME}"
+			fi
 		fi
 
 	done
 	unset TARGET
+	# update last_tag file
+	UpdateLastTagFile
 	newline
 	newline
 	newline
