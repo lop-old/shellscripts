@@ -1,6 +1,6 @@
 Name            : shellscripts
 Summary         : A collection of commonly used shell scripts
-Version         : 0.1.4.%{BUILD_NUMBER}
+Version         : 1.4.0.%{BUILD_NUMBER}
 Release         : 1
 BuildArch       : noarch
 Provides        : pxnscripts
