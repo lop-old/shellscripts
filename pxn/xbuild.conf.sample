@@ -2,6 +2,8 @@
 ### Project
 BUILD_NAME="pxnProject"
 ConfigVersion=4
+# optional
+#ReadVersionFromComposer
 
 
 ### build mvn

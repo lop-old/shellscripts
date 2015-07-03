@@ -127,6 +127,19 @@ CheckConfigVersion() {
 
 
 
+##########################
+### Read composer.json ###
+##########################
+
+
+
+ReadVersionFromComposer() {
+	CheckConfigVersion
+	BUILD_VERSION=`cat composer.json | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["version"]'`
+}
+
+
+
 #################
 ### sed Files ###
 #################
