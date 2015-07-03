@@ -643,12 +643,13 @@ DeployFiles() {
 	echo "Removing old rpm versions.."
 	for TARGET in "${RESULT_FILES[@]}"; do
 		if [[ "${TARGET}" == *".rpm" ]]; then
-			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NAME>/${BUILD_NAME}/"`
-			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_VERSION>/*/"`
-			TARGET=`echo "${TARGET}" | sed -e "s/<BUILD_NUMBER>/*/"`
+			TARGET=`echo "${TARGET}" | sed -e "s/${BUILD_VERSION}/*/"`
 			FILENAME=`echo "${TARGET}" | sed 's/.*\///' | sed 's/ //g'`
-			ls -l  "${XBUILD_PATH_YUM_TESTING}/"${FILENAME} 2>/dev/null
-			rm -fv "${XBUILD_PATH_YUM_TESTING}/"${FILENAME} 2>/dev/null
+			if [ ! -z $FILENAME ]; then
+				echo "${FILENAME}"
+				echo -n '  '; ls -l  "${XBUILD_PATH_YUM_TESTING}/"${FILENAME} 2>/dev/null
+				echo -n '  '; rm -fv --preserve-root "${XBUILD_PATH_YUM_TESTING}/"${FILENAME}
+			fi
 		fi
 	done
 	unset TARGET
