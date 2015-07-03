@@ -741,7 +741,7 @@ DeployFiles() {
 			# symlink rpm to yum stable
 			if [ ! -z $DEPLOY_STABLE ]; then
 				echo -n "st  "
-				ln -fsv "${XBUILD_PATH_DOWNLOADS}/${FILENAME}" "${XBUILD_PATH_YUM_STABLE}/${FILENAME}"
+				cp -fv "${XBUILD_PATH_DOWNLOADS}/${FILENAME}" "${XBUILD_PATH_YUM_STABLE}/${FILENAME}"
 			fi
 		fi
 
