@@ -362,6 +362,11 @@ BuildComposer() {
 			return 1
 		}
 		RESULT_INSTALLS+=("${DIR}")
+		# run phpunit if available
+		if [ -f "${PWD}/${DIR}/vendor/bin/phpunit" ]; then
+			${BIN_PHP} "${PWD}/${DIR}/vendor/bin/phpunit" \
+				|| exit 1
+		fi
 	done
 	newline
 	newline
