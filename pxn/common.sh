@@ -111,9 +111,6 @@ fi
 function newline() {
 	echo -ne "\n"
 }
-function echoerr() {
-	echo "$@" 1>&2
-}
 function warning() {
 	echo "[WARNING] $@"
 }
