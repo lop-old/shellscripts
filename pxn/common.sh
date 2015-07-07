@@ -42,7 +42,7 @@ if [ -z ${BIN_PHP} ]; then
 	BIN_PHP=`which php 2>/dev/null`
 fi
 if [ -z ${BIN_PHP} ]; then
-	echo 'php not found - yum install php56w'
+	BIN_PHP='/dev/null'
 fi
 export BIN_PHP
 
