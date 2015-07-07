@@ -31,7 +31,7 @@ clear
 function find_in_ssh_config() {
 	# file ~/.ssh/config not found
 	if [ ! -e ~/.ssh/config ]; then
-		echo "File ~/.ssh/config not found"
+		echo "File ~/.ssh/config not found" >&2
 		return 0
 	fi
 	SEARCH=${1}
@@ -89,7 +89,7 @@ function find_in_ssh_config() {
 REMOTE_HOST="${1}"
 # host not set
 if [ -z $REMOTE_HOST ]; then
-	echo "Remote host argument is required"
+	echo "Remote host argument is required" >&2
 	exit 1
 fi
 

@@ -38,7 +38,7 @@ fi
 
 # public key exists?
 if [ ! -f ~/.ssh/id_rsa.pub ]; then
-	echo "Failed to generate a public key!"
+	echo "Failed to generate a public key!" >&2
 	exit 1
 fi
 

@@ -30,7 +30,7 @@
 
 # target exists?
 if [ -z ${1} ] || [ ! -e ${1} ]; then
-	echo "Target directory ${1} doesn\'t exist!"
+	echo "Target directory ${1} doesn\'t exist!" >&2
 	exit 1
 fi
 # symlink already exists
@@ -51,6 +51,6 @@ done
 	cd "${2}"          || exit 1
 	# create symlink
 	ln -s "${UPDIRS}${1}" "${3}" \
-		|| { echo "Failed to create symlink! ${UPDIRS}${1} ${3}"; exit 1; }
+		|| { echo "Failed to create symlink! ${UPDIRS}${1} ${3}" >&2 ; exit 1; }
 )
 

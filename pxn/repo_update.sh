@@ -30,7 +30,7 @@ echo
 
 PWD=`pwd`
 if [[ "${PWD}" == "/usr/"* ]]; then
-	echo "Cannot run repo_update.sh script from this location."
+	echo "Cannot run repo_update.sh script from this location." >&2
 	exit 1
 fi
 # load common utils script
@@ -61,7 +61,7 @@ if  searchConfig "xbuild-deploy.conf" 4  ; then
 		(
 			cd "${XBUILD_PATH_YUM_STABLE}/" && \
 			createrepo --workers=${WORKERS} .
-		) || { echo "Failed to update repo!"; exit 1; }
+		) || { errcho "Failed to update repo!"; exit 1; }
 		CHOWNED=`chown -Rcf pxn. "${XBUILD_PATH_YUM_STABLE}" | wc -l`
 		if [ "$CHOWN" > 0 ]; then
 			echo "Updated owner of ${CHOWNED} files"
@@ -77,7 +77,7 @@ if  searchConfig "xbuild-deploy.conf" 4  ; then
 		(
 			cd "${XBUILD_PATH_YUM_TESTING}/" && \
 			createrepo --workers=${WORKERS} .
-		) || { echo "Failed to update repo!"; exit 1; }
+		) || { errcho "Failed to update repo!"; exit 1; }
 		CHOWNED=`chown -Rcf pxn. "${XBUILD_PATH_YUM_STABLE}" | wc -l`
 		if [ $CHOWN > 0 ]; then
 			echo "Updated owner of ${CHOWNED} files"

@@ -173,7 +173,7 @@ function get_lock() {
 		newline
 	done
 	newline
-	echo "Timeout waiting for other instance to complete!"
+	errcho 'Timeout waiting for other instance to complete!'
 	newline
 	exit 1
 }
@@ -182,7 +182,7 @@ function get_lock() {
 
 function rsync_backup {
 	if [ -z "${1}" ] || [ -z "${2}" ]; then
-		echo "Source and destination arguments are required"
+		errcho 'Source and destination arguments are required'
 		exit 1
 	fi
 	# --bwlimit="${bwlimit}" --link-dest="$DST/${1}.1" "$SRC" "$DST/${1}.pre"
@@ -194,7 +194,7 @@ function rsync_backup {
 function latest_version {
 	LATEST_FILE=`ls -1Brv ${1} 2>/dev/null | head -n1`
 	if [ -z "${LATEST_FILE}" ]; then
-		>&2 echo "Failed to find latest version for: ${1}"
+		errcho "Failed to find latest version for: ${1}"
 		return 1
 	fi
 	LATEST_VERSION=`echo ${LATEST_FILE} | sed -ne 's/[^0-9]*\(\([0-9]\.\)\{0,4\}[0-9][^.]\).*/\1/p'`
@@ -206,7 +206,7 @@ function latest_version {
 # search for and load a config
 searchConfig() {
 	if [ $# == 0 ] || [ -z $1 ]; then
-		echo "filename argument is required in searchConfig() function"
+		errcho 'filename argument is required in searchConfig() function'
 		return 1
 	fi
 	local FILENAME=${1}
@@ -234,6 +234,6 @@ searchConfig() {
 			return 0
 		fi
 	done
-	echo "Config not found: ${FILENAME}"
+	errcho "Config not found: ${FILENAME}"
 	return 1
 }

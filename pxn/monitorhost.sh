@@ -36,12 +36,12 @@ LOCK_FILE_PREFIX="/tmp/monitor_failed_"
 # arguments
 ALERT_EMAIL="${1}"
 if [ -z $ALERT_EMAIL ]; then
-	echo "Alert email argument is required"
+	echo "Alert email argument is required" >&2
 	exit 1
 fi
 PING_HOST="${2}"
 if [ -z $PING_HOST ]; then
-	echo "Remote host argument is required"
+	echo "Remote host argument is required" >&2
 	exit 1
 fi
 
