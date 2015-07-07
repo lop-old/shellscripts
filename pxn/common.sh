@@ -48,7 +48,8 @@ export BIN_PHP
 
 
 alias errcho='>&2 echo'
-
+alias pushd='echo -n "cd> ";pushd'
+alias popd='echo -n "cd< ";popd'
 
 # export PXN_DATA="/files"
 # export PXN_BACKUPS="/backups"
