@@ -4,7 +4,7 @@ Version         : 1.4.3.%{BUILD_NUMBER}
 Release         : 1
 BuildArch       : noarch
 Provides        : pxnscripts
-Requires        : perl, screen, bash, wget, rsync, zip, unzip, grep, tree, dialog, net-tools
+Requires        : perl, screen, bash, wget, rsync, zip, unzip, grep, tree, dialog, net-tools, dos2unix
 Prefix          : %{_bindir}/shellscripts
 %define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
