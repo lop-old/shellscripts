@@ -48,6 +48,7 @@ alias mv='mv -v -i'
 alias cwd='pwd'
 alias ccat='clear;cat'
 alias untar='tar -zxvf'
+alias scp='scp -C'
 
 
 # list file aliases
@@ -95,6 +96,7 @@ alias memtop='watch -d "free -m;echo;ps aux --sort -rss | head -11"'
 alias vtop='virt-top -d 1'
 alias httpw='watch -d -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-server-status'
 alias wdd="watch -n5 kill -USR1 `pgrep -l '^dd$' | awk '{ print $1 }'`"
+alias wtime='watch -n0.2 date'
 
 
 # disk space aliases
@@ -126,6 +128,11 @@ alias header='curl -I'
 alias ports='netstat -nape --inet'
 
 
+# iptables aliases
+alias fwl='iptables -L -v'
+alias fwf='iptables -F;iptables -P INPUT ACCEPT;iptables -P OUTPUT ACCEPT;iptables -P FORWARD ACCEPT'
+
+
 # development
 alias countlines='find . -name "*.java" | xargs wc -l'
 alias mvnv='mvn versions:display-dependency-updates'
@@ -137,6 +144,16 @@ alias gg='/usr/libexec/git-core/git-gui'
 alias gge='gg && exit $?'
 alias gits='clear;git status'
 alias gitm='git mergetool'
+
+
+# gradle aliases
+alias g='clear;gradle --daemon'
+alias ge='clear;gradle --daemon cleanEclipse eclipse'
+
+
+# iscsi tools
+#http://www.server-world.info/en/note?os=Fedora_20&p=iscsi
+alias lstgt='clear;tgtadm --mode target --op show'
 
 
 # zfs aliases
