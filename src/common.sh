@@ -32,6 +32,7 @@ if [[ ":${PATH}:" != *:/usr/bin/shellscripts:* ]]; then
 fi
 
 
+
 BIN_PHP=`which php-cli 2>/dev/null`
 if [ -z ${BIN_PHP} ]; then
 	if [ -f /usr/bin/php ]; then
@@ -45,6 +46,7 @@ if [ -z ${BIN_PHP} ]; then
 	BIN_PHP='/dev/null'
 fi
 export BIN_PHP
+
 
 
 alias errcho='>&2 echo'

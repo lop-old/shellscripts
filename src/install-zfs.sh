@@ -51,4 +51,3 @@ zpool list || exit 1
 newline
 echo "Finished installing zfs!"
 newline
-
