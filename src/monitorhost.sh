@@ -3,7 +3,7 @@
 ## Copyright (c) 2013-2015 PoiXson, Mattsoft
 ## <http://poixson.com> <http://mattsoft.net>
 ##
-## Description: pings a remote host until it's able to connect with ssh
+## Description: Pings a remote host until it's able to connect with ssh.
 ##
 ## Install to location: /usr/bin/shellscripts
 ##
@@ -25,12 +25,10 @@
 # monitorhost.sh
 
 
-
 TRUE=1
 FALSE=0
 
 LOCK_FILE_PREFIX="/tmp/monitor_failed_"
-
 
 
 # arguments
@@ -46,10 +44,8 @@ if [ -z $PING_HOST ]; then
 fi
 
 
-
 # ping remote host
 ping -c1 "${PING_HOST}" >/dev/null && SUCCESS=TRUE || SUCCESS=FALSE
-
 
 
 # ping success
@@ -69,7 +65,6 @@ EOF
 	fi
 
 
-
 # ping failed
 else
 	# host went offline
@@ -86,5 +81,3 @@ ${PING_HOST}
 EOF
 	fi
 fi
-
-

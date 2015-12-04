@@ -3,7 +3,7 @@
 ## Copyright (c) 2013-2015 PoiXson, Mattsoft
 ## <http://poixson.com> <http://mattsoft.net>
 ##
-## Description: pings a remote host until it's able to connect with ssh
+## Description: Pings a remote host until it's able to connect with ssh
 ##
 ## Install to location: /usr/bin/shellscripts
 ##
@@ -24,7 +24,6 @@
 ##===============================================================================
 # pingssh.sh
 clear
-
 
 
 # find host in ~/.ssh/config file
@@ -85,7 +84,6 @@ function find_in_ssh_config() {
 }
 
 
-
 REMOTE_HOST="${1}"
 # host not set
 if [ -z $REMOTE_HOST ]; then
@@ -123,7 +121,6 @@ if [ -z $REMOTE_USER ]; then
 fi
 
 
-
 # wait for host to come online
 STEP=0
 while true; do
@@ -158,4 +155,3 @@ while true; do
 	fi
 
 done
-

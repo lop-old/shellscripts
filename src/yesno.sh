@@ -34,7 +34,6 @@
 # yesno.sh
 
 
-
 PWD=`pwd`
 # load common utils script
 if [ -e "${PWD}/common.sh" ]; then
@@ -46,7 +45,6 @@ else
 		|| exit 1
 	source "${PWD}/common.sh"
 fi
-
 
 
 function yesno() {
@@ -149,7 +147,6 @@ function yesno() {
 }
 
 
-
 function yesno_demo() {
 	if yesno "Test bad timeout value? "; then
 		yesno "Hello? " --timeout none
@@ -189,7 +186,6 @@ function yesno_demo() {
 }
 
 
-
 # running script directly
 if [[ $(basename "$0" .sh) == 'yesno' ]]; then
 	# demo
@@ -207,4 +203,3 @@ if [[ $(basename "$0" .sh) == 'yesno' ]]; then
 	fi
 	exit $NO
 fi
-

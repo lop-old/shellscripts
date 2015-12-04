@@ -27,4 +27,3 @@ while (1) {
 	print "\e[s";
 	sleep 1
 }
-
