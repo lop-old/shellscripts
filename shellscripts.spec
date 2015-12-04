@@ -58,6 +58,7 @@ for shfile in \
 	profile.sh \
 	sshkeygen.sh \
 	pingssh.sh \
+	progresspercent.sh \
 	yesno.sh \
 	yum_repo/.htaccess \
 	repo_promote.sh \
@@ -77,6 +78,7 @@ ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/sshping"
 ln -sf  "%{prefix}/xbuild.sh"        "${RPM_BUILD_ROOT}%{_bindir}/xbuild"
 ln -sf  "%{prefix}/repo_promote.sh"  "${RPM_BUILD_ROOT}%{_bindir}/repo_promote"
 ln -sf  "%{prefix}/repo_update.sh"   "${RPM_BUILD_ROOT}%{_bindir}/repo_update"
+ln -sf  "%{prefix}/progresspercent.sh"  "${RPM_BUILD_ROOT}%{_bindir}/progresspercent"
 ln -sf  "%{prefix}/iptop.pl"            "${RPM_BUILD_ROOT}%{_bindir}/iptop"
 # create profile.d symlink
 ln -sf  "%{prefix}/profile.sh"  "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/pxn-profile.sh"
@@ -111,6 +113,7 @@ fi
 %{prefix}/profile.sh
 %{prefix}/sshkeygen.sh
 %{prefix}/pingssh.sh
+%{prefix}/progresspercent.sh
 %{prefix}/yesno.sh
 %{prefix}/iptop.pl
 %{prefix}/yum_repo/.htaccess
@@ -121,6 +124,7 @@ fi
 %{_bindir}/sshkeygen
 %{_bindir}/pingssh
 %{_bindir}/sshping
+%{_bindir}/progresspercent
 %{_bindir}/xbuild
 %{_bindir}/repo_promote
 %{_bindir}/repo_update
