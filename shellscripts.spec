@@ -77,6 +77,7 @@ ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/sshping"
 ln -sf  "%{prefix}/xbuild.sh"        "${RPM_BUILD_ROOT}%{_bindir}/xbuild"
 ln -sf  "%{prefix}/repo_promote.sh"  "${RPM_BUILD_ROOT}%{_bindir}/repo_promote"
 ln -sf  "%{prefix}/repo_update.sh"   "${RPM_BUILD_ROOT}%{_bindir}/repo_update"
+ln -sf  "%{prefix}/iptop.pl"            "${RPM_BUILD_ROOT}%{_bindir}/iptop"
 # create profile.d symlink
 ln -sf  "%{prefix}/profile.sh"  "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/pxn-profile.sh"
 # readme
@@ -111,6 +112,7 @@ fi
 %{prefix}/sshkeygen.sh
 %{prefix}/pingssh.sh
 %{prefix}/yesno.sh
+%{prefix}/iptop.pl
 %{prefix}/yum_repo/.htaccess
 %{prefix}/repo_promote.sh
 %{prefix}/repo_update.sh
@@ -122,5 +124,6 @@ fi
 %{_bindir}/xbuild
 %{_bindir}/repo_promote
 %{_bindir}/repo_update
+%{_bindir}/iptop
 %{_sysconfdir}/profile.d/pxn-profile.sh
 %{prefix}/yum_repo/README.html
