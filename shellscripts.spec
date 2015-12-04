@@ -51,7 +51,6 @@ echo "Install.."
 # copy .sh files
 for shfile in \
 	aliases.sh \
-	xbuild.sh \
 	common.sh \
 	mklinkrel.sh \
 	monitorhost.sh \
@@ -60,9 +59,6 @@ for shfile in \
 	pingssh.sh \
 	progresspercent.sh \
 	yesno.sh \
-	yum_repo/.htaccess \
-	repo_promote.sh \
-	repo_update.sh \
 ; do
 	%{__install} -m 0555 \
 		"%{SOURCE_ROOT}/pxn/${shfile}" \
@@ -75,9 +71,6 @@ ln -sf  "%{prefix}/monitorhost.sh"   "${RPM_BUILD_ROOT}%{_bindir}/monitorhost"
 ln -sf  "%{prefix}/sshkeygen.sh"     "${RPM_BUILD_ROOT}%{_bindir}/sshkeygen"
 ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/pingssh"
 ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/sshping"
-ln -sf  "%{prefix}/xbuild.sh"        "${RPM_BUILD_ROOT}%{_bindir}/xbuild"
-ln -sf  "%{prefix}/repo_promote.sh"  "${RPM_BUILD_ROOT}%{_bindir}/repo_promote"
-ln -sf  "%{prefix}/repo_update.sh"   "${RPM_BUILD_ROOT}%{_bindir}/repo_update"
 ln -sf  "%{prefix}/progresspercent.sh"  "${RPM_BUILD_ROOT}%{_bindir}/progresspercent"
 ln -sf  "%{prefix}/iptop.pl"            "${RPM_BUILD_ROOT}%{_bindir}/iptop"
 # create profile.d symlink
@@ -106,7 +99,6 @@ fi
 %files
 %defattr(-,root,root,-)
 %{prefix}/aliases.sh
-%{prefix}/xbuild.sh
 %{prefix}/common.sh
 %{prefix}/mklinkrel.sh
 %{prefix}/monitorhost.sh
@@ -116,18 +108,11 @@ fi
 %{prefix}/progresspercent.sh
 %{prefix}/yesno.sh
 %{prefix}/iptop.pl
-%{prefix}/yum_repo/.htaccess
-%{prefix}/repo_promote.sh
-%{prefix}/repo_update.sh
 %{_bindir}/mklinkrel
 %{_bindir}/monitorhost
 %{_bindir}/sshkeygen
 %{_bindir}/pingssh
 %{_bindir}/sshping
 %{_bindir}/progresspercent
-%{_bindir}/xbuild
-%{_bindir}/repo_promote
-%{_bindir}/repo_update
 %{_bindir}/iptop
 %{_sysconfdir}/profile.d/pxn-profile.sh
-%{prefix}/yum_repo/README.html
