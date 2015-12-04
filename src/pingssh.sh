@@ -153,5 +153,6 @@ while true; do
 		echo
 		sleep 1
 	fi
+	sleep 0.1
 
 done
