@@ -4,7 +4,7 @@ Version         : 1.4.3.%{BUILD_NUMBER}
 Release         : 1
 BuildArch       : noarch
 Provides        : pxnscripts
-Requires        : screen, bash, wget, rsync, zip, unzip, grep, dialog, net-tools
+Requires        : perl, screen, bash, wget, rsync, zip, unzip, grep, tree, dialog, net-tools
 Prefix          : %{_bindir}/shellscripts
 %define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
@@ -48,8 +48,8 @@ echo "Install.."
 	"${RPM_BUILD_ROOT}%{prefix}/yum_repo/" \
 	"${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/" \
 		|| exit 1
-# copy .sh files
-for shfile in \
+# copy script files
+for scriptfile in \
 	aliases.sh \
 	common.sh \
 	mklinkrel.sh \
@@ -61,17 +61,18 @@ for shfile in \
 	yesno.sh \
 ; do
 	%{__install} -m 0555 \
-		"%{SOURCE_ROOT}/pxn/${shfile}" \
-		"${RPM_BUILD_ROOT}%{prefix}/${shfile}" \
+		"%{SOURCE_ROOT}/src/${scriptfile}" \
+		"${RPM_BUILD_ROOT}%{prefix}/${scriptfile}" \
 			|| exit 1
 done
 # alias symlinks
-ln -sf  "%{prefix}/mklinkrel.sh"     "${RPM_BUILD_ROOT}%{_bindir}/mklinkrel"
-ln -sf  "%{prefix}/monitorhost.sh"   "${RPM_BUILD_ROOT}%{_bindir}/monitorhost"
-ln -sf  "%{prefix}/sshkeygen.sh"     "${RPM_BUILD_ROOT}%{_bindir}/sshkeygen"
-ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/pingssh"
-ln -sf  "%{prefix}/pingssh.sh"       "${RPM_BUILD_ROOT}%{_bindir}/sshping"
+ln -sf  "%{prefix}/mklinkrel.sh"        "${RPM_BUILD_ROOT}%{_bindir}/mklinkrel"
+ln -sf  "%{prefix}/monitorhost.sh"      "${RPM_BUILD_ROOT}%{_bindir}/monitorhost"
+ln -sf  "%{prefix}/sshkeygen.sh"        "${RPM_BUILD_ROOT}%{_bindir}/sshkeygen"
+ln -sf  "%{prefix}/pingssh.sh"          "${RPM_BUILD_ROOT}%{_bindir}/pingssh"
+ln -sf  "%{prefix}/pingssh.sh"          "${RPM_BUILD_ROOT}%{_bindir}/sshping"
 ln -sf  "%{prefix}/progresspercent.sh"  "${RPM_BUILD_ROOT}%{_bindir}/progresspercent"
+ln -sf  "%{prefix}/yesno.sh"            "${RPM_BUILD_ROOT}%{_bindir}/yesno"
 ln -sf  "%{prefix}/iptop.pl"            "${RPM_BUILD_ROOT}%{_bindir}/iptop"
 # create profile.d symlink
 ln -sf  "%{prefix}/profile.sh"  "${RPM_BUILD_ROOT}%{_sysconfdir}/profile.d/pxn-profile.sh"
@@ -114,5 +115,6 @@ fi
 %{_bindir}/pingssh
 %{_bindir}/sshping
 %{_bindir}/progresspercent
+%{_bindir}/yesno
 %{_bindir}/iptop
 %{_sysconfdir}/profile.d/pxn-profile.sh

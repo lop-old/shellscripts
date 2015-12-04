@@ -27,6 +27,10 @@ clear
 echo
 
 
+#that aside, I always to -t ecsda -b 521 when using ssh-keygen nowadays
+#http://nathanielhoag.com/blog/2014/05/26/automate-ssh-key-generation-and-deployment/
+#ssh-keygen -b 4096 -t rsa -N ""
+
 
 # generate a public key if needed
 if [ -f ~/.ssh/id_rsa.pub ]; then

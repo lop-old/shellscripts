@@ -112,7 +112,10 @@ function newline() {
 	echo -ne "\n"
 }
 function errcho() {
-	echo "$@" >&2
+	echo "$@" 1>&2
+}
+function echoerr() {
+	errcho $@
 }
 function warning() {
 	echo "[WARNING] $@"
