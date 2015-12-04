@@ -25,36 +25,32 @@
 # aliases.sh
 
 
-
+# cd aliases
 alias ~='cd ~'
 alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 
+
+# exit/kill aliases
 alias e='exit'
 alias killall='killall -v'
 alias k='killall'
+alias c='clear'
+alias kk='konsole && exit $?'
+#alias kon='konsole -e su &'
 
+
+# file aliases
 alias rm='rm -v -i --preserve-root'
 alias cp='cp -v -i'
 alias mv='mv -v -i'
-
-alias chmod='chmod -v --preserve-root'
-alias chown='chown -v --preserve-root'
-alias chgrp='chgrp -v --preserve-root'
-
 alias cwd='pwd'
-alias c='clear'
-
-alias grep='grep --color=auto'
-alias diff='colordiff'
-
-alias yumy='yum -y'
-alias yumup='yum clean all && clear && yum update'
-alias yumupy='yumup -y'
+alias ccat='clear;cat'
+alias untar='tar -zxvf'
 
 
-
+# list file aliases
 alias ls='ls -A --color=auto'
 alias ll='ls -lhs'
 
@@ -72,9 +68,26 @@ alias lx='ls -lXB'
 # sort by size
 alias lk='ls -lSr'
 
-alias ccat='clear;cat'
+
+# ch-permission aliases
+alias chmod='chmod -v --preserve-root'
+alias chown='chown -v --preserve-root'
+alias chgrp='chgrp -v --preserve-root'
 
 
+# parse aliases
+alias grep='grep --color=auto'
+alias diff='colordiff'
+
+
+# date/time aliases
+alias timenow='date +"%T"'
+alias datenow='date +"%Y-%m-%d"'
+alias datetime='date +"%Y-%m-%d %T"'
+alias dayofyear='date +"%j"'
+
+
+# watch aliases
 alias W='watch'
 alias wfast='watch -n0.2'
 alias ww='watch w'
@@ -84,71 +97,58 @@ alias httpw='watch -d -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-se
 alias wdd="watch -n5 kill -USR1 `pgrep -l '^dd$' | awk '{ print $1 }'`"
 
 
+# disk space aliases
+alias df='df -h'
+alias dfi='df -i'
+alias wdf='watch -d -n1 "df -h;echo;df -i"'
+alias cdu='clear;du -sch *'
+alias du1='du -h --max-depth=1'
+alias du2='du -h --max-depth=2'
+alias du3='du -h --max-depth=3'
+
+
+# screen aliases
+alias screena='screen -x'
+alias screenc='screen -mS'
+
+
+# yum aliases
+alias yumy='yum -y'
+alias yumup='yum clean all && clear && yum update'
+alias yumupy='yumup -y'
+
+
+# more tools
+alias hist='clear;history | grep $1'
+alias psaux='ps auxf'
+alias header='curl -I'
 # alias ports='netstat -tulanp'
 alias ports='netstat -nape --inet'
 
 
-alias df='df -h'
-alias dfi='df -i'
-alias wdf='watch -d -n1 "df -h;echo;df -i"'
-
-alias cdu='clear;du -sch *'
-alias du1='du -h --max-depth=1'
+# development
+alias countlines='find . -name "*.java" | xargs wc -l'
+alias mvnv='mvn versions:display-dependency-updates'
+alias gem='gem -V'
 
 
+# git aliases
+alias gg='/usr/libexec/git-core/git-gui'
+alias gge='gg && exit $?'
+alias gits='clear;git status'
+alias gitm='git mergetool'
+
+
+# zfs aliases
 alias z='zpool iostat -v 2>&1 | sed "/^\s*$/d" ; zpool status 2>&1 | sed "/^\s*$/d" | grep -v errors\:\ No\ known\ data\ errors ; echo ; df -h ; zfs get compressratio 2>&1 | grep --invert-match --color=none 1.00'
-#alias wz='watch -d -n 2 "z"'
-#alias wz='watch "zpool iostat -v;zpool status;echo;df -h;zfs get compressratio|grep --invert-match --color=none 1.00"'
 alias wz='watch "zpool iostat -v 2>&1 | sed \"/^\s*$/d\" ; zpool status 2>&1 | sed \"/^\\s*$/d\" | grep -v \"errors: No known data errors\" ; echo ; df -h ; zfs get compressratio 2>&1 | grep --invert-match --color=none 1.00"'
-
-
-alias bmdisk='time dd if=/dev/zero of=$PWD/test.file bs=1M count=10000;ll $PWD/test.file;rm $PWD/test.file'
-alias syncmem='sync;echo 3 > /proc/sys/vm/drop_caches'
-
+# snapshot aliases
 alias snapshots='clear;zfs list -t snapshot'
 alias snaps='snapshots'
 alias wsnaps='watch -d -n10 "snapshots;echo;df -h"'
 alias wsnap='wsnaps'
 
 
-
-alias screena='screen -x'
-alias screenc='screen -mS'
-
-
-
-alias countlines='find . -name "*.java" | xargs wc -l'
-
-alias gg='/usr/libexec/git-core/git-gui'
-alias gge='gg && exit $?'
-alias gits='clear;git status'
-alias gitm='git mergetool'
-
-alias mvnv='mvn versions:display-dependency-updates'
-
-
-
-alias kk='konsole && exit $?'
-
-alias header='curl -I'
-
-
-
-alias now='date +"%T"'
-alias nowdate='date +"%Y-%m%d"'
-
-
-alias gem='gem -V'
-
-alias hist='clear;history | grep $1'
-
-alias psaux='ps auxf'
-
-alias untar='tar -zxvf'
-
-alias sux='xterm -fn 7x14 -bg DarkOrange4 -fg white -e su &'
-alias kon='konsole -e su &'
-
+# shutdown/reboot
 alias reboot='yesno.sh "Reboot?" --timeout 10 --default y && shutdown -r now'
 alias stop='yesno.sh "Shutdown?" --timeout 10 --default y && shutdown -h now'
-
