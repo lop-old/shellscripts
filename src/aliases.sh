@@ -64,6 +64,9 @@ alias cls='clear;pwd;ls'
 alias cll='clear;pwd;ll'
 alias cld='clear;pwd;ld'
 
+alias wll='watch -d -n2 "ls -lshA"'
+alias Wll='watch -d -n0.2 "ls -lshA"'
+
 # sort by extension
 alias lx='ls -lXB'
 # sort by size
