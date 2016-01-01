@@ -124,6 +124,8 @@ alias yumupy='yumup -y'
 
 
 # more tools
+alias bmdisk='time dd if=/dev/zero of=$PWD/test.file bs=1M count=10000;ll $PWD/test.file;rm $PWD/test.file'
+alias syncmem='sync;echo 3 > /proc/sys/vm/drop_caches'
 alias hist='clear;history | grep $1'
 alias psaux='ps auxf'
 alias header='curl -I'
