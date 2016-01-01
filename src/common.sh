@@ -194,7 +194,7 @@ function rsync_backup {
 		exit 1
 	fi
 	# --bwlimit="${bwlimit}" --link-dest="$DST/${1}.1" "$SRC" "$DST/${1}.pre"
-	rsync --progress --archive --delete-delay --delete-excluded -Fyth "$@"  || exit 1
+	rsync --progress --partial --archive --delete-delay --delete-excluded -Fyth "$@"  || exit 1
 }
 
 
