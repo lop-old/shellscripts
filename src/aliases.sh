@@ -124,6 +124,8 @@ alias yumupy='yumup -y'
 
 
 # more tools
+alias s='sudo su'
+alias S='sudo su -'
 alias bmdisk='time dd if=/dev/zero of=$PWD/test.file bs=1M count=10000;ll $PWD/test.file;rm $PWD/test.file'
 alias syncmem='sudo -s -- sh -c "sync && echo 3 > /proc/sys/vm/drop_caches"'
 alias synctop='syncmem & htop'
