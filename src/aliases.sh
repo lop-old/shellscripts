@@ -74,9 +74,9 @@ alias lk='ls -lSr'
 
 
 # ch-permission aliases
-alias chmod='chmod -v --preserve-root'
-alias chown='chown -v --preserve-root'
-alias chgrp='chgrp -v --preserve-root'
+alias chmod='chmod -c --preserve-root'
+alias chown='chown -c --preserve-root'
+alias chgrp='chgrp -c --preserve-root'
 
 
 # parse aliases
