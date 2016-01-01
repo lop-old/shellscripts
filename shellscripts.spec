@@ -51,11 +51,15 @@ echo "Install.."
 # copy script files
 for scriptfile in \
 	aliases.sh \
+	chmodr.sh \
+	chownr.sh \
 	common.sh \
+	forever.sh \
 	mklinkrel.sh \
 	monitorhost.sh \
 	profile.sh \
 	sshkeygen.sh \
+	timestamp.sh \
 	pingssh.sh \
 	progresspercent.sh \
 	yesno.sh \
@@ -66,9 +70,13 @@ for scriptfile in \
 			|| exit 1
 done
 # alias symlinks
+ln -sf  "%{prefix}/chmodr.sh"           "${RPM_BUILD_ROOT}%{_bindir}/chmodr"
+ln -sf  "%{prefix}/chownr.sh"           "${RPM_BUILD_ROOT}%{_bindir}/chownr"
+ln -sf  "%{prefix}/forever.sh"          "${RPM_BUILD_ROOT}%{_bindir}/forever"
 ln -sf  "%{prefix}/mklinkrel.sh"        "${RPM_BUILD_ROOT}%{_bindir}/mklinkrel"
 ln -sf  "%{prefix}/monitorhost.sh"      "${RPM_BUILD_ROOT}%{_bindir}/monitorhost"
 ln -sf  "%{prefix}/sshkeygen.sh"        "${RPM_BUILD_ROOT}%{_bindir}/sshkeygen"
+ln -sf  "%{prefix}/timestamp.sh"        "${RPM_BUILD_ROOT}%{_bindir}/timestamp"
 ln -sf  "%{prefix}/pingssh.sh"          "${RPM_BUILD_ROOT}%{_bindir}/pingssh"
 ln -sf  "%{prefix}/pingssh.sh"          "${RPM_BUILD_ROOT}%{_bindir}/sshping"
 ln -sf  "%{prefix}/progresspercent.sh"  "${RPM_BUILD_ROOT}%{_bindir}/progresspercent"
@@ -100,18 +108,26 @@ fi
 %files
 %defattr(-,root,root,-)
 %{prefix}/aliases.sh
+%{prefix}/chmodr.sh
+%{prefix}/chownr.sh
 %{prefix}/common.sh
+%{prefix}/forever.sh
 %{prefix}/mklinkrel.sh
 %{prefix}/monitorhost.sh
 %{prefix}/profile.sh
 %{prefix}/sshkeygen.sh
+%{prefix}/timestamp.sh
 %{prefix}/pingssh.sh
 %{prefix}/progresspercent.sh
 %{prefix}/yesno.sh
 %{prefix}/iptop.pl
+%{_bindir}/chmodr
+%{_bindir}/chownr
+%{_bindir}/forever
 %{_bindir}/mklinkrel
 %{_bindir}/monitorhost
 %{_bindir}/sshkeygen
+%{_bindir}/timestamp
 %{_bindir}/pingssh
 %{_bindir}/sshping
 %{_bindir}/progresspercent
