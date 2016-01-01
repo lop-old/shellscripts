@@ -47,6 +47,7 @@ progresspercent 6 6
 
 newline
 newline
+/sbin/modprobe zfs
 zpool list || exit 1
 newline
 echo "Finished installing zfs!"
