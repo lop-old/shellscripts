@@ -55,6 +55,8 @@ for scriptfile in \
 	chownr.sh \
 	common.sh \
 	forever.sh \
+	install-zfs.sh \
+	iptop.pl \
 	mklinkrel.sh \
 	monitorhost.sh \
 	profile.sh \
@@ -112,6 +114,7 @@ fi
 %{prefix}/chownr.sh
 %{prefix}/common.sh
 %{prefix}/forever.sh
+%{prefix}/install-zfs.sh
 %{prefix}/mklinkrel.sh
 %{prefix}/monitorhost.sh
 %{prefix}/profile.sh
