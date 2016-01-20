@@ -131,19 +131,26 @@ function warning() {
 #	esac
 #}
 function title() {
-	local i=$((${#1}+8))
-	local j=$((${#1}+4))
-	local c=${#}
-	newline
-	echo -n " "; eval "printf '*'%.0s {1..$i}"; echo
-	echo -n " "; eval "printf '*'%.0s {1..$i}"; echo
-	echo -n " **"; eval "printf ' '%.0s {1..$j}"; echo "**"
-	for line in "${@}"; do
-		echo " **  ${line}  **"
+	MAX_SIZE=1
+	for ARG in "$@"; do
+		local _S=${#ARG}
+		if [ $_S -gt $MAX_SIZE ]; then
+			MAX_SIZE=$_S
+		fi
 	done
-	echo -n " **"; eval "printf ' '%.0s {1..$j}"; echo "**"
-	echo -n " "; eval "printf '*'%.0s {1..$i}"; echo
-	echo -n " "; eval "printf '*'%.0s {1..$i}"; echo
+	local _A=$(($MAX_SIZE+8))
+	local _B=$(($MAX_SIZE+2))
+	newline
+	echo -n " "; eval "printf '*'%.0s {1..$_A}"; echo
+	echo -n " "; eval "printf '*'%.0s {1..$_A}"; echo
+	echo -n " ** "; eval "printf ' '%.0s {1..$_B}"; echo " **"
+	for LINE in "${@}"; do
+		local _S=$(($_B-${#LINE}))
+		echo -n " **  ${LINE}"; eval "printf ' '%.0s {1..$_S}"; echo "**"
+	done
+	echo -n " ** "; eval "printf ' '%.0s {1..$_B}"; echo " **"
+	echo -n " "; eval "printf '*'%.0s {1..$_A}"; echo
+	echo -n " "; eval "printf '*'%.0s {1..$_A}"; echo
 	newline
 	newline
 }
