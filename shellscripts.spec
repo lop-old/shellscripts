@@ -9,7 +9,7 @@ Prefix          : %{_bindir}/shellscripts
 %define _rpmfilename  %%{NAME}-%%{VERSION}-%%{RELEASE}.%%{ARCH}.rpm
 
 Group           : Base System/System Tools
-License         : (c) PoiXson
+License         : GPL 3.0
 Packager        : PoiXson <support@poixson.com>
 URL             : http://poixson.com/
 

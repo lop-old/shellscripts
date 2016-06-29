@@ -1,7 +1,8 @@
 #!/bin/bash
 ##===============================================================================
-## Copyright (c) 2013-2015 PoiXson, Mattsoft
+## Copyright (c) 2013-2016 PoiXson, Mattsoft
 ## <http://poixson.com> <http://mattsoft.net>
+## Released under the GPL 3.0
 ##
 ## Description: Ask a yes/no question.
 ##

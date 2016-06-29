@@ -1,9 +1,10 @@
 #!/bin/bash
 ##===============================================================================
-## Copyright (c) 2013-2015 PoiXson, Mattsoft
+## Copyright (c) 2013-2016 PoiXson, Mattsoft
 ## <http://poixson.com> <http://mattsoft.net>
+## Released under the GPL 3.0
 ##
-## Description: Pings a remote host until it's able to connect with ssh
+## Description: Pings a remote host until it's able to connect with ssh.
 ##
 ## Install to location: /usr/bin/shellscripts
 ##
