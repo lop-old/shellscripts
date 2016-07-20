@@ -200,7 +200,7 @@ if [[ $(basename "$0" .sh) == 'yesno' ]]; then
 		exit $NO
 	fi
 	# yesno <question> [--timeout N] [--default X]
-	if yesno $@ ; then
+	if yesno "$@" ; then
 		exit $YES
 	fi
 	exit $NO

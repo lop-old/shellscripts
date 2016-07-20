@@ -48,4 +48,4 @@ function progress_percent() {
 	echo ']'
 }
 
-progress_percent $@
+progress_percent "$@"

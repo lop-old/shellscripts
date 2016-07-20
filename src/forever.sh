@@ -3,5 +3,5 @@
 set -e
 
 while true; do
-	$*
+	"$@"
 done

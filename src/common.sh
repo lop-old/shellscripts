@@ -116,13 +116,13 @@ function newline() {
 	echo -ne "\n"
 }
 function errcho() {
-	echo "$@" 1>&2
+	echo "$*" 1>&2
 }
 function echoerr() {
-	errcho $@
+	errcho "$*"
 }
 function warning() {
-	echo "[WARNING] $@"
+	echo "[WARNING] $*"
 }
 #function ask() {
 #	echo -n "$@" '[Y/n] '; read -n 1 reply
