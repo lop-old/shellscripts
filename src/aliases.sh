@@ -169,6 +169,9 @@ alias lstgt='clear;tgtadm --mode target --op show'
 # zfs aliases
 alias z='zpool iostat -v 2>&1 | sed "/^\s*$/d" ; zpool status 2>&1 | sed "/^\s*$/d" | grep -v errors\:\ No\ known\ data\ errors ; echo ; df -h ; zfs get compressratio 2>&1 | grep --invert-match --color=none 1.00'
 alias wz='watch "zpool iostat -v 2>&1 | sed \"/^\s*$/d\" ; zpool status 2>&1 | sed \"/^\\s*$/d\" | grep -v \"errors: No known data errors\" ; echo ; df -h ; zfs get compressratio 2>&1 | grep --invert-match --color=none 1.00"'
+alias zfree='watch -n0.5 zpool get freeing'
+alias zfrag='zpool get fragmentation'
+#alias zstatus='zpool status -x'
 # snapshot aliases
 alias snapshots='clear;zfs list -t snapshot'
 alias snaps='snapshots'
