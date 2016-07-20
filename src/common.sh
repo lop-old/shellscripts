@@ -176,23 +176,33 @@ function sleepdotdot() {
 
 
 function get_lock() {
-	if [ -z $1 ]; then
-		LOCK_NAME="$0"
-	else
-		LOCK_NAME="$1"
-	fi
-	for i in {1..20} ; do
-		LOCK_COUNT=`lsof -t $LOCK_NAME | wc -l`
+	for i in {20..1} ; do
+		is_locked "$@"
+		LOCK_COUNT=$?
 		if [ $LOCK_COUNT -le 1 ]; then
 			return 0
 		fi
-		echo -n " [${i}] Another instance is running."; sleepdotdot
-		newline
+		echo
+		echo -n " [${i}] Another instance is running.";
+		sleep 1; echo -n '.'; sleep 1; echo -n '.'; sleep 1
+		echo
 	done
-	newline
-	errcho 'Timeout waiting for other instance to complete!'
-	newline
+	echo
+	echo 'Timeout waiting for other instance to complete!'
+	echo
 	exit 1
+}
+function is_locked() {
+	LOCK_FILE="$1"
+	if [ -z $LOCK_FILE ]; then
+		LOCK_FILE=`realpath "$0"`
+	fi
+	if [ -z $LOCK_FILE ]; then
+		echo 'Failed to detect lock file!'
+		exit 1
+	fi
+	LOCK_COUNT=`lsof -t "${LOCK_FILE}" | wc -l`
+	return $LOCK_COUNT
 }
 
 
