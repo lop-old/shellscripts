@@ -138,7 +138,10 @@ while true; do
 		5) echo -ne " [  ***] ";;
 		6) echo -ne " [   **] ";;
 		7) echo -ne " [    *] ";;
-		8) echo -ne " [     ] "; STEP=0;;
+		8) echo -ne " [     ] ";;
+		9) echo -ne " [.    ] ";;
+		10)echo -ne " [  .  ] ";;
+		11)echo -ne " [    .] "; STEP=0;;
 	esac
 	echo " Waiting for ${REMOTE_USER}@${REMOTE_HOST} ..."
 	echo
