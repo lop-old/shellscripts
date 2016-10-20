@@ -100,7 +100,7 @@ alias ww='watch w'
 alias memtop='watch -d "free -m;echo;ps aux --sort -rss | head -11"'
 alias vtop='virt-top -d 1'
 alias httpw='watch -d -n1 /usr/bin/lynx -dump -width 500 http://127.0.0.1/whm-server-status'
-alias wdd="watch -n5 kill -USR1 `pgrep -l '^dd$' | awk '{ print $1 }'`"
+alias wdd="watch -n1 killall -v -USR1 dd"
 alias wtime='watch -n0.2 date'
 
 
