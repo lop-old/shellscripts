@@ -180,5 +180,5 @@ alias wsnap='wsnaps'
 
 
 # shutdown/reboot
-alias reboot='clear ; echo ; hostname ; yesno.sh "Reboot?" --timeout 10 --default y && shutdown -r now'
-alias stop='echo;echo;hostname;ip addr show | grep --color=never "inet ";echo;yesno.sh "Shutdown?" --timeout 10 --default y && shutdown -h now'
+alias reboot='clear ; echo ; hostname ; ip addr show | grep --color=never "inet " | grep -v "127.0.0.1" | awk '"'"'{print $2}'"'"' ; yesno.sh "Reboot?"   --timeout 10 --default y && shutdown -r now'
+alias stop='  clear ; echo ; hostname ; ip addr show | grep --color=never "inet " | grep -v "127.0.0.1" | awk '"'"'{print $2}'"'"' ; yesno.sh "Shutdown?" --timeout 10 --default y && shutdown -h now'
