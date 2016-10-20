@@ -51,15 +51,15 @@ fi
 
 function yesno() {
 	newline
+	# parse arguments
 	local question=""
 	local default=""
 	local timeout=-1
-	# parse arguments
 	while [ $# -gt 0 ]; do
 		case "$1" in
 		--default)
 			shift
-			local t=$1
+			local t="$1"
 			if [ -z $t ]; then
 				errcho "Missing --default value."
 				return "$NO"
@@ -136,7 +136,6 @@ function yesno() {
 	# ask until answered
 	while true; do
 		local answer=""
-		newline
 		# no timeout
 		if [[ $timeout -lt 0 ]]; then
 			display_question
@@ -167,7 +166,7 @@ function yesno() {
 			else
 				if [ ! -z $default ]; then
 					newline
-					return $default
+					return "$default"
 				fi
 			fi
 		# handle answer value
@@ -278,12 +277,12 @@ if [[ $(basename "$0" .sh) == 'yesno' ]]; then
 	if [ $# -eq 1 ]; then
 		if [[ "$1" == "--test" ]] || [[ "$1" == "--demo" ]]; then
 			yesno_demo
-			exit 0
+			exit 1
 		fi
 	fi
 	if [ $# -lt 1 ]; then
 		errcho "Missing question argument: yesno <question> [--timeout N] [--default X]"
-		exit "$NO"
+		exit 1
 	fi
 	# yesno <question> [--timeout N] [--default X]
 	yesno $@
