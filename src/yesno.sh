@@ -85,7 +85,7 @@ function yesno() {
 				errcho "Missing --timeout value."
 				return "$default"
 			fi
-			if [[ ! "$timeout" =~ ^[0-9][0-9]*$ ]]; then
+			if [[ ! "$timeout" == ?(-)+([0-9]) ]]; then
 				errcho "Illegal timeout value: ${timeout}"
 				if [ -z $default ]; then
 					return "$NO"
