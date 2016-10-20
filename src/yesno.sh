@@ -50,11 +50,7 @@ fi
 
 
 function yesno() {
-	# question arg
-	if [ $# -lt 1 ] || [ -z "$1" ]; then
-		errcho 'Missing question argument.'
-		return $NO
-	fi
+	newline
 	local question=""
 	local default=""
 	local timeout=-1
@@ -105,9 +101,8 @@ function yesno() {
 			fi
 		;;
 		*)
-			errcho "Unknown argument: $1"
+			local question="${question}${1} "
 			shift
-			return $default
 		;;
 		esac
 	done
@@ -130,37 +125,62 @@ function yesno() {
 	else
 		local options="[y/n] "
 	fi
+	# display question
+	function display_question() {
+		if [ $timeout -lt 0 ]; then
+			echo -n "${question}${options}"
+		else
+			echo -n " <${timeout}> ${question}${options}"
+		fi
+	}
 	# ask until answered
-	while [[ $ok -eq 0 ]]; do
+	while true; do
 		local answer=""
 		newline
-		echo -n "$question "
 		# no timeout
-		if [[ $timeout -eq 0 ]]; then
-			read -p "$*" answer
+		if [[ $timeout -lt 0 ]]; then
+			display_question
+			read answer
+			local result=$?
+			newline
 		# with timeout
 		else
-			if ! read -t $timeout -p "$*" answer; then
-				newline
-				return "$default"
+			display_question
+			read -t 1 answer
+			local result=$?
+			# 1 second timeout
+			if [ $result -eq 142 ]; then
+				let timeout=timeout-1
+				if [ $timeout -le 0 ]; then
+					echo -ne "\r"
+					display_question
+					newline
+					newline
+					return "$default"
+				fi
 			fi
 		fi
-		# empty answer
-		if [ -z "$answer" ]; then
-			if [ ! -z $default ]; then
-				return "$default"
+		# if empty answer, return default
+		if [ -z $answer ]; then
+			if [ $result -eq 142 ]; then
+				echo -ne "\r"
+			else
+				if [ ! -z $default ]; then
+					newline
+					return $default
+				fi
 			fi
-		fi
-		timeout=0
-		if [[ "$answer" == "y" ]] || [[ "$answer" == "Y" ]] || [[ "$answer" == y* ]] || [[ "$answer" == Y* ]]; then
+		# handle answer value
+		else
 			newline
-			return $YES
+			if [[ "$answer" == "y" ]] || [[ "$answer" == "Y" ]] || [[ "$answer" == y* ]] || [[ "$answer" == Y* ]]; then
+				return "$YES"
+			fi
+			if [[ "$answer" == "n" ]] || [[ "$answer" == "N" ]] || [[ "$answer" == n* ]] || [[ "$answer" == N* ]]; then
+				return "$NO"
+			fi
+			warning "Valid answers are: y/n or yes/no";
 		fi
-		if [[ "$answer" == "n" ]] || [[ "$answer" == "N" ]] || [[ "$answer" == n* ]] || [[ "$answer" == N* ]]; then
-			newline
-			return "$NO"
-		fi
-		warning "Valid answers are: y/n or yes/no";
 	done
 }
 
