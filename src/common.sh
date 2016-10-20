@@ -60,8 +60,8 @@ alias popd='echo -n "cd< ";popd'
 # export PXN_WORKSPACE="/zwork"
 # source ${PXN_SCRIPTS}/aliases.sh
 
-export YES=1
-export NO=0
+export YES=0
+export NO=1
 
 
 
