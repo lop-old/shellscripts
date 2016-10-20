@@ -186,57 +186,109 @@ function yesno() {
 
 
 function yesno_demo() {
-	if yesno "Test bad timeout value? "; then
-		yesno "Hello? " --timeout none
-	fi
-	if yesno "Test timeout without default value? "; then
-		yesno "Hello? " --timeout 10
-	fi
-	if yesno "Test bad default value? "; then
-		yesno "Hello? " --default
-	fi
-	if yesno "Yes or no? [yn] "; then
-		echo "You answered yes"
+	clear
+	local count_right=0
+	local count_wrong=0
+	# test 1
+	newline
+	echo " === Test 1 === "
+	yesno "Yes or no?"
+	result=$?
+	if [ $result -eq $YES ]; then
+		echo "You answered yes!"
 	else
-		echo "You answered no"
+		echo "You answered no!"
 	fi
-	if yesno "Yes or no? (default: yes) " --default yes ; then
-		echo "You answered yes"
+	# test --timeout
+	newline
+	echo " === Test --timeout === "
+	yesno "Test bad timeout value?" --default y
+	result=$?
+	if [ $result -eq $YES ]; then
+		yesno "This should fail?" --timeout none
+	fi
+	# test --default
+	newline
+	echo " === Test --default === "
+	yesno "Yes or no? (default: yes)" --default yes
+	result=$?
+	if [ $result -eq $YES ]; then
+		let count_right=count_right+1
+		echo "You answered right!"
 	else
-		echo "You answered no"
+		let count_wrong=count_wrong+1
+		echo "You answered WRONG!"
 	fi
-	if yesno "Yes or no? (default: no) " --default no ; then
-		echo "You answered yes"
+	yesno "Yes or no? (default: no)" --default no
+	result=$?
+	if [ $result -eq $YES ]; then
+		let count_wrong=count_wrong+1
+		echo "You answered WRONG!"
 	else
-		echo "You answered no"
+		let count_right=count_right+1
+		echo "You answered right!"
 	fi
-	if yesno "Yes or no? (timeout: 5, default: no) " --timeout 5 --default no ; then
-		echo "You answered yes"
+	yesno "Test bad default value?" --default y
+	result=$?
+	if [ $result -eq $YES ]; then
+		yesno "This should fail?" --default
+	fi
+	yesno "Test timeout without default value?" --default y
+	result=$?
+	if [ $result -eq $YES ]; then
+		yesno "This should take 10 seconds to timeout?" --timeout 10
+	fi
+	# allow timeout test
+	newline
+	echo " === Allow the rest to timeout === "
+	yesno "Yes or no? (timeout: 5, default: yes)" --timeout 3 --default yes
+	result=$?
+	if [ $result -eq $YES ]; then
+		let count_right=count_right+1
+		echo "You answered right!"
 	else
-		echo "You answered no"
+		let count_wrong=count_wrong+1
+		echo "You answered WRONG!"
 	fi
-	if yesno "Yes or no? (timeout: 5, default: yes) " --timeout 5 --default yes ; then
-		echo "You answered yes"
+	yesno "Yes or no? (timeout: 5, default: no)" --timeout 3 --default no
+	result=$?
+	if [ $result -eq $YES ]; then
+		let count_wrong=count_wrong+1
+		echo "You answered WRONG!"
 	else
-		echo "You answered no"
+		let count_right=count_right+1
+		echo "You answered right!"
 	fi
-	echo "Done testing."
+	# finished
+	newline
+	newline
+	echo "Finished testing!"
+	if [ $count_wrong -gt 0 ]; then
+		echo "Error! At least ${count_wrong} tests have failed!"
+		newline
+		exit 1
+	fi
+	newline
 }
 
 
 # running script directly
 if [[ $(basename "$0" .sh) == 'yesno' ]]; then
 	# demo
-	if [ $# -eq 0 ]; then
-		yesno_demo
-		exit "$NO"
+	if [ $# -eq 1 ]; then
+		if [[ "$1" == "--test" ]] || [[ "$1" == "--demo" ]]; then
+			yesno_demo
+			exit 0
+		fi
 	fi
 	if [ $# -lt 1 ]; then
 		errcho "Missing question argument: yesno <question> [--timeout N] [--default X]"
 		exit "$NO"
 	fi
 	# yesno <question> [--timeout N] [--default X]
-	if yesno "$@" ; then
+	yesno $@
+	result=$?
+	if [ $result -eq $YES ]; then
 		exit "$YES"
 	fi
 	exit "$NO"
