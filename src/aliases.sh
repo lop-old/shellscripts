@@ -124,6 +124,9 @@ alias yumy='yum -y'
 alias yumup='yum clean all && clear && yum update'
 alias yumupy='yumup -y'
 
+#alias kernels='rpm -qav | grep kernel-[2-4] ; echo -ne "Current:\nkernel-" ; uname -r'
+alias kernels='CURRENT_KERNEL=`uname -r` ; rpm -qav | grep kernel-[2-4] | sort -V | while read -r LINE ; do if [ "$LINE" == "kernel-$CURRENT_KERNEL" ]; then echo "$LINE <active>" ; else echo "$LINE" ; fi done'
+
 
 # more tools
 alias s='sudo su'
