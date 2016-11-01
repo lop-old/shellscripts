@@ -141,6 +141,14 @@ alias header='curl -I'
 alias ports='netstat -nape --inet'
 
 
+# ping/mtr
+alias ping='clear;ping'
+alias pinga='clear;\ping -A -D'
+alias ping8='clear;\ping -A -D 8.8.8.8'
+alias mtr='\mtr -4 -b'
+alias mtr8='\mtr -4 -b 8.8.8.8'
+
+
 # iptables aliases
 alias fwl='iptables -L -v'
 alias fwf='iptables -F;iptables -P INPUT ACCEPT;iptables -P OUTPUT ACCEPT;iptables -P FORWARD ACCEPT'
